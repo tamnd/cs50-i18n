@@ -52,12 +52,15 @@ def run_gemini(prompt: str) -> str:
         ["gemini", "-p", prompt],
         capture_output=True,
         text=True,
-        timeout=120,
+        timeout=300,
     )
     out = result.stdout
     # Strip MCP warning lines wherever they appear (may or may not have trailing newline)
     out = re.sub(r'MCP issues detected[^\n]*\n?', '', out)
-    return out.strip()
+    out = out.strip()
+    if not out:
+        raise RuntimeError(f"Gemini returned empty output (stderr: {result.stderr[:200]})")
+    return out
 
 
 def ensure_frontmatter(text: str) -> str:

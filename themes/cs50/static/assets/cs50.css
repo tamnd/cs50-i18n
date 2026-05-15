@@ -18,8 +18,13 @@ html {
   font-family: "Be Vietnam Pro", "PT Sans", system-ui, sans-serif;
 }
 
-/* Chinese: Noto Sans SC for CJK characters */
-:lang(zh) {
+/* Chinese: Noto Sans SC for CJK characters (exclude icon elements) */
+:lang(zh) body,
+:lang(zh) p,
+:lang(zh) h1, :lang(zh) h2, :lang(zh) h3, :lang(zh) h4, :lang(zh) h5, :lang(zh) h6,
+:lang(zh) li, :lang(zh) td, :lang(zh) th, :lang(zh) label,
+:lang(zh) a, :lang(zh) span:not([class*="fa"]), :lang(zh) div:not([class*="fa"]),
+:lang(zh) main, :lang(zh) nav, :lang(zh) aside, :lang(zh) header, :lang(zh) footer {
   font-family: "Noto Sans SC", "PT Sans", system-ui, sans-serif;
 }
 
