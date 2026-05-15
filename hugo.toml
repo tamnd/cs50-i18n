@@ -37,6 +37,15 @@ defaultContentLanguageInSubdir = false
       instructorName = "David J. Malan"
       instructorEmail = "malan@harvard.edu"
 
+  [languages.ja]
+    label = "日本語"
+    contentDir = "content/ja"
+    weight = 4
+    [languages.ja.params]
+      courseName = "CS50 コンピュータサイエンス入門"
+      instructorName = "David J. Malan"
+      instructorEmail = "malan@harvard.edu"
+
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
