@@ -1,9 +1,8 @@
 <aside class="col-lg">
 
   <header>
-    {{- $course := .Site.GetPage (printf "/%s" (.Scratch.Get "courseSlug" | default "x")) }}
     <h1><a href="{{ .Site.BaseURL }}{{ .Language.Lang }}/x/">This is CS50</a></h1>
-    <h2 class="text-white">{{ .Site.Params.courseName | default (.Lang | printf "%s" ) | default "CS50's Introduction to Computer Science" }}</h2>
+    <h2 class="text-white">{{ with .Site.Params.courseName }}{{ . }}{{ else }}CS50's Introduction to Computer Science{{ end }}</h2>
     <p>OpenCourseWare</p>
     <p>
       <a href="mailto:malan@harvard.edu" class="small me-2">
@@ -27,7 +26,7 @@
     data-bs-toggle="collapse"
     data-bs-target="aside > nav"
     aria-controls="nav"
-    aria-expanded="false">Menu</button>
+    aria-expanded="false">{{ i18n "menu_label" | default "Menu" }}</button>
 
   <nav class="collapse d-lg-block" id="nav">
     <ul>
@@ -39,16 +38,15 @@
     <!-- Language switcher -->
     <ul>
       <li><strong>{{ i18n "language_label" | default "Language" }}</strong></li>
-      {{ range .Site.Languages }}
+      {{- range hugo.Sites }}
       <li>
-        {{- $langURL := printf "/%s/" .Lang }}
-        {{- if eq .Lang $.Language.Lang }}
-        <strong>{{ .LanguageName }}</strong>
+        {{- if eq .Language.Lang $.Language.Lang }}
+        <strong>{{ .Language.Label }}</strong>
         {{- else }}
-        <a href="{{ $.Site.BaseURL }}{{ .Lang }}/">{{ .LanguageName }}</a>
+        <a href="{{ $.Site.BaseURL }}{{ .Language.Lang }}/">{{ .Language.Label }}</a>
         {{- end }}
       </li>
-      {{ end }}
+      {{- end }}
     </ul>
 
     <hr>

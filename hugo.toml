@@ -11,7 +11,7 @@ defaultContentLanguageInSubdir = false
 
 [languages]
   [languages.en]
-    languageName = "English"
+    label = "English"
     contentDir = "content/en"
     weight = 1
     [languages.en.params]
@@ -20,7 +20,7 @@ defaultContentLanguageInSubdir = false
       instructorEmail = "malan@harvard.edu"
 
   [languages.vi]
-    languageName = "Tiếng Việt"
+    label = "Tiếng Việt"
     contentDir = "content/vi"
     weight = 2
     [languages.vi.params]
@@ -29,7 +29,7 @@ defaultContentLanguageInSubdir = false
       instructorEmail = "malan@harvard.edu"
 
   [languages.zh]
-    languageName = "中文"
+    label = "中文"
     contentDir = "content/zh"
     weight = 3
     [languages.zh.params]

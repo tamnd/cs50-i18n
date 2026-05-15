@@ -11,8 +11,8 @@
 
 <h2>Languages</h2>
 <ul>
-  {{ range .Site.Languages }}
-  <li><a href="{{ $.Site.BaseURL }}{{ .Lang }}/">{{ .LanguageName }}</a></li>
+  {{ range hugo.Sites }}
+  <li><a href="{{ $.Site.BaseURL }}{{ .Language.Lang }}/">{{ .Language.Label }}</a></li>
   {{ end }}
 </ul>
 
