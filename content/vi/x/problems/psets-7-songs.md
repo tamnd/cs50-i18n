@@ -1,3 +1,4 @@
+---
 title: "Songs - CS50x 2026"
 pset: 7
 draft: false

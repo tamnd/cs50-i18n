@@ -1,3 +1,4 @@
+---
 title: "Đối số dòng lệnh"
 slug: "command_line_arguments"
 youtube_id: "AI6Ccfno6Pk"

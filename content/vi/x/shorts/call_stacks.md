@@ -1,3 +1,4 @@
+---
 slug: "call_stacks"
 youtube_id: "aCPkszeKRa4"
 ---

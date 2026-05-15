@@ -1,3 +1,4 @@
+---
 title: "Bắt đầu với Scratch - CS50x 2026"
 pset: 0
 draft: false

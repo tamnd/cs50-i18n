@@ -1,3 +1,4 @@
+---
 title: "Dòng lệnh"
 slug: "command_line"
 youtube_id: "BnJ013X02b8"

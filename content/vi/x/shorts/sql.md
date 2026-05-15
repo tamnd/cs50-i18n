@@ -1,3 +1,4 @@
+---
 title: "SQL"
 slug: "sql"
 youtube_id: "AywtnUjQ6X4"

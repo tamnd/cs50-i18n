@@ -1,3 +1,4 @@
+---
 title: "DOM"
 slug: "dom"
 youtube_id: "LKWJpgvfH3U"

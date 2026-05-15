@@ -1,3 +1,4 @@
+---
 title: "Tideman - CS50x 2026"
 pset: 3
 draft: false

@@ -83,7 +83,18 @@ def batch_translate(batch: list[tuple[Path, Path]]) -> None:
         dst.parent.mkdir(parents=True, exist_ok=True)
         translated = outputs[i].strip() if i < len(outputs) else src.read_text()
         translated = re.sub(r'^FILE:\s*\S+\s*\n', '', translated)
+        translated = ensure_frontmatter(translated)
         dst.write_text(translated + '\n', encoding='utf-8')
+
+
+def ensure_frontmatter(text: str) -> str:
+    """Ensure the file starts with --- (Gemini sometimes strips the opening delimiter)."""
+    text = text.strip()
+    if not text.startswith('---'):
+        text = '---\n' + text
+    # Fix draft: "false" -> draft: false (Gemini sometimes quotes booleans)
+    text = re.sub(r'^(draft):\s*"(true|false)"', lambda m: f'{m.group(1)}: {m.group(2)}', text, flags=re.MULTILINE)
+    return text
 
 
 def process_large(src: Path, dst: Path) -> None:
@@ -92,7 +103,7 @@ def process_large(src: Path, dst: Path) -> None:
     if len(raw.strip()) < 20:
         dst.write_text(raw, encoding='utf-8')
         return
-    translated = translate_large_file(raw)
+    translated = ensure_frontmatter(translate_large_file(raw))
     dst.write_text(translated + '\n', encoding='utf-8')
 
 

@@ -9,8 +9,18 @@ html {
 }
 
 :root {
-  --bs-font-sans-serif: "PT Sans", system-ui, -apple-system, sans-serif;
+  --bs-font-sans-serif: "PT Sans", "Be Vietnam Pro", "Noto Sans SC", system-ui, -apple-system, sans-serif;
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Vietnamese: Be Vietnam Pro handles diacritics better */
+:lang(vi) {
+  font-family: "Be Vietnam Pro", "PT Sans", system-ui, sans-serif;
+}
+
+/* Chinese: Noto Sans SC for CJK characters */
+:lang(zh) {
+  font-family: "Noto Sans SC", "PT Sans", system-ui, sans-serif;
 }
 
 /* ── Layout ─────────────────────────────────────────────────────────────── */

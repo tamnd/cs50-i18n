@@ -1,3 +1,4 @@
+---
 title: "DNA - CS50x 2026"
 pset: 6
 draft: false

@@ -1,3 +1,4 @@
+---
 title: "Mario - CS50x 2026"
 pset: 1
 draft: false

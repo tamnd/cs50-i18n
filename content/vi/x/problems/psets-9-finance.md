@@ -1,3 +1,4 @@
+---
 title: "C$50 Finance - CS50x 2026"
 pset: 9
 draft: false

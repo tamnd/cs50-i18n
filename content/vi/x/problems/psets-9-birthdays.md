@@ -1,3 +1,4 @@
+---
 title: "Ngày sinh nhật (Birthdays) - CS50x 2026"
 pset: 9
 draft: false

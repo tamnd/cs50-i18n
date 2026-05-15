@@ -1,3 +1,4 @@
+---
 title: "Substitution - CS50x 2026"
 pset: 2
 draft: false

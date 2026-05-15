@@ -1,3 +1,4 @@
+---
 title: "Trang chủ - CS50x 2026"
 pset: 8
 draft: false

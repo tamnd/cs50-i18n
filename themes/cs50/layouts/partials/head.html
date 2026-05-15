@@ -6,18 +6,10 @@
 {{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
 {{ with .Site.Params.githubRepo }}<link rel="canonical" href="{{ $.Permalink }}">{{ end }}
 
-<!-- PT Sans via Google Fonts WebFont loader -->
-<script>
-WebFontConfig = {
-  google: { families: ["PT+Sans:400,400i,700,700i"] }
-};
-(function(d) {
-  var wf = d.createElement("script"), s = d.scripts[0];
-  wf.src = "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js";
-  wf.async = true;
-  s.parentNode.insertBefore(wf, s);
-})(document);
-</script>
+<!-- Fonts: PT Sans (Latin) + Be Vietnam Pro (Vietnamese) + Noto Sans SC (Chinese) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Be+Vietnam+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@400;700&display=swap">
 
 <!-- Font Awesome 6 Free -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
