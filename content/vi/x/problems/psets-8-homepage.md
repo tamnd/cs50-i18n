@@ -1,6 +1,6 @@
 title: "Trang chủ - CS50x 2026"
 pset: 8
-draft: "false"
+draft: false
 ---
 
 Xây dựng một trang chủ đơn giản sử dụng HTML, CSS, và JavaScript.

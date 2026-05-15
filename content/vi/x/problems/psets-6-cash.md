@@ -1,6 +1,6 @@
 title: "Cash - CS50x 2026"
 pset: 6
-draft: "false"
+draft: false
 ---
 
 ## Vấn đề cần giải quyết

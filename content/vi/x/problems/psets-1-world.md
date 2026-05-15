@@ -1,7 +1,7 @@
 ---
 title: "Xin chào, Thế giới - CS50x 2026"
 pset: 1
-draft: "false"
+draft: false
 ---
 
 ## Bài toán cần giải

@@ -1,6 +1,6 @@
 title: "Trivia - CS50x 2026"
 pset: 8
-draft: "false"
+draft: false
 ---
 
 Hãy viết một trang web cho phép người dùng trả lời các câu hỏi đố vui (trivia).

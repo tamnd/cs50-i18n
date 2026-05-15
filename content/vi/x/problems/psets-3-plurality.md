@@ -1,6 +1,6 @@
 title: "Plurality - CS50x 2026"
 pset: 3
-draft: "false"
+draft: false
 ---
 
 ## Bài toán cần giải quyết

@@ -1,6 +1,6 @@
 title: "Bộ lọc - CS50x 2026"
 pset: 4
-draft: "false"
+draft: false
 ---
 
 ![Harvard Yard với phát hiện cạnh](yard-edges.bmp)

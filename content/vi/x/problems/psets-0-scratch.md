@@ -1,6 +1,6 @@
 title: "Bắt đầu với Scratch - CS50x 2026"
 pset: 0
-draft: "false"
+draft: false
 ---
 
 Đã đến lúc chọn cuộc phiêu lưu của riêng bạn! Bài tập của bạn, nói một cách đơn giản, là triển khai trong Scratch, tại [scratch.mit.edu](https://scratch.mit.edu), bất kỳ dự án nào bạn chọn, có thể là một câu chuyện tương tác, trò chơi, hoạt ảnh hoặc bất kỳ điều gì khác, chỉ cần tuân theo các yêu cầu sau:

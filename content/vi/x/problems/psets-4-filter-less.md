@@ -1,6 +1,6 @@
 title: "Filter - CS50x 2026"
 pset: 4
-draft: "false"
+draft: false
 ---
 
 ![Harvard Yard in grayscale](yard-grayscale.bmp)

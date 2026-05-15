@@ -1,7 +1,7 @@
 ---
 title: "Bài tập 1"
 pset: 1
-draft: "false"
+draft: false
 ---
 
 ## Cần làm gì

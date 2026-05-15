@@ -1,7 +1,7 @@
 ---
 title: "Bài tập 0"
 pset: 0
-draft: "false"
+draft: false
 ---
 
 Việc cộng tác thực hiện các bài tập không được phép trừ khi bạn có thể hỏi bạn học và những người khác để được giúp đỡ, miễn là sự giúp đỡ đó không biến thành việc người khác làm hộ bạn, theo quy định của khóa học về [academic honesty](../../syllabus/#academic-honesty).

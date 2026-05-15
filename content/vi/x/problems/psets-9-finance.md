@@ -1,6 +1,6 @@
 title: "C$50 Finance - CS50x 2026"
 pset: 9
-draft: "false"
+draft: false
 ---
 
 Triển khai một trang web mà qua đó người dùng có thể “mua” và “bán” cổ phiếu, tương tự như hình dưới đây.

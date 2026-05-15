@@ -1,7 +1,7 @@
 ---
 title: "Thẻ tín dụng - CS50x 2026"
 pset: 6
-draft: "false"
+draft: false
 ---
 
 ## Bài toán cần giải

@@ -1,6 +1,6 @@
 title: "Credit - CS50x 2026"
 pset: 1
-draft: "false"
+draft: false
 ---
 
 ![Người cầm thẻ tín dụng](credit_cards.jpeg)

@@ -1,6 +1,6 @@
 title: "Âm lượng - CS50x 2026"
 pset: 4
-draft: "false"
+draft: false
 ---
 
 ![WAV file waveform](wav_file.png)

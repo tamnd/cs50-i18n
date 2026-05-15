@@ -1,6 +1,6 @@
 title: "Movies - CS50x 2026"
 pset: 7
-draft: "false"
+draft: false
 ---
 
 **Thay đổi cho năm 2026:** `5.sql` hiện yêu cầu khớp các bộ phim bắt đầu bằng “Harry Potter and the “ (không chỉ là “Harry Potter”). `9.sql` hiện yêu cầu xuất **hai cột** (ID và tên của mỗi người), không chỉ là tên. Nếu bạn đã bắt đầu bài toán này trước năm 2026, hãy đảm bảo cập nhật các truy vấn của mình cho phù hợp!

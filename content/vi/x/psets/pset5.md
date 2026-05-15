@@ -1,7 +1,7 @@
 ---
 title: "Bài tập 5"
 pset: 5
-draft: "false"
+draft: false
 ---
 
 Việc hợp tác làm bài tập là không được phép, ngoại trừ việc bạn có thể hỏi bạn cùng lớp và những người khác để được giúp đỡ, miễn là sự giúp đỡ đó không biến thành việc người khác làm hộ bài cho bạn, theo chính sách của khóa học về [liêm chính học thuật](../../syllabus/#academic-honesty).

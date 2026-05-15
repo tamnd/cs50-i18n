@@ -1,6 +1,6 @@
 title: "Tiền lẻ - CS50x 2026"
 pset: 1
-draft: "false"
+draft: false
 ---
 
 ![US coins](coins.jpg)

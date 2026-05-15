@@ -1,6 +1,6 @@
 title: "Readability - CS50x 2026"
 pset: 2
-draft: "false"
+draft: false
 ---
 
 ![Charlotte's Web Cover](charlottes_web.jpg)

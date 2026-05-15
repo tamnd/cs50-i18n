@@ -1,6 +1,6 @@
 title: "Mario - CS50x 2026"
 pset: 6
-draft: "false"
+draft: false
 ---
 
 ![ảnh chụp màn hình Mario đang nhảy lên kim tự tháp](pyramid.png)

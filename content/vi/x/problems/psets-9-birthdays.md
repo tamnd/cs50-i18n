@@ -1,6 +1,6 @@
 title: "Ngày sinh nhật (Birthdays) - CS50x 2026"
 pset: 9
-draft: "false"
+draft: false
 ---
 
 ![ảnh chụp màn hình trang web birthdays](birthdays.png)
