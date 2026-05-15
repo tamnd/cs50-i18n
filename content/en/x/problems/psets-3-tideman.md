@@ -4,10 +4,6 @@ pset: 3
 draft: "false"
 ---
 
-# Tideman - CS50x 2026
-
-# Tideman
-
 ## Problem to Solve
 
 You already know about plurality elections, which follow a very simple algorithm for determining the winner of an election: every voter gets one vote, and the candidate with the most votes wins.
@@ -48,7 +44,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/3/tideman.zip
 ```
 
@@ -70,7 +66,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd tideman
 ```
 
@@ -82,7 +78,7 @@ tideman/ $
 
 If all was successful, you should execute
 
-```
+```bash
 ls
 ```
 

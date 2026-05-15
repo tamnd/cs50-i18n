@@ -4,10 +4,6 @@ pset: 0
 draft: "false"
 ---
 
-# Starting from Scratch - CS50x 2026
-
-# Starting from Scratch
-
 It’s time to choose your own adventure! Your assignment, quite simply, is to implement in Scratch, at [scratch.mit.edu](https://scratch.mit.edu), any project of your choice, be it an interactive story, game, animation, or anything else, subject only to the following requirements:
 
 - Your project must use at least two sprites, at least one of which must not be a cat.

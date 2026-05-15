@@ -4,10 +4,6 @@ pset: 9
 draft: "false"
 ---
 
-# C$50 Finance - CS50x 2026
-
-# C$50 Finance
-
 Implement a website via which users can “buy” and “sell” stocks, à la the below.
 
 ![C$50 Finance](finance_2024.png)
@@ -95,7 +91,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/9/finance.zip
 ```
 
@@ -117,7 +113,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd finance
 ```
 
@@ -139,7 +135,7 @@ If you run into any trouble, follow these same steps again and see if you can de
 
 Start Flask’s built-in web server (within `finance/`):
 
-```
+```bash
 $ flask run
 ```
 

@@ -4,10 +4,6 @@ pset: 7
 draft: "false"
 ---
 
-# Fiftyville - CS50x 2026
-
-# Fiftyville
-
 ## Problem to Solve
 
 The CS50 Duck has been stolen! The town of Fiftyville has called upon you to solve the mystery of the stolen duck. Authorities believe that the thief stole the duck and then, shortly afterwards, took a flight out of town with the help of an accomplice. Your goal is to identify:
@@ -36,7 +32,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/7/fiftyville.zip
 ```
 
@@ -58,7 +54,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd fiftyville
 ```
 

@@ -3,10 +3,6 @@ title: "Problem Set 5"
 pset: 5
 ---
 
-# Problem Set 5 - CS50's Introduction to Programming with Python
-
-# Problem Set 5
-
 For this problem set, you’ll reimplement some past programs in such a way that you can also write tests for your own code!
 
 ## What to Do
@@ -30,4 +26,3 @@ By [2026-12-31T23:59:00+00:00](https://time.cs50.io/20261231T235900Z).
 - [Refueling - CS50's Introduction to Programming with Python](../problems/psets-5-test_fuel.md)
 - [Re-requesting a Vanity Plate - CS50's Introduction to Programming with Python](../problems/psets-5-test_plates.md)
 - [Testing my twttr - CS50's Introduction to Programming with Python](../problems/psets-5-test_twttr.md)
-

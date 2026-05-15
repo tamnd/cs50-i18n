@@ -4,10 +4,6 @@ pset: 1
 draft: "false"
 ---
 
-# Mario - CS50x 2026
-
-# Mario
-
 ## Problem to Solve
 
 Toward the beginning of World 1-1 in Nintendo’s Super Mario Brothers, Mario must hop over adjacent pyramids of blocks, per the below.
@@ -29,7 +25,7 @@ Examples
 
 Here’s how the program might work if the user inputs `8` when prompted:
 
-```
+```bash
 $ ./mario
 Height: 8
        #  #
@@ -45,7 +41,7 @@ Height: 8
 
 Here’s how the program might work if the user inputs `4` when prompted:
 
-```
+```bash
 $ ./mario
 Height: 4
    #  #
@@ -56,7 +52,7 @@ Height: 4
 
 Here’s how the program might work if the user inputs `2` when prompted:
 
-```
+```bash
 $ ./mario
 Height: 2
  #  #
@@ -65,7 +61,7 @@ Height: 2
 
 And here’s how the program might work if the user inputs `1` when prompted:
 
-```
+```bash
 $ ./mario
 Height: 1
 #  #
@@ -73,7 +69,7 @@ Height: 1
 
 If the user doesn’t, in fact, input a positive integer between 1 and 8, inclusive, when prompted, the program should re-prompt the user until they cooperate:
 
-```
+```bash
 $ ./mario
 Height: -1
 Height: 0

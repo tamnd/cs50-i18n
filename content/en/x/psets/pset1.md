@@ -4,10 +4,6 @@ pset: 1
 draft: "false"
 ---
 
-# Problem Set 1 - CS50x 2026
-
-# Problem Set 1
-
 ## What to Do
 
 1. Log into [submit.cs50.io](https://submit.cs50.io) using your GitHub account and click **Authorize cs50**, then close the tab.

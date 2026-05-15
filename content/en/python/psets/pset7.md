@@ -3,10 +3,6 @@ title: "Problem Set 7"
 pset: 7
 ---
 
-# Problem Set 7 - CS50's Introduction to Programming with Python
-
-# Problem Set 7
-
 ## What to Do
 
 1. Log into [cs50.dev](https://cs50.dev/), which is a cloud-based version of Visual Studio Code (VS Code) that provides you with your very own “codespace” with everything that you need for the course pre-installed. No need to download and install VS Code or Python on your own Mac or PC!
@@ -30,4 +26,3 @@ By [2026-12-31T23:59:00+00:00](https://time.cs50.io/20261231T235900Z).
 - [Regular, um, Expressions - CS50's Introduction to Programming with Python](../problems/psets-7-um.md)
 - [Watch on YouTube - CS50's Introduction to Programming with Python](../problems/psets-7-watch.md)
 - [Working 9 to 5 - CS50's Introduction to Programming with Python](../problems/psets-7-working.md)
-

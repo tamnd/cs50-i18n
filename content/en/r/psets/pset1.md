@@ -3,10 +3,6 @@ title: "Problem Set 1"
 pset: 1
 ---
 
-# Problem Set 1 - CS50's Introduction to Programming with R
-
-# Problem Set 1
-
 Collaboration on problem sets is not permitted except to the extent that you may ask classmates and others for help so long as that help does not reduce to another doing your work for you, per the course’s policy on [academic honesty](../../honesty/).
 
 ## What to Do
@@ -41,4 +37,3 @@ By [2026-12-31T23:59:00+00:00](https://time.cs50.io/20261231T235900Z).
 - [art.frame - CS50's Introduction to Programming with R](../problems/psets-1-art.frame.md)
 - [Big 5 - CS50's Introduction to Programming with R](../problems/psets-1-big5.md)
 - [Pit Stop - CS50's Introduction to Programming with R](../problems/psets-1-pitstop.md)
-

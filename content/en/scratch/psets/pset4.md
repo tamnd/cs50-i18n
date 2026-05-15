@@ -3,10 +3,6 @@ title: "Problem Set 4"
 pset: 4
 ---
 
-# Project 4: Values - CS50's Introduction to Programming with Scratch
-
-# Project 4: Values
-
 ## When to Do It
 
 By [2026-12-31T23:59:00+00:00](https://time.cs50.io/20261231T235900Z).
@@ -37,4 +33,3 @@ If you encounter the error “No files in this directory are expected by cs50/pr
 That’s it! Once your submission uploads, you should be redirected to your submission page. Click the submission link and then the **check50** link to see which requirements your project met. You are welcome to resubmit as many times as you’d like (before the deadline)! Note that if you upload a file whose size is larger than 10MB (which is quite large for a Scratch project) `check50` may struggle to process it. Best to make sure your file is smaller than that limit.
 
 To view your current progress in the course, visit the course gradebook at [cs50.me/cs50s](https://cs50.me/cs50s)!
-

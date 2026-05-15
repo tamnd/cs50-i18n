@@ -4,10 +4,6 @@ pset: 2
 draft: "false"
 ---
 
-# Caesar - CS50x 2026
-
-# Caesar
-
 ![Caesar Cipher](cipher.jpg)
 
 ## Problem to Solve
@@ -61,7 +57,7 @@ Hint
 
 There’s more than one way to do this, so here’s just one!
 
-```
+```c
 int main(int argc, string argv[])
 {
     // Make sure program was run with just one command-line argument
@@ -86,17 +82,17 @@ Whatever your pseudocode, let’s first write only the C code that checks whethe
 
 Specifically, modify `main` in `caesar.c` in such a way that, if the user provides no command-line arguments, or two or more, the function prints `"Usage: ./caesar key\n"` and then returns `1`, effectively exiting the program. If the user provides exactly one command-line argument, the program should print nothing and simply return `0`. The program should thus behave per the below.
 
-```
+```bash
 $ ./caesar
 Usage: ./caesar key
 ```
 
-```
+```bash
 $ ./caesar 1 2 3
 Usage: ./caesar key
 ```
 
-```
+```bash
 $ ./caesar 1
 ```
 
@@ -127,11 +123,11 @@ Hints
 
 Then modify `main` in such a way that it calls `only_digits` on `argv[1]`. If that function returns `false`, then `main` should print `"Usage: ./caesar key\n"` and return `1`. Else `main` should simply return `0`. The program should thus behave per the below:
 
-```
+```bash
 $ ./caesar 42
 ```
 
-```
+```bash
 $ ./caesar banana
 Usage: ./caesar key
 ```

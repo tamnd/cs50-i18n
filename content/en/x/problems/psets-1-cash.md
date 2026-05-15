@@ -4,24 +4,20 @@ pset: 1
 draft: "false"
 ---
 
-# Cash - CS50x 2026
-
-# Cash
-
 ![US coins](coins.jpg)
 
 ## Problem to Solve
 
 Suppose you work at a store and a customer gives you $1.00 (100 cents) for candy that costs $0.50 (50 cents). You’ll need to pay them their “change,” the amount leftover after paying for the cost of the candy. When making change, odds are you want to minimize the number of coins you’re dispensing for each customer, lest you run out (or annoy the customer!). In a file called `cash.c` in a folder called `cash`, implement a program in C that prints the minimum coins needed to make the given amount of change, in cents, as in the below:
 
-```
+```python
 Change owed: 25
 1
 ```
 
 But prompt the user for an `int` greater than 0, so that the program works for any amount of change:
 
-```
+```python
 Change owed: 70
 4
 ```
@@ -46,7 +42,7 @@ Write some code that you know will compile
 
 Even though this program won’t do anything, it should at least compile with `make`!
 
-```
+```c
 #include <cs50.h>
 #include <stdio.h>
 
@@ -72,7 +68,7 @@ If unsure how to solve the problem itself, break it down into smaller problems t
 
 This is the greedy algorithm you can use to solve this problem, so let’s write some pseudcode as comments to remind you to do just that:
 
-```
+```c
 #include <cs50.h>
 #include <stdio.h>
 
@@ -101,7 +97,7 @@ Convert the pseudocode to code
 
 First, consider how you might prompt the user for the cents they are owed. Recall that a `do while` loop is helpful when you want to do something at least once, and possibly again and again, as in the below:
 
-```
+```c
 #include <cs50.h>
 #include <stdio.h>
 
@@ -150,7 +146,7 @@ Granted, there is at least one simpler way to solve this `calculate_quarters` pr
 
 With `calculate_quarters` functioning as intended, you can integrate this function into your program. Take care to “declare” the function’s “signature” (i.e., `int calculate_quarters(int cents)`) above your `main` function, so you can indeed use `calculate_quarters` there while defining it later, below `main`.
 
-```
+```c
 #include <cs50.h>
 #include <stdio.h>
 

@@ -4,10 +4,6 @@ pset: 6
 draft: "false"
 ---
 
-# Cash - CS50x 2026
-
-# Cash
-
 ## Problem to Solve
 
 In a file called `cash.py` in a folder called `sentimental-cash`, write a program that asks the user how much change is owed and then spits out the minimum number of coins with which said change can be made. You can do this exactly as you did in [Problem Set 1](../../1/), except that your program this time should be written in Python, and you should assume that the user will input their change in dollars (e.g., 0.50 dollars instead of 50 cents).

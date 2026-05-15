@@ -4,10 +4,6 @@ pset: 2
 draft: "false"
 ---
 
-# Readability - CS50x 2026
-
-# Readability
-
 ![Charlotte's Web Cover](charlottes_web.jpg)
 
 ## Problem to Solve
@@ -36,7 +32,7 @@ where `L` is the average number of letters per 100 words in the text, and `S` is
 
 Write some code that you know will compile
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <math.h>
@@ -62,7 +58,7 @@ If unsure how to solve the problem itself, break it down into smaller problems t
 
 Let’s write some pseudcode as comments to remind you to do just that:
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <math.h>
@@ -85,7 +81,7 @@ Convert the pseudocode to code
 
 First, consider how you might prompt the user for some text. Recall that `get_string`, a function in the CS50 library, can prompt the user for a string.
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <math.h>
@@ -120,7 +116,7 @@ You’ll need to write your own code to count the number of letters in the text.
 
 You can integrate `count_letters` into the code you’ve already written, as follows.
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <math.h>
@@ -167,7 +163,7 @@ Under those assumptions, you might be able to find a relationship between the nu
 
 You can now integrate `count_words` into your program as follows:
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <math.h>
@@ -213,7 +209,7 @@ int count_sentences(string text)
 
 You can integrate `count_sentences` into your program as follows:
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <math.h>

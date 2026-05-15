@@ -4,10 +4,6 @@ pset: 4
 draft: "false"
 ---
 
-# Volume - CS50x 2026
-
-# Volume
-
 ![WAV file waveform](wav_file.png)
 
 ## Problem to Solve
@@ -34,7 +30,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/4/volume.zip
 ```
 
@@ -56,7 +52,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd volume
 ```
 
@@ -68,7 +64,7 @@ volume/ $
 
 If all was successful, you should execute
 
-```
+```bash
 ls
 ```
 
@@ -96,7 +92,7 @@ Notice first that `volume.c` is already set up to take three command-line argume
 - `main` takes both an `int`, `argc`, and an array of `char *`s (strings!), `argv`.
 - If `argc`, the number of arguments at the command-line including the program itself, is not equal to 4, the program will print its proper usage and exit with status code 1.
 
-```
+```c
 int main(int argc, char *argv[])
 {
     // Check command-line arguments
@@ -114,7 +110,7 @@ Next, `volume.c` uses [`fopen`](https://manual.cs50.io/3/fopen) to open the two 
 
 - It’s best practice to check if the result of calling `fopen` is `NULL`. If it is, the file wasn’t found or wasn’t able to be opened.
 
-```
+```c
 // Open files and determine scaling factor
 FILE *input = fopen(argv[1], "r");
 if (input == NULL)
@@ -141,7 +137,7 @@ fclose(output);
 
 Before closing the files, though, notice that we have a few TODOs.
 
-```
+```python
 // TODO: Copy header from input file to output file
 
 // TODO: Read samples from input file and write updated data to output file
@@ -174,7 +170,7 @@ Recall that a WAV file’s header is always exactly 44 bytes long. Note that `vo
 
 The below is a pretty big hint, but here’s how you could accomplish this TODO!
 
-```
+```sql
 // Copy header from input file to output file
 uint8_t header[HEADER_SIZE];
 fread(header, HEADER_SIZE, 1, input);
@@ -187,14 +183,14 @@ Your next TODO is to read samples from `input`, update those samples, and write 
 
 Recall that we can use the `int16_t` type to represent a sample of a WAV file. To store an audio sample, then, you can create a buffer variable with syntax like:
 
-```
+```sql
 // Create a buffer for a single sample
 int16_t buffer;
 ```
 
 With a buffer for samples in place, you can now read data into it, one sample at a time. Try using `fread` for this task! You can use `&buffer`, the address of `buffer`, as an argument to `fread` or `fwrite` to read into or write from the buffer. (Recall that the `&` operator is used to get the address of the variable.)
 
-```
+```sql
 // Create a buffer for a single sample
 int16_t buffer;
 
@@ -204,7 +200,7 @@ fread(&buffer, sizeof(int16_t), 1, input);
 
 Now, to increase (or decrease) the volume of a sample, you need only multiply it by some factor.
 
-```
+```sql
 // Create a buffer for a single sample
 int16_t buffer;
 
@@ -217,7 +213,7 @@ buffer *= factor;
 
 And finally, you can write that updated sample to `output`:
 
-```
+```sql
 // Create a buffer for a single sample
 int16_t buffer;
 
@@ -245,7 +241,7 @@ There’s just one problem: you’ll need to *continue* reading a sample into yo
 
 It’s quite the hint, but see the below for an efficient way to solve this problem:
 
-```
+```sql
 // Create a buffer for a single sample
 int16_t buffer;
 
@@ -262,7 +258,7 @@ while (fread(&buffer, sizeof(int16_t), 1, input) != 0)
 
 Because the version of C you’re using treats non-zero values as `true` and zero values as `false`, you could simplify the above syntax to the following:
 
-```
+```sql
 // Create a buffer for a single sample
 int16_t buffer;
 
@@ -285,13 +281,13 @@ Not sure how to solve?
 
 Your program should behave per the examples below.
 
-```
+```bash
 $ ./volume input.wav output.wav 2.0
 ```
 
 When you listen to `output.wav` (as by control-clicking on `output.wav` in the file browser, choosing **Download**, and then opening the file in an audio player on your computer), it should be twice as loud as `input.wav`!
 
-```
+```bash
 $ ./volume input.wav output.wav 0.5
 ```
 

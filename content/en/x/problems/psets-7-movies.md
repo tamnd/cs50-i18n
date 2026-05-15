@@ -4,10 +4,6 @@ pset: 7
 draft: "false"
 ---
 
-# Movies - CS50x 2026
-
-# Movies
-
 **Changes for 2026:** `5.sql` now requires matching movies that begin with “Harry Potter and the “ (not just “Harry Potter”). `9.sql` now requires outputting **two columns** (the ID and name of each person), not just names. If you started this problem prior to 2026, be sure to update your queries accordingly!
 
 ![IMDb Logo](imdb.png)
@@ -32,7 +28,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/7/movies.zip
 ```
 
@@ -54,7 +50,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd movies
 ```
 
@@ -152,7 +148,7 @@ List the titles of all movies released in 2008
 
 Recall that you can select one (or more) columns from a database using `SELECT`, per the example below,
 
-```
+```sql
 SELECT column0, column1 FROM table;
 ```
 
@@ -160,7 +156,7 @@ where `column0` is the title of one column, and `column1` is the title of anothe
 
 And recall that you can filter the rows returned in a query with the `WHERE` keyword, followed by a condition. You can use `=`, `>`, `<`, and [other operators](https://www.w3schools.com/sql/sql_operators.asp) too.
 
-```
+```sql
 SELECT column FROM table
 WHERE condition;
 ```
@@ -188,7 +184,7 @@ Determine the number of movies with an IMDb rating of 10.0
 
 Notice this question asks you not for *individual* movies with a rating of 10.0, but for the *number* of movies with such a rating. In other words, you should collect (“aggregate”) the results of your query into a single number (the number of rows). Recall that SQL supports an “aggregation function” called `COUNT`, which you can use on a column per the example below.
 
-```
+```sql
 SELECT COUNT(column)
 FROM table;
 ```
@@ -197,7 +193,7 @@ List the titles and release years of all Harry Potter movies, in chronological o
 
 For this query, you’ll likely want to make use of SQL’s `LIKE` keyword. Recall that `LIKE` can make use of so-called “wildcard characters”, such as `%`, that will match any character (or sequence thereof).
 
-```
+```sql
 SELECT column0, column1
 FROM table
 WHERE column1 LIKE pattern;
@@ -209,7 +205,7 @@ Here’s another example of a query in which you’ll need to aggregate data. Co
 
 Consider, too, that this query makes use of data stored in two separate tables: `ratings` and `movies`. Recall that—so long as one table has a foreign key that matches a column in another table—you can combine two tables using SQL’s `JOIN` keyword. To use the `JOIN` keyword, you should specify the table you’d like to join and the column by which to do so.
 
-```
+```sql
 SELECT column0
 FROM table0
 JOIN table1 ON table0.column1 = table1.column2
@@ -228,7 +224,7 @@ List the names of all people who starred in Toy Story
 
 When you see a more complex query such as this one, it’s best to break it down into smaller pieces. Ultimately, your query should arrive at a list of names, per the below.
 
-```
+```sql
 -- Select names
 SELECT name
 FROM people
@@ -237,7 +233,7 @@ WHERE ...
 
 But how’s best to arrive at the names of those who starred in Toy Story? Consider that the `people` table alone doesn’t have this information (but the `stars` table might!). Indeed, the `stars` table combines two columns, `person_id` and `movie_id`: any person with a `person_id` that is associated with Toy Story’s `movie_id` starred in Toy Story.
 
-```
+```sql
 -- Select names
 SELECT name
 FROM people
@@ -251,7 +247,7 @@ WHERE movie_id = ...
 
 A natural next step, then, is to find Toy Story’s movie ID.
 
-```
+```sql
 -- Select names
 SELECT name
 FROM people
@@ -270,7 +266,7 @@ WHERE title = 'Toy Story';
 
 Of course, you’ve presently written three *separate* queries. But notice that some queries (the first two) would be complete by including results of the query directly below them. The process of making a query that depends on the results of a “subquery” is called “nesting” queries. It’s quite the hint, but here’s one way to nest the above queries!
 
-```
+```sql
 -- Select names
 SELECT name
 FROM people
@@ -356,7 +352,7 @@ Then, try nesting those queries to arrive at a single query that returns the nam
 
 To test your queries in VS Code, you can query the database by running
 
-```
+```bash
 $ cat filename.sql | sqlite3 movies.db
 ```
 
@@ -364,7 +360,7 @@ where `filename.sql` is the file containing your SQL query.
 
 You can also run
 
-```
+```bash
 $ cat filename.sql | sqlite3 movies.db > output.txt
 ```
 

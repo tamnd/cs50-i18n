@@ -4,10 +4,6 @@ pset: 9
 draft: "false"
 ---
 
-# Birthdays - CS50x 2026
-
-# Birthdays
-
 ![screenshot of birthdays website](birthdays.png)
 
 ## Problem to Solve
@@ -28,7 +24,7 @@ $
 
 Click inside of that terminal window and then execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/9/birthdays.zip
 ```
 
@@ -50,7 +46,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd birthdays
 ```
 
@@ -62,7 +58,7 @@ birthdays/ $
 
 If all was successful, you should execute
 
-```
+```bash
 ls
 ```
 
@@ -108,7 +104,7 @@ Create a form via which users can submit birthdays
 
 In `index.html`, notice the following TODO:
 
-```
+```python
 <!-- TODO: Create a form for users to submit a name, a month, and a day -->
 ```
 
@@ -207,13 +203,13 @@ db = SQL("sqlite:///birthdays.db")
 
 `app.py` has already established a connection to `birthdays.db` under the name `db`. You can now execute SQL queries by calling `db.execute` with a valid SQL query. If you wanted to add Carter’s birthday on January 1st, you might run the following SQL statement:
 
-```
+```sql
 INSERT INTO birthdays (name, month, day) VALUES('Carter', 1, 1);
 ```
 
 Configure `app.py` to run that same query, but with placeholders for the values to insert, as follows:
 
-```
+```sql
 # Access form data
 name = request.form.get("name")
 month = request.form.get("month")
@@ -227,7 +223,7 @@ And that should do it! Try submitting the form, opening `birthdays.db`, and usin
 
 As you create more advanced applications, you’ll also want to add *server-side validation*: that is, a way to check whether the user’s data is valid *before* doing anything else! One of the first validations you might make is whether the user submitted any data at all! Should you try to retrieve form data with `request.form.get` where the user didn’t submit any, `request.form.get` will return an empty string. You can check for this value in Python as follows:
 
-```
+```sql
 # Access form data
 name = request.form.get("name")
 if not name:
@@ -249,7 +245,7 @@ Now, you won’t insert a row until you’re sure the user has provided all the 
 
 A few more things could still go wrong! What if the user doesn’t, in fact, provide a numeric value for `month` or `day`? One way to check is to `try` to convert the value to an integer with `int` and, if the conversion fails, to redirect the user back to the homepage.
 
-```
+```sql
 # Access form data
 name = request.form.get("name")
 if not name:
@@ -277,7 +273,7 @@ db.execute("INSERT INTO birthdays (name, month, day) VALUES(?, ?, ?)", name, mon
 
 And even if the user has entered a number, best to check it’s in the right range!
 
-```
+```sql
 # Access form data
 name = request.form.get("name")
 if not name:
@@ -313,7 +309,7 @@ Once a user can submit birthdays and store them in `birthdays.db`, your next tas
 
 First, you’ll need to retrieve all birthdays from `birthdays.db`. You could so with the SQL query:
 
-```
+```sql
 SELECT * FROM birthdays;
 ```
 
@@ -325,7 +321,7 @@ See the following TODO in `app.py`:
 
 Consider configuring `app.py` to run this SQL query each time the page is loaded with a `GET` request:
 
-```
+```sql
 # Query for all birthdays
 birthdays = db.execute("SELECT * FROM birthdays")
 ```
@@ -334,7 +330,7 @@ Now, all birthdays in the `birthdays` table of `birthdays.db` are available to y
 
 To render these birthdays in `index.html`, you can rely on Flask’s `render_template` function. You can specify that `index.html` should be rendered with the `birthdays` variable by specifying a keyword argument, also called `birthdays`, and setting it equal to the `birthdays` variable you just recently created.
 
-```
+```sql
 # Query for all birthdays
 birthdays = db.execute("SELECT * FROM birthdays")
 

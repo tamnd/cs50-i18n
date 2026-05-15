@@ -3,10 +3,6 @@ title: "Problem Set 4"
 pset: 4
 ---
 
-# Problem Set 4 - CS50's Introduction to Databases with SQL
-
-# Problem Set 4
-
 Collaboration on problem sets is not permitted except to the extent that you may ask classmates and others for help so long as that help does not reduce to another doing your work for you, per the course’s policy on [academic honesty](../../honesty/).
 
 ## What to Do
@@ -32,4 +28,3 @@ By [2026-12-31T23:59:00+00:00](https://time.cs50.io/20261231T235900Z).
 - [Bed and Breakfast - CS50's Introduction to Databases with SQL](../problems/psets-4-bnb.md)
 - [Census Taker - CS50's Introduction to Databases with SQL](../problems/psets-4-census.md)
 - [The Private Eye - CS50's Introduction to Databases with SQL](../problems/psets-4-private.md)
-

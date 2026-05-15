@@ -3,10 +3,6 @@ title: "Problem Set 6"
 pset: 6
 ---
 
-# Problem Set 6 - CS50's Introduction to Programming with Python
-
-# Problem Set 6
-
 ## What to Do
 
 1. Log into [cs50.dev](https://cs50.dev/), which is a cloud-based version of Visual Studio Code (VS Code) that provides you with your very own “codespace” with everything that you need for the course pre-installed. No need to download and install VS Code or Python on your own Mac or PC!
@@ -28,4 +24,3 @@ By [2026-12-31T23:59:00+00:00](https://time.cs50.io/20261231T235900Z).
 - [Pizza Py - CS50's Introduction to Programming with Python](../problems/psets-6-pizza.md)
 - [Scourgify - CS50's Introduction to Programming with Python](../problems/psets-6-scourgify.md)
 - [CS50 P-Shirt - CS50's Introduction to Programming with Python](../problems/psets-6-shirt.md)
-

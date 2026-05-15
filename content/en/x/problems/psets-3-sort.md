@@ -4,10 +4,6 @@ pset: 3
 draft: "false"
 ---
 
-# Sort - CS50x 2026
-
-# Sort
-
 ## Problem to Solve
 
 Recall from lecture that we saw a few algorithms for sorting a sequence of numbers: selection sort, bubble sort, and merge sort.
@@ -34,7 +30,7 @@ $
 
 Click inside of that terminal window and then execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/3/sort.zip
 ```
 

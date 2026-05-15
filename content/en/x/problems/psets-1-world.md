@@ -4,10 +4,6 @@ pset: 1
 draft: "false"
 ---
 
-# Hello, World - CS50x 2026
-
-# Hello, World
-
 ## Problem to Solve
 
 Thanks to Professor [Brian Kernighan](https://en.wikipedia.org/wiki/Brian_Kernighan) (who taught CS50 when David took it!), “hello, world” has been implemented in hundreds of languages. Let’s add your implementation to the list!
@@ -18,7 +14,7 @@ Hint
 
 Here’s the actual code you should write! (Quite the hint, huh?) Best to type it yourself, though, rather than copy/paste, so that you start to develop some “muscle memory” for writing code.
 
-```
+```c
 #include <stdio.h>
 
 int main(void)
@@ -41,7 +37,7 @@ $
 
 Next execute
 
-```
+```bash
 mkdir world
 ```
 
@@ -49,7 +45,7 @@ to make a folder called `world` in your codespace.
 
 Then execute
 
-```
+```bash
 cd world
 ```
 
@@ -71,7 +67,7 @@ make hello
 
 If you don’t see an error message, it compiled successfully! You can confirm as much with
 
-```
+```bash
 ls
 ```
 

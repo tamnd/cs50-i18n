@@ -3,10 +3,6 @@ title: "Problem Set 6"
 pset: 6
 ---
 
-# Problem Set 6 - CS50's Introduction to Databases with SQL
-
-# Problem Set 6
-
 Collaboration on problem sets is not permitted except to the extent that you may ask classmates and others for help so long as that help does not reduce to another doing your work for you, per the course’s policy on [academic honesty](../../honesty/).
 
 ## What to Do
@@ -36,4 +32,3 @@ By [2026-12-31T23:59:00+00:00](https://time.cs50.io/20261231T235900Z).
 - [From the Deep - CS50's Introduction to Databases with SQL](../problems/psets-6-deep.md)
 - [Don’t Panic! - CS50's Introduction to Databases with SQL](../problems/psets-6-dont-panic-java.md)
 - [Don’t Panic! - CS50's Introduction to Databases with SQL](../problems/psets-6-dont-panic-python.md)
-

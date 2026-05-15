@@ -3,10 +3,6 @@ title: "Problem Set 5"
 pset: 5
 ---
 
-# Problem Set 5 - CS50's Introduction to Programming with R
-
-# Problem Set 5
-
 Collaboration on problem sets is not permitted except to the extent that you may ask classmates and others for help so long as that help does not reduce to another doing your work for you, per the course’s policy on [academic honesty](../../honesty/).
 
 ## What to Do
@@ -35,4 +31,3 @@ By [2026-12-31T23:59:00+00:00](https://time.cs50.io/20261231T235900Z).
 
 - [Exploratory Data Analysis - CS50's Introduction to Programming with R](../problems/psets-5-eda.md)
 - [Parked Out By The Lake - CS50's Introduction to Programming with R](../problems/psets-5-parked.md)
-

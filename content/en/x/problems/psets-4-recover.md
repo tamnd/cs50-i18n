@@ -4,10 +4,6 @@ pset: 4
 draft: "false"
 ---
 
-# Recover - CS50x 2026
-
-# Recover
-
 ![Recovered image](recovered_image.png)
 
 ## Problem to Solve
@@ -30,7 +26,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/4/recover.zip
 ```
 
@@ -52,7 +48,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd recover
 ```
 
@@ -109,7 +105,7 @@ If unsure how to solve the larger problem, break it down into smaller problems t
 
 Let’s write some pseudcode as comments to remind you to do just that:
 
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -129,7 +125,7 @@ Convert the pseudocode to code
 
 First, consider how to accept a single command-line argument. If the user misuses the program, you should tell them the program’s proper usage.
 
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -152,7 +148,7 @@ int main(int argc, char *argv[])
 
 Now that you’ve checked for proper usage, you can open the memory card. Keep in mind that you can open `card.raw` programmatically with `fopen`, as with the below.
 
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -180,7 +176,7 @@ Next, your program should read the data from the card you’ve opened, until the
 
 First consider how to read `card.raw` all the way through. Recall that, to read data from a file, you need to temporarily store that data in a “buffer.” And recall further that `card.raw` stores data in blocks of 512 bytes. As such, you’ll likely want to create a buffer of 512 bytes to store blocks of data as you read them sequentially. One way of doing so is to use the `uint8_t` type from `stdint.h`, which stores exactly 8 bits (1 byte). The type is called `uint8_t` since it stores an unsigned/positive/non-negative integer that requires 8 bits of space (i.e., one byte).
 
-```
+```c
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -210,7 +206,7 @@ It’s probably *not* the best idea, though, to use 512 as a [“magic number”
 
 Now, consider how to read data from the memory card. Per its [manual page](https://man.cs50.io/3/fread), `fread` returns the number of bytes that it has read, in which case it should either return `512` or `0`, given that `card.raw` contains some number of 512-byte blocks. In order to read every block from `card.raw`, after opening it with `fopen`, it should suffice to use a loop like this.
 
-```
+```c
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>

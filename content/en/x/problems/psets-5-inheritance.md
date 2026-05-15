@@ -4,10 +4,6 @@ pset: 5
 draft: "false"
 ---
 
-# Inheritance - CS50x 2026
-
-# Inheritance
-
 ## Problem to Solve
 
 A person’s blood type is determined by two alleles (i.e., different forms of a gene). The three possible alleles are A, B, and O, of which each person has two (possibly the same, possibly different). Each of a child’s parents randomly passes one of their two blood type alleles to their child. The possible blood type combinations, then, are: OO, OA, OB, AO, AA, AB, BO, BA, and BB.
@@ -32,7 +28,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/5/inheritance.zip
 ```
 
@@ -54,7 +50,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd inheritance
 ```
 
@@ -105,7 +101,7 @@ srandom(time(0));
 
 The `main` function then calls the `create_family` function to simulate the creation of `person` structs for a family of 3 generations (i.e. a person, their parents, and their grandparents).
 
-```
+```sql
 // Create a new family with three generations
 person *p = create_family(GENERATIONS);
 ```
@@ -139,7 +135,7 @@ To solve this problem, you’ll find several TODOs in the distribution code.
 
 First, you should allocate memory for a new person. Recall that you can use `malloc` to allocate memory, and `sizeof(person)` to get the number of bytes to allocate.
 
-```
+```c
 // Allocate memory for new person
 person *new_person = malloc(sizeof(person));
 ```
@@ -151,7 +147,7 @@ If `generations > 1`, then there are more generations that still need to be allo
 - Remember, to access a variable via a pointer, you can use arrow notation. For example, if `p` is a pointer to a person, then a pointer to this person’s first parent can be accessed by `p->parents[0]`.
 - You might find the `random()` function useful for randomly assigning alleles. This function returns an integer between `0` and `RAND_MAX`, or `32767`. In particular, to generate a pseudorandom number that is either `0` or `1`, you can use the expression `random() % 2`.
 
-```
+```sql
 // Create two new parents for current person by recursively calling create_family
 person *parent0 = create_family(generations - 1);
 person *parent1 = create_family(generations - 1);
@@ -167,7 +163,7 @@ new_person->alleles[1] = parent1->alleles[random() % 2];
 
 Let’s say there are no more generations left to simulate. That is, `generations == 1`. If so, there will be no parent data for this person. Both parents of your new person should be set to `NULL`, and each `allele` should be generated randomly.
 
-```
+```c
 // Set parent pointers to NULL
 new_person->parents[0] = NULL;
 new_person->parents[1] = NULL;
@@ -193,7 +189,7 @@ The `free_family` function should accept as input a pointer to a `person`, free 
 
 The below is quite the hint, but here’s how to do just that!
 
-```
+```c
 // Free `p` and all ancestors of `p`.
 void free_family(person *p)
 {
@@ -222,7 +218,7 @@ Upon running `./inheritance`, your program should adhere to the rules described 
 
 For example, in the example below, the child in Generation 0 received an O allele from both Generation 1 parents. The first parent received an A from the first grandparent and a O from the second grandparent. Similarly, the second parent received an O and a B from their grandparents.
 
-```
+```bash
 $ ./inheritance
 Child (Generation 0): blood type OO
     Parent (Generation 1): blood type AO

@@ -4,10 +4,6 @@ pset: 1
 draft: "false"
 ---
 
-# Mario - CS50x 2026
-
-# Mario
-
 ## Problem to Solve
 
 Toward the end of World 1-1 in Nintendo’s [Super Mario Bros.](https://en.wikipedia.org/wiki/Super_Mario_Bros.), Mario must ascend right-aligned pyramid of bricks, as in the below.
@@ -50,7 +46,7 @@ Write some code that you know will compile
 
 Even though this program won’t do anything, it should at least compile with `make`!
 
-```
+```c
 #include <cs50.h>
 #include <stdio.h>
 
@@ -69,7 +65,7 @@ If unsure how to solve the problem itself, break it down into smaller problems t
 
 So write some pseudocode as comments that remind you to do just that:
 
-```
+```c
 #include <cs50.h>
 #include <stdio.h>
 
@@ -85,7 +81,7 @@ Convert the pseudocode to code
 
 First, consider how you might prompt the user for the pyramid’s height. Recall that a `do while` loop is helpful when you want to do something at least once, and possibly again and again, as in the below:
 
-```
+```c
 #include <cs50.h>
 #include <stdio.h>
 
@@ -105,7 +101,7 @@ int main(void)
 
 Second, consider how you might print a pyramid of that height, from top to bottom. Notice how the first row should have one brick, the second row should have two bricks, and so on. Odds are you’ll want a loop, as in the below, even if not (yet!) sure what to put in that loop. So add some more pseudocode as a comment for now:
 
-```
+```c
 #include <cs50.h>
 #include <stdio.h>
 
@@ -129,7 +125,7 @@ int main(void)
 
 How to print that row of bricks? Well, wouldn’t it be nice if there were a function called `print_row` that could do just that? Let’s suppose that there is:
 
-```
+```c
 #include <cs50.h>
 #include <stdio.h>
 
@@ -160,7 +156,7 @@ void print_row(int bricks)
 
 We could then call that function from `main`, as in the below:
 
-```
+```c
 #include <cs50.h>
 #include <stdio.h>
 
@@ -194,7 +190,7 @@ Why `i + 1`, though?
 
 Let’s now implement `print_row`:
 
-```
+```c
 #include <cs50.h>
 #include <stdio.h>
 
@@ -232,7 +228,7 @@ Why the `\n` at the end, though?
 
 Unfortunately, this code prints a left-aligned pyramid, but you need a right-aligned one! Perhaps we should print some blank spaces before some of the bricks, to move them to the right? Let’s change `print_row` as follows so that it can print both:
 
-```
+```c
 #include <cs50.h>
 #include <stdio.h>
 

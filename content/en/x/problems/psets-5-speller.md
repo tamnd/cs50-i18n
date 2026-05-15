@@ -4,10 +4,6 @@ pset: 5
 draft: "false"
 ---
 
-# Speller - CS50x 2026
-
-# Speller
-
 ## Problem to Solve
 
 For this problem, you’ll implement a program that spell-checks a file, a la the below, using a hash table.
@@ -28,7 +24,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/5/speller.zip
 ```
 
@@ -50,7 +46,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd speller
 ```
 
@@ -90,7 +86,7 @@ Also notice our use of `#define`, a “preprocessor directive” that defines a 
 
 Finally, notice the prototypes for five functions: `check`, `hash`, `load`, `size`, and `unload`. Notice how three of those take a pointer as an argument, per the `*`:
 
-```
+```js
 bool check(const char *word);
 unsigned int hash(const char *word);
 bool load(const char *dictionary);
@@ -98,7 +94,7 @@ bool load(const char *dictionary);
 
 Recall that `char *` is what we used to call `string`. So those three prototypes are essentially just:
 
-```
+```js
 bool check(const string word);
 unsigned int hash(const string word);
 bool load(const string dictionary);
@@ -118,7 +114,7 @@ Okay, next open up `speller.c` and spend some time looking over the code and com
 
 Notice, incidentally, that we have defined the usage of `speller` to be
 
-```
+```python
 Usage: speller [dictionary] text
 ```
 
@@ -240,7 +236,7 @@ Consider that this problem is just composed of smaller problems:
 
 Write some pseudocode to remind yourself to do just that:
 
-```
+```js
 bool load(const char *dictionary)
 {
     // Open the dictionary file
@@ -255,7 +251,7 @@ bool load(const char *dictionary)
 
 Consider first how to open the dictionary file. [`fopen`](https://manual.cs50.io/3/fopen) is a natural choice. You can use mode `r`, given that you need only *read* words from the dictionary file (not *write* or *append* them).
 
-```
+```js
 bool load(const char *dictionary)
 {
     // Open the dictionary file
@@ -271,7 +267,7 @@ bool load(const char *dictionary)
 
 Before moving on, you should write code to check whether the file opened correctly. That’s up to you! It’s also best to ensure you close every file you open, so now’s a good time to write the code to close the dictionary file:
 
-```
+```js
 bool load(const char *dictionary)
 {
     // Open the dictionary file

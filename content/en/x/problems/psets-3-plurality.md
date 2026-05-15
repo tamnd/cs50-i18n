@@ -4,10 +4,6 @@ pset: 3
 draft: "false"
 ---
 
-# Plurality - CS50x 2026
-
-# Plurality
-
 ## Problem to Solve
 
 Elections come in all shapes and sizes. In the UK, the [Prime Minister](https://www.parliament.uk/education/about-your-parliament/general-elections/) is officially appointed by the monarch, who generally chooses the leader of the political party that wins the most seats in the House of Commons. The United States uses a multi-step [Electoral College](https://www.archives.gov/federal-register/electoral-college/about.html) process where citizens vote on how each state should allocate Electors who then elect the President.
@@ -32,7 +28,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/3/plurality.zip
 ```
 
@@ -54,7 +50,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd plurality
 ```
 
@@ -66,7 +62,7 @@ plurality/ $
 
 If all was successful, you should execute
 
-```
+```bash
 ls
 ```
 
@@ -111,7 +107,7 @@ int candidate_count;
 
 What about where it copies command-line arguments into the array `candidates`?
 
-```
+```c
 // Populate array of candidates
 candidate_count = argc - 1;
 if (candidate_count > MAX)
@@ -136,7 +132,7 @@ Then, the program lets every voter type in a vote, calling the `vote` function o
 
 If you look further down in the file, though, you’ll notice that the `vote` and `print_winner` functions have been left blank.
 
-```
+```c
 // Update vote totals given a new vote
 bool vote(string name)
 {
@@ -177,7 +173,7 @@ One way to approach this problem is to do the following:
 
 Let’s write some pseudocode to remind you to do just that:
 
-```
+```sql
 // Update vote totals given a new vote
 bool vote(string name)
 {
@@ -207,7 +203,7 @@ Consider that you need only two pieces of information to solve this problem:
 
 As such, a good solution might require only two searches. Write some pseudocode to remind yourself to do just that:
 
-```
+```c
 // Print the winner (or winners) of the election
 void print_winner(void)
 {

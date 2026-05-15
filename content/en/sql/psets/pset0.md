@@ -3,10 +3,6 @@ title: "Problem Set 0"
 pset: 0
 ---
 
-# Problem Set 0 - CS50's Introduction to Databases with SQL
-
-# Problem Set 0
-
 Collaboration on problem sets is not permitted except to the extent that you may ask classmates and others for help so long as that help does not reduce to another doing your work for you, per the course’s policy on [academic honesty](../../honesty/).
 
 ## What to Do
@@ -47,4 +43,3 @@ By [2026-12-31T23:59:00+00:00](https://time.cs50.io/20261231T235900Z).
 - [Normals - CS50's Introduction to Databases with SQL](../problems/psets-0-normals.md)
 - [Players - CS50's Introduction to Databases with SQL](../problems/psets-0-players.md)
 - [36 Views - CS50's Introduction to Databases with SQL](../problems/psets-0-views.md)
-

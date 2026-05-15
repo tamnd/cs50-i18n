@@ -4,10 +4,6 @@ pset: 4
 draft: "false"
 ---
 
-# Filter - CS50x 2026
-
-# Filter
-
 ![Harvard Yard in grayscale](yard-grayscale.bmp)
 
 ## Problem to Solve
@@ -40,7 +36,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/4/filter-less.zip
 ```
 
@@ -62,7 +58,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd filter-less
 ```
 
@@ -151,13 +147,13 @@ Finally, let’s look at `Makefile`. This file specifies what should happen when
 
 Try compiling `filter` for yourself by going to your terminal and running
 
-```
+```bash
 $ make filter
 ```
 
 Then, you can run the program by running:
 
-```
+```bash
 $ ./filter -g images/yard.bmp out.bmp
 ```
 
@@ -173,7 +169,7 @@ One common filter is the “grayscale” filter, where we take an image and want
 
 If you apply the above algorithm to each pixel in the image, the result will be an image converted to grayscale. Write some pseudocode to help you solve this problem.
 
-```
+```c
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
     // Loop over all pixels
@@ -186,7 +182,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 
 First, how might you loop over all pixels? Recall that the image’s pixels are stored in the two-dimensional array, `image`. To iterate over a two-dimensional array, you’ll need two loops, one nested inside the other.
 
-```
+```c
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
     // Loop over all pixels
@@ -224,7 +220,7 @@ Most image editing programs support a “sepia” filter, which gives images an 
 
 Write some pseudocode to help you solve this problem and recall the use of nested `for` loops to visit every pixel.
 
-```
+```c
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
     // Loop over all pixels
@@ -256,7 +252,7 @@ Some filters might also move pixels around. Reflecting an image, for example, is
 
 In the `reflect` function, then, you’ll need to swap the values of pixels on opposite sides of a row. Write some pseudocode to help you get started:
 
-```
+```c
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
     // Loop over all pixels
@@ -286,7 +282,7 @@ There are a number of ways to create the effect of blurring or softening an imag
 
 When implementing the `blur` function, you might find that blurring one pixel ends up affecting the blur of another pixel. It might be best to create a copy of `image` by declaring a new, two-dimensional array with code like `RGBTRIPLE copy[height][width];`. Then copy `image` into `copy`, pixel by pixel, with nested `for` loops, like so:
 
-```
+```c
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     // Create a copy of image

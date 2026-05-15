@@ -4,10 +4,6 @@ pset: 6
 draft: "false"
 ---
 
-# DNA - CS50x 2026
-
-# DNA
-
 ## Problem to Solve
 
 DNA, the carrier of genetic information in living things, has been used in criminal justice for decades. But how, exactly, does DNA profiling work? Given a sequence of DNA, how can forensic investigators identify to whom it belongs?
@@ -30,7 +26,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/6/dna.zip
 ```
 
@@ -52,7 +48,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd dna
 ```
 
@@ -118,7 +114,7 @@ Your task is to write a program that will take a sequence of DNA and a CSV file 
   
   - For instance, if a file like `foo.csv` has a header row, wherein each string is the name of some field, here’s how you might print those `fieldnames` as a `list`:
     
-    ```
+    ```python
     import csv
     
     with open("foo.csv") as file:
@@ -127,7 +123,7 @@ Your task is to write a program that will take a sequence of DNA and a CSV file 
     ```
   - And here’s how you read all of the (other) rows from a CSV into a `list`, wherein each element is a `dict` that represents that row:
     
-    ```
+    ```python
     import csv
     
     rows = []

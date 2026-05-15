@@ -4,10 +4,6 @@ pset: 3
 draft: "false"
 ---
 
-# Runoff - CS50x 2026
-
-# Runoff
-
 ## Problem to Solve
 
 You already know about plurality elections, which follow a very simple algorithm for determining the winner of an election: every voter gets one vote, and the candidate with the most votes wins.
@@ -52,7 +48,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/3/runoff.zip
 ```
 
@@ -74,7 +70,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd runoff
 ```
 
@@ -86,7 +82,7 @@ runoff/ $
 
 If all was successful, you should execute
 
-```
+```bash
 ls
 ```
 

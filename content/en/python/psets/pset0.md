@@ -3,10 +3,6 @@ title: "Problem Set 0"
 pset: 0
 ---
 
-# Problem Set 0 - CS50's Introduction to Programming with Python
-
-# Problem Set 0
-
 ## What to Do
 
 1. Submit [this form](https://forms.cs50.io/27a35e60-490a-4e42-8574-6b55154ae760).
@@ -34,4 +30,3 @@ By [2026-12-31T23:59:00+00:00](https://time.cs50.io/20261231T235900Z).
 - [Indoor Voice - CS50's Introduction to Programming with Python](../problems/psets-0-indoor.md)
 - [Playback Speed - CS50's Introduction to Programming with Python](../problems/psets-0-playback.md)
 - [Tip Calculator - CS50's Introduction to Programming with Python](../problems/psets-0-tip.md)
-

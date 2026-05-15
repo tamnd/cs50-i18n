@@ -4,10 +4,6 @@ pset: 1
 draft: "false"
 ---
 
-# Credit - CS50x 2026
-
-# Credit
-
 ![Person holding credit cards](credit_cards.jpeg)
 
 ## Problem to Solve
@@ -56,7 +52,7 @@ In the file called `credit.c` in the `credit` directory, write a program that pr
 
 Consider the below representative of how your own program should behave when passed a valid credit card number (sans hyphens).
 
-```
+```bash
 $ ./credit
 Number: 4003600000000014
 VISA
@@ -64,7 +60,7 @@ VISA
 
 Now, `get_long` itself will reject hyphens (and more) anyway:
 
-```
+```bash
 $ ./credit
 Number: 4003-6000-0000-0014
 Number: foo
@@ -74,7 +70,7 @@ VISA
 
 But it’s up to you to catch inputs that are not credit card numbers (e.g., a phone number), even if numeric:
 
-```
+```bash
 $ ./credit
 Number: 6176292929
 INVALID

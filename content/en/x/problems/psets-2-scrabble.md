@@ -4,10 +4,6 @@ pset: 2
 draft: "false"
 ---
 
-# Scrabble - CS50x 2026
-
-# Scrabble
-
 ![Scrabble Board](scrabble.png)
 
 ## Problem to Solve
@@ -28,7 +24,7 @@ In a file called `scrabble.c` in a folder called `scrabble`, implement a program
 
 Write some code that you know will compile
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <stdio.h>
@@ -52,7 +48,7 @@ If unsure how to solve the problem itself, break it down into smaller problems t
 
 Let’s write some pseudcode as comments to remind you to do just that:
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <stdio.h>
@@ -74,7 +70,7 @@ Convert the pseudocode to code
 
 First, consider how you might prompt the user for two words. Recall that `get_string`, a function in the CS50 library, can prompt the user for a string.
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <stdio.h>
@@ -94,7 +90,7 @@ int main(void)
 
 Next consider how to compute the score of each word. Since the same scoring algorithm applies to both words, you have a good opportunity for *abstraction*. Here we’ll define a function called `compute_score` that takes a string, called `word`, as input, and then returns `word`’s score as an `int`.
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <stdio.h>
@@ -123,7 +119,7 @@ int compute_score(string word)
 
 Now turn to implementing `compute_score`. To compute the score of a word, you need to know the point value of each letter in the word. You can associate letters and their point values with an *array*. Imagine an array of 26 `int`s, called `POINTS`, in which the first number is the point value for ‘A’, the second number is the point value for ‘B’, and so on. By declaring and initializing such an array outside of any single function, you can ensure this array is accessible to any function, including `compute_score`.
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <stdio.h>
@@ -162,7 +158,7 @@ To implement `compute_score`, first try to find the point value of a single lett
 
 If you can properly calculate the value of *one* character in `word`, odds are you can use a loop to sum the points for the rest of the characters. Once you’ve tried the above on your own, consider this (quite revealing!) hint below.
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <stdio.h>
@@ -227,7 +223,7 @@ else
 
 And once you’ve tried the above, feel free to take a peek at the hint (or, rather, complete solution!) below.
 
-```
+```c
 #include <ctype.h>
 #include <cs50.h>
 #include <stdio.h>
@@ -289,28 +285,28 @@ int compute_score(string word)
 
 Your program should behave per the examples below.
 
-```
+```bash
 $ ./scrabble
 Player 1: Question?
 Player 2: Question!
 Tie!
 ```
 
-```
+```bash
 $ ./scrabble
 Player 1: red
 Player 2: wheelbarrow
 Player 2 wins!
 ```
 
-```
+```bash
 $ ./scrabble
 Player 1: COMPUTER
 Player 2: science
 Player 1 wins!
 ```
 
-```
+```bash
 $ ./scrabble
 Player 1: Scrabble
 Player 2: wiNNeR

@@ -4,10 +4,6 @@ pset: 8
 draft: "false"
 ---
 
-# Homepage - CS50x 2026
-
-# Homepage
-
 Build a simple homepage using HTML, CSS, and JavaScript.
 
 ## Background
@@ -30,7 +26,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/8/homepage.zip
 ```
 
@@ -52,7 +48,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd homepage
 ```
 

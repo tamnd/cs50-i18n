@@ -4,10 +4,6 @@ pset: 6
 draft: "false"
 ---
 
-# Mario - CS50x 2026
-
-# Mario
-
 ![screenshot of Mario jumping up pyramid](pyramids.png)
 
 ## Problem to Solve

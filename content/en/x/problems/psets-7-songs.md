@@ -4,10 +4,6 @@ pset: 7
 draft: "false"
 ---
 
-# Songs - CS50x 2026
-
-# Songs
-
 ![Spotify Wrapped '22 Logo](wrapped.png)
 
 ## Problem to Solve
@@ -32,7 +28,7 @@ $
 
 Click inside of that terminal window and then execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/7/songs.zip
 ```
 
@@ -54,7 +50,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd songs
 ```
 
@@ -66,7 +62,7 @@ songs/ $
 
 If all was successful, you should execute
 
-```
+```bash
 ls
 ```
 
@@ -126,7 +122,7 @@ Recall that, to select all values in a table’s column, you can use SQL’s `SE
 
 In `1.sql`, then, try writing the following:
 
-```
+```sql
 -- All songs in the database.
 SELECT name
 FROM songs;
@@ -138,7 +134,7 @@ Recall that SQL has an `ORDER BY` keyword, by which you can order the results of
 
 In `2.sql`, then, try writing the following:
 
-```
+```sql
 -- All songs in increasing order of tempo.
 SELECT name
 FROM songs
@@ -153,7 +149,7 @@ And recall, too, that `LIMIT n` can specify that you only want the first \\(n\\)
 
 In `3.sql`, then, try writing the following:
 
-```
+```sql
 -- The names of the top 5 longest songs, in descending order of length.
 SELECT name
 FROM songs
@@ -169,7 +165,7 @@ Recall, too, that SQL’s operators function much the same way as C’s. For exa
 
 In `4.sql`, then, try writing the following:
 
-```
+```sql
 -- The names of any songs that have danceability, energy, and valence greater than 0.75.
 SELECT name
 FROM songs
@@ -182,7 +178,7 @@ Recall that SQL supports keywords not just to select particular rows, but also t
 
 In `5.sql`, then, try writing the following:
 
-```
+```sql
 -- The average energy of all the songs.
 SELECT AVG(energy)
 FROM songs;
@@ -192,7 +188,7 @@ List the names of songs that are by Post Malone
 
 Notice that, if you execute `.schema songs` in your sqlite prompt, the `songs` table has song names but not artist names! Instead, `songs` has an `artist_id` column. To list the names of songs by Post Malone, then, you’ll first need to identify Post Malone’s artist id.
 
-```
+```sql
 -- Identify Post Malone's artist id
 SELECT id
 FROM artists
@@ -201,7 +197,7 @@ WHERE name = 'Post Malone';
 
 This query returns 54. Now, you could query the `songs` table for any song with Post Malone’s id.
 
-```
+```sql
 SELECT name
 FROM songs
 WHERE artist_id = 54;
@@ -211,7 +207,7 @@ But, per the specification, you should be mindful not to assume knowledge of any
 
 In `6.sql`, then, try writing the following:
 
-```
+```sql
 -- The names of songs that are by Post Malone.
 SELECT name
 FROM songs
@@ -229,7 +225,7 @@ Notice that, similar to the previous query, you’ll need to combine multiple ta
 
 Recall that you can use SQL’s `JOIN` keyword to combine multiple tables into one, so long as you specify which columns across those tables should ultimately match. For example, the following query joins the `songs` and `artists` tables, indicating that the `artist_id` column in the `songs` table and the `id` column in the `artists` table should match:
 
-```
+```sql
 SELECT *
 FROM songs
 JOIN artists ON songs.artist_id = artists.id
@@ -239,7 +235,7 @@ With these two tables combined, it’s only a matter of filtering your selection
 
 In `7.sql`, then, try writing the following:
 
-```
+```sql
 -- The average energy of songs that are by Drake
 SELECT AVG(energy)
 FROM songs
@@ -253,7 +249,7 @@ For this query, note that songs which feature other artists typically have some 
 
 In `8.sql`, then, try writing the following:
 
-```
+```sql
 -- The names of songs that feature other artists.
 SELECT name
 FROM songs

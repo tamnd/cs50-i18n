@@ -4,10 +4,6 @@ pset: 4
 draft: "false"
 ---
 
-# Filter - CS50x 2026
-
-# Filter
-
 ![Harvard Yard with edge detection](yard-edges.bmp)
 
 ## Problem to Solve
@@ -40,7 +36,7 @@ $
 
 Next execute
 
-```
+```python
 wget https://cdn.cs50.net/2026/x/psets/4/filter-more.zip
 ```
 
@@ -62,7 +58,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd filter-more
 ```
 
@@ -195,13 +191,13 @@ Finally, let’s look at `Makefile`. This file specifies what should happen when
 
 Try compiling `filter` for yourself by going to your terminal and running
 
-```
+```bash
 $ make filter
 ```
 
 Then, you can run the program by running:
 
-```
+```bash
 $ ./filter -g images/yard.bmp out.bmp
 ```
 

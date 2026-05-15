@@ -4,10 +4,6 @@ pset: 8
 draft: "false"
 ---
 
-# Trivia - CS50x 2026
-
-# Trivia
-
 Write a webpage that lets users answer trivia questions.
 
 ![screenshot of trivia questions](questions.png)
@@ -24,7 +20,7 @@ $
 
 Click inside of that terminal window and then execute
 
-```
+```python
 wget https://cdn.cs50.net/2025/fall/psets/8/trivia.zip
 ```
 
@@ -46,7 +42,7 @@ and respond with “y” followed by Enter at the prompt to remove the ZIP file 
 
 Now type
 
-```
+```bash
 cd trivia
 ```
 
@@ -58,7 +54,7 @@ trivia/ $
 
 If all was successful, you should execute
 
-```
+```bash
 ls
 ```
 
@@ -122,7 +118,7 @@ Want to see the staff’s solution? You can find two ways of solving the problem
 
 Creating event listeners with JavaScript
 
-```
+```c
 <!DOCTYPE html>
 
 <html lang="en">
@@ -211,7 +207,7 @@ Creating event listeners with JavaScript
 
 Creating event listeners with HTML
 
-```
+```js
 <!DOCTYPE html>
 
 <html lang="en">
