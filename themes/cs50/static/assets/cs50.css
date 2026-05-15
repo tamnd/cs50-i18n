@@ -9,13 +9,23 @@ html {
 }
 
 :root {
-  --bs-font-sans-serif: "PT Sans", "Be Vietnam Pro", "Noto Sans SC", system-ui, -apple-system, sans-serif;
+  --bs-font-sans-serif: "PT Sans", "Be Vietnam Pro", "Noto Sans SC", "Noto Sans JP", system-ui, -apple-system, sans-serif;
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 /* Vietnamese: Be Vietnam Pro handles diacritics better */
 :lang(vi) {
   font-family: "Be Vietnam Pro", "PT Sans", system-ui, sans-serif;
+}
+
+/* Japanese: Noto Sans JP for Japanese characters (exclude icon elements) */
+:lang(ja) body,
+:lang(ja) p,
+:lang(ja) h1, :lang(ja) h2, :lang(ja) h3, :lang(ja) h4, :lang(ja) h5, :lang(ja) h6,
+:lang(ja) li, :lang(ja) td, :lang(ja) th, :lang(ja) label,
+:lang(ja) a, :lang(ja) span:not([class*="fa"]), :lang(ja) div:not([class*="fa"]),
+:lang(ja) main, :lang(ja) nav, :lang(ja) aside, :lang(ja) header, :lang(ja) footer {
+  font-family: "Noto Sans JP", "PT Sans", system-ui, sans-serif;
 }
 
 /* Chinese: Noto Sans SC for CJK characters (exclude icon elements) */
