@@ -17,6 +17,17 @@
 
 <hr class="small">
 
+<li><strong>{{ i18n "notes_label" | default "Notes" }}</strong></li>
+{{- range sort (where .Site.RegularPages "Params.week" "ne" nil) "Params.week" }}
+{{- if in .RelPermalink "/notes/" }}
+<li data-marker="*"><a href="{{ .Permalink }}"{{ if eq $.Page.Permalink .Permalink }} class="fw-bold"{{ end }}>
+  Week {{ .Params.week }}: {{ .Params.topic }}
+</a></li>
+{{- end }}
+{{- end }}
+
+<hr class="small">
+
 <li><strong>{{ i18n "weeks_label" | default "Weeks" }}</strong></li>
 {{- range sort (where .Site.RegularPages "Params.week" "ne" nil) "Params.week" }}
 {{- if in .RelPermalink "/weeks/" }}
