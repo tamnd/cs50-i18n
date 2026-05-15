@@ -1,3 +1,3 @@
 ---
-title: "CS50 i18n"
+title: "CS50 国际化"
 ---

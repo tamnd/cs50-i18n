@@ -1,52 +1,52 @@
 ---
-title: "Cash - CS50x 2026"
+title: "找零 - CS50x 2026"
 pset: 6
-draft: "false"
+draft: false
 ---
 
-## Problem to Solve
+## 待解决的问题
 
-In a file called `cash.py` in a folder called `sentimental-cash`, write a program that asks the user how much change is owed and then spits out the minimum number of coins with which said change can be made. You can do this exactly as you did in [Problem Set 1](../../1/), except that your program this time should be written in Python, and you should assume that the user will input their change in dollars (e.g., 0.50 dollars instead of 50 cents).
+在名为 `sentimental-cash` 的文件夹中一个名为 `cash.py` 的文件中，编写一个程序，询问用户需要找零多少钱，然后输出找零所需的最少硬币数量。这与你在 [Problem Set 1](../../1/) 中所做的完全相同，不同之处在于这次你的程序应该用 Python 编写，并且你应该假设用户输入的是以美元为单位的找零金额（例如，0.50 美元而不是 50 美分）。
 
-## Demo
+## 演示
 
-## Specification
+## 具体要求
 
-- Use `get_float` from the CS50 Library to get the user’s input and `print` to output your answer. Assume that the only coins available are quarters (25¢), dimes (10¢), nickels (5¢), and pennies (1¢).
+- 使用 CS50 库中的 `get_float` 获取用户输入，并使用 `print` 输出你的答案。假设可用的硬币只有 25 美分 (quarters)、10 美分 (dimes)、5 美分 (nickels) 和 1 美分 (pennies)。
   
-  - We ask that you use `get_float` so that you can handle dollars and cents, albeit sans dollar sign. In other words, if some customer is owed $9.75 (as in the case where a newspaper costs 25¢ but the customer pays with a $10 bill), assume that your program’s input will be `9.75` and not `$9.75` or `975`. However, if some customer is owed $9 exactly, assume that your program’s input will be `9.00` or just `9` but, again, not `$9` or `900`. Of course, by nature of floating-point values, your program will likely work with inputs like `9.0` and `9.000` as well; you need not worry about checking whether the user’s input is “formatted” like money should be.
-- If the user fails to provide a non-negative value, your program should re-prompt the user for a valid amount again and again until the user complies.
-- Incidentally, so that we can automate some tests of your code, we ask that your program’s last line of output be only the minimum number of coins possible: an integer followed by a newline.
+  - 我们要求你使用 `get_float` 以便处理美元和美分，尽管不带美元符号。换句话说，如果需要找给某位顾客 $9.75（例如一份报纸花费 25¢，但顾客支付了 $10 钞票），请假设你的程序输入将是 `9.75`，而不是 `$9.75` 或 `975`。但是，如果需要找给某位顾客正好 $9，请假设你的程序输入将是 `9.00` 或仅仅是 `9`，但同样不是 `$9` 或 `900`。当然，由于浮点值的特性，你的程序也可能处理像 `9.0` 和 `9.000` 这样的输入；你无需担心检查用户的输入是否像货币那样“格式化”。
+- 如果用户未能提供一个非负值，你的程序应该反复提示用户输入一个有效金额，直到用户遵守为止。
+- 顺便说一下，为了我们可以自动测试你的代码，我们要求你程序的最后一行输出仅为可能的最少硬币数量：一个整数后跟一个换行符。
 
-## How to Test
+## 如何测试
 
-While `check50` is available for this problem, you’re encouraged to first test your code on your own for each of the following.
+虽然 `check50` 是针对此问题的，但建议你先自行针对以下每种情况测试代码。
 
-- Run your program as `python cash.py`, and wait for a prompt for input. Type in `0.41` and press enter. Your program should output `4`.
-- Run your program as `python cash.py`, and wait for a prompt for input. Type in `0.01` and press enter. Your program should output `1`.
-- Run your program as `python cash.py`, and wait for a prompt for input. Type in `0.15` and press enter. Your program should output `2`.
-- Run your program as `python cash.py`, and wait for a prompt for input. Type in `1.60` and press enter. Your program should output `7`.
-- Run your program as `python cash.py`, and wait for a prompt for input. Type in `23` and press enter. Your program should output `92`.
-- Run your program as `python cash.py`, and wait for a prompt for input. Type in `4.2` and press enter. Your program should output `18`.
-- Run your program as `python cash.py`, and wait for a prompt for input. Type in `-1` and press enter. Your program should reject this input as invalid, as by re-prompting the user to type in another number.
-- Run your program as `python cash.py`, and wait for a prompt for input. Type in `foo` and press enter. Your program should reject this input as invalid, as by re-prompting the user to type in another number.
-- Run your program as `python cash.py`, and wait for a prompt for input. Do not type anything, and press enter. Your program should reject this input as invalid, as by re-prompting the user to type in another number.
+- 运行你的程序 `python cash.py`，并等待输入提示。输入 `0.41` 并按回车。你的程序应该输出 `4`。
+- 运行你的程序 `python cash.py`，并等待输入提示。输入 `0.01` 并按回车。你的程序应该输出 `1`。
+- 运行你的程序 `python cash.py`，并等待输入提示。输入 `0.15` 并按回车。你的程序应该输出 `2`。
+- 运行你的程序 `python cash.py`，并等待输入提示。输入 `1.60` 并按回车。你的程序应该输出 `7`。
+- 运行你的程序 `python cash.py`，并等待输入提示。输入 `23` 并按回车。你的程序应该输出 `92`。
+- 运行你的程序 `python cash.py`，并等待输入提示。输入 `4.2` 并按回车。你的程序应该输出 `18`。
+- 运行你的程序 `python cash.py`，并等待输入提示。输入 `-1` 并按回车。你的程序应该拒绝此输入为无效，并重新提示用户输入另一个数字。
+- 运行你的程序 `python cash.py`，并等待输入提示。输入 `foo` 并按回车。你的程序应该拒绝此输入为无效，并重新提示用户输入另一个数字。
+- 运行你的程序 `python cash.py`，并等待输入提示。不输入任何内容并按回车。你的程序应该拒绝此输入为无效，并重新提示用户输入另一个数字。
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/sentimental/cash
 ```
 
-### Style
+### 代码风格
 
 ```
 style50 cash.py
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在你的终端中，执行以下命令提交你的工作，并回答出现的提示。
 
 ```
 submit50 cs50/problems/2026/x/sentimental/cash

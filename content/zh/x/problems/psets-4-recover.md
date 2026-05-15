@@ -1,109 +1,109 @@
 ---
-title: "Recover - CS50x 2026"
+title: "恢复 - CS50x 2026"
 pset: 4
-draft: "false"
+draft: false
 ---
 
 ![Recovered image](recovered_image.png)
 
-## Problem to Solve
+## 待解决的问题
 
-In anticipation of this problem, we spent the past several days taking photos around campus, all of which were saved on a digital camera as JPEGs on a memory card. Unfortunately, we somehow deleted them all! Thankfully, in the computer world, “deleted” tends not to mean “deleted” so much as “forgotten.” Even though the camera insists that the card is now blank, we’re pretty sure that’s not quite true. Indeed, we’re hoping (er, expecting!) you can write a program that recovers the photos for us!
+为了准备这个问题，我们在过去几天里在校园各处拍摄了一些照片，这些照片都以 JPEG 格式保存在数码相机的存储卡中。不幸的是，我们不知何故把它们全部删除了！谢天谢地，在计算机世界里，“删除”往往并不意味着真正的“删除”，而更多是“被遗忘”。尽管相机坚持认为存储卡现在是空的，但我们确信事实并非如此。实际上，我们希望（或者说，期待！）你能编写一个程序来帮我们恢复这些照片！
 
-In a file called `recover.c` in a folder called `recover`, write a program to recover JPEGs from a memory card.
+在 `recover` 文件夹中的 `recover.c` 文件中，编写一个程序从存储卡中恢复 JPEG。
 
-## Distribution Code
+## 分发代码
 
-For this problem, you’ll extend the functionality of code provided to you by CS50’s staff.
+在这个问题中，你将扩展 CS50 团队为你提供的代码功能。
 
-Download the distribution code
+下载分发代码
 
-Log into [cs50.dev](https://cs50.dev/), click on your terminal window, and execute `cd` by itself. You should find that your terminal window’s prompt resembles the below:
+登录 [cs50.dev](https://cs50.dev/)，点击终端窗口，然后单独执行 `cd` 命令。你应该会发现终端窗口的提示符类似于：
 
 ```
 $
 ```
 
-Next execute
+接着执行
 
 ```python
 wget https://cdn.cs50.net/2026/x/psets/4/recover.zip
 ```
 
-in order to download a ZIP called `recover.zip` into your codespace.
+以便将名为 `recover.zip` 的压缩文件下载到你的 Codespace。
 
-Then execute
+然后执行
 
 ```
 unzip recover.zip
 ```
 
-to create a folder called `recover`. You no longer need the ZIP file, so you can execute
+来创建一个名为 `recover` 的文件夹。你不再需要这个 ZIP 文件，所以可以执行
 
 ```
 rm recover.zip
 ```
 
-and respond with “y” followed by Enter at the prompt to remove the ZIP file you downloaded.
+并在提示符后输入 “y” 按回车，以删除你下载的 ZIP 文件。
 
-Now type
+现在输入
 
 ```bash
 cd recover
 ```
 
-followed by Enter to move yourself into (i.e., open) that directory. Your prompt should now resemble the below.
+接着按回车键进入（即打开）该目录。你的提示符现在应该类似于：
 
 ```
 recover/ $
 ```
 
-Execute `ls` by itself, and you should see two files: `recover.c` and `card.raw`.
+单独执行 `ls`，你应该会看到两个文件：`recover.c` 和 `card.raw`。
 
-## Background
+## 背景知识
 
-Even though JPEGs are more complicated than BMPs, JPEGs have “signatures,” patterns of bytes that can distinguish them from other file formats. Specifically, the first three bytes of JPEGs are
+尽管 JPEG 比 BMP 更复杂，但 JPEG 具有“签名”（signatures），即可以将它们与其他文件格式区分开来的字节模式。具体来说，JPEG 的前三个字节是：
 
 ```
 0xff 0xd8 0xff
 ```
 
-from first byte to third byte, left to right. The fourth byte, meanwhile, is either `0xe0`, `0xe1`, `0xe2`, `0xe3`, `0xe4`, `0xe5`, `0xe6`, `0xe7`, `0xe8`, `0xe9`, `0xea`, `0xeb`, `0xec`, `0xed`, `0xee`, or `0xef`. Put another way, the fourth byte’s first four bits are `1110`.
+从第一个字节到第三个字节，从左到右。与此同时，第四个字节是 `0xe0`, `0xe1`, `0xe2`, `0xe3`, `0xe4`, `0xe5`, `0xe6`, `0xe7`, `0xe8`, `0xe9`, `0xea`, `0xeb`, `0xec`, `0xed`, `0xee`, 或 `0xef` 中的一个。换句话说，第四个字节的前四个位是 `1110`。
 
-Odds are, if you find this pattern of four bytes on media known to store photos (e.g., my memory card), they demarcate the start of a JPEG. To be fair, you might encounter these patterns on some disk purely by chance, so data recovery isn’t an exact science.
+很有可能，如果你在已知存储照片的介质（例如，我的存储卡）上发现这四个字节的模式，它们就标志着一个 JPEG 的开始。公平地说，你也可能纯粹由于巧合而在某些磁盘上遇到这些模式，所以数据恢复并不是一门精确的科学。
 
-Fortunately, digital cameras tend to store photographs contiguously on memory cards, whereby each photo is stored immediately after the previously taken photo. Accordingly, the start of a JPEG usually demarks the end of another. However, digital cameras often initialize cards with a FAT file system whose “block size” is 512 bytes (B). The implication is that these cameras only write to those cards in units of 512 B. A photo that’s 1 MB (i.e., 1,048,576 B) thus takes up 1048576 ÷ 512 = 2048 “blocks” on a memory card. But so does a photo that’s, say, one byte smaller (i.e., 1,048,575 B)! The wasted space on disk is called “slack space.” Forensic investigators often look at slack space for remnants of suspicious data.
+幸运的是，数码相机倾向于在存储卡上连续存储照片，即每张照片都紧跟在之前拍摄的照片之后存储。因此，一个 JPEG 的开始通常标志着另一个 JPEG 的结束。然而，数码相机通常使用 FAT 文件系统初始化卡，其“块大小”为 512 字节 (B)。这意味着这些相机仅以 512 B 为单位写入存储卡。因此，一张 1 MB（即 1,048,576 B）的照片会在存储卡上占用 1048576 ÷ 512 = 2048 个“块”。但是，一张哪怕小一个字节的照片（即 1,048,575 B）也是如此！磁盘上浪费的空间被称为“松弛空间”（slack space）。取证调查人员经常在松弛空间中寻找可疑数据的残余。
 
-The implication of all these details is that you, the investigator, can probably write a program that iterates over a copy of my memory card, looking for JPEGs’ signatures. Each time you find a signature, you can open a new file for writing and start filling that file with bytes from my memory card, closing that file only once you encounter another signature. Moreover, rather than read my memory card’s bytes one at a time, you can read 512 of them at a time into a buffer for efficiency’s sake. Thanks to FAT, you can trust that JPEGs’ signatures will be “block-aligned.” That is, you need only look for those signatures in a block’s first four bytes.
+所有这些细节意味着你，作为调查员，可以编写一个程序遍历我的存储卡副本，寻找 JPEG 的签名。每次找到签名时，你都可以打开一个新文件进行写入，并开始用我存储卡中的字节填充该文件，直到遇到另一个签名时才关闭该文件。此外，为了提高效率，你可以一次读取 512 个字节到一个缓冲区中，而不是一次读取一个字节。多亏了 FAT，你可以确信 JPEG 的签名将是“块对齐”的。也就是说，你只需要在一个块的前四个字节中寻找这些签名。
 
-Realize, of course, that JPEGs can span contiguous blocks. Otherwise, no JPEG could be larger than 512 B. But the last byte of a JPEG might not fall at the very end of a block. Recall the possibility of slack space. But not to worry. Because this memory card was brand-new when I started snapping photos, odds are it’d been “zeroed” (i.e., filled with 0s) by the manufacturer, in which case any slack space will be filled with 0s. It’s okay if those trailing 0s end up in the JPEGs you recover; they should still be viewable.
+当然，请意识到 JPEG 可以跨越连续的块。否则，没有 JPEG 能大于 512 B。但是 JPEG 的最后一个字节可能不会恰好落在块的末尾。回想一下松弛空间的可能性。但不用担心。因为这张存储卡在我开始拍照时是全新的，所以它很可能已经被制造商“置零”（即填充了 0），在这种情况下，任何松弛空间都将填充 0。如果你恢复的 JPEG 结尾包含这些拖尾的 0 也没关系；它们仍然应该是可查看的。
 
-Now, I only have one memory card, but there are a lot of you! And so I’ve gone ahead and created a “forensic image” of the card, storing its contents, byte after byte, in a file called `card.raw`. So that you don’t waste time iterating over millions of 0s unnecessarily, I’ve only imaged the first few megabytes of the memory card. But you should ultimately find that the image contains 50 JPEGs.
+现在，我只有一张存储卡，但你们有这么多人！所以我已经创建了这张卡的“取证映像”，将其内容逐字节存储在一个名为 `card.raw` 的文件中。为了让你不浪费时间在数百万个 0 上进行不必要的迭代，我只对存储卡的前几兆字节进行了成像。但你最终应该发现该映像包含 50 个 JPEG。
 
-## Specification
+## 实现要求
 
-Implement a program called `recover` that recovers JPEGs from a forensic image.
+实现一个名为 `recover` 的程序，从取证映像中恢复 JPEG。
 
-- Implement your program in a file called `recover.c` in a directory called `recover`.
-- Your program should accept exactly one command-line argument, the name of a forensic image from which to recover JPEGs.
-- If your program is not executed with exactly one command-line argument, it should remind the user of correct usage, and `main` should return `1`.
-- If the forensic image cannot be opened for reading, your program should inform the user as much, and `main` should return `1`.
-- The files you generate should each be named `###.jpg`, where `###` is a three-digit decimal number, starting with `000` for the first image and counting up.
-- Your program, if it uses `malloc`, must not leak any memory.
+- 在 `recover` 目录下的 `recover.c` 文件中实现你的程序。
+- 你的程序应该接受且仅接受一个命令行参数，即要从中恢复 JPEG 的取证映像的名称。
+- 如果你的程序在执行时没有提供恰好一个命令行参数，它应该提醒用户正确的用法，并且 `main` 函数应返回 `1`。
+- 如果取证映像无法打开进行读取，你的程序应该告知用户，并且 `main` 函数应返回 `1`。
+- 你生成的每个文件都应命名为 `###.jpg`，其中 `###` 是一个三位十进制数，从第一个图像的 `000` 开始依次向上计数。
+- 你的程序如果使用了 `malloc`，则不得发生任何内存泄漏。
 
-## Hints
+## 提示
 
-Write some pseudocode before writing more code
+在编写更多代码之前先写一些伪代码
 
-If unsure how to solve the larger problem, break it down into smaller problems that you can probably solve first. For instance, this problem is really only a handful of problems:
+如果不确定如何解决较大的问题，请将其分解为可以先解决的小问题。例如，这个问题其实只是几个小问题：
 
-1. Accept a single command-line argument: the name of a memory card
-2. Open the memory card
-3. While there’s still data left to read in the memory card
+1. 接受一个命令行参数：存储卡的名称
+2. 打开存储卡
+3. 当存储卡中仍有数据可读时
    
-   1. Create JPEGs from the data
+   1. 从数据中创建 JPEG
 
-Let’s write some pseudcode as comments to remind you to do just that:
+让我们写一些伪代码作为注释来提醒你这样做：
 
 ```c
 #include <stdio.h>
@@ -111,19 +111,19 @@ Let’s write some pseudcode as comments to remind you to do just that:
 
 int main(int argc, char *argv[])
 {
-    // Accept a single command-line argument
+    // 接受一个命令行参数
 
-    // Open the memory card
+    // 打开存储卡
 
-    // While there's still data left to read from the memory card
+    // 当存储卡中仍有数据可读时
 
-        // Create JPEGs from the data
+        // 从数据中创建 JPEG
 }
 ```
 
-Convert the pseudocode to code
+将伪代码转换为代码
 
-First, consider how to accept a single command-line argument. If the user misuses the program, you should tell them the program’s proper usage.
+首先，考虑如何接受一个命令行参数。如果用户错误使用了程序，你应该告诉他们程序的正确用法。
 
 ```c
 #include <stdio.h>
@@ -131,22 +131,22 @@ First, consider how to accept a single command-line argument. If the user misuse
 
 int main(int argc, char *argv[])
 {
-    // Accept a single command-line argument
+    // 接受一个命令行参数
     if (argc != 2)
     {
         printf("Usage: ./recover FILE\n");
         return 1;
     }
 
-    // Open the memory card
+    // 打开存储卡
 
-    // While there's still data left to read from the memory card
+    // 当存储卡中仍有数据可读时
 
-        // Create JPEGs from the data
+        // 从数据中创建 JPEG
 }
 ```
 
-Now that you’ve checked for proper usage, you can open the memory card. Keep in mind that you can open `card.raw` programmatically with `fopen`, as with the below.
+既然你已经检查了正确的用法，你就可以打开存储卡了。请记住，你可以使用 `fopen` 以编程方式打开 `card.raw`，如下所示。
 
 ```c
 #include <stdio.h>
@@ -154,27 +154,27 @@ Now that you’ve checked for proper usage, you can open the memory card. Keep i
 
 int main(int argc, char *argv[])
 {
-    // Accept a single command-line argument
+    // 接受一个命令行参数
     if (argc != 2)
     {
         printf("Usage: ./recover FILE\n");
         return 1;
     }
 
-    // Open the memory card
+    // 打开存储卡
     FILE *card = fopen(argv[1], "r");
 
-    // While there's still data left to read from the memory card
+    // 当存储卡中仍有数据可读时
 
-        // Create JPEGs from the data
+        // 从数据中创建 JPEG
 }
 ```
 
-You should, of course, check to be sure the file was opened properly! If it wasn’t, tell the user and exit the program: we’ll leave this part up to you.
+当然，你应该检查以确保文件已正确打开！如果没有打开，请告知用户并退出程序：我们将把这部分留给你。
 
-Next, your program should read the data from the card you’ve opened, until there is no longer any data to read. Along the way, your program should recover every one of the JPEGs from `card.raw`, storing each as a separate file in your current working directory.
+接下来，你的程序应该从你打开的存储卡中读取数据，直到不再有数据可读为止。在此过程中，你的程序应该从 `card.raw` 中恢复每一个 JPEG，并将每一个作为单独的文件存储在当前工作目录中。
 
-First consider how to read `card.raw` all the way through. Recall that, to read data from a file, you need to temporarily store that data in a “buffer.” And recall further that `card.raw` stores data in blocks of 512 bytes. As such, you’ll likely want to create a buffer of 512 bytes to store blocks of data as you read them sequentially. One way of doing so is to use the `uint8_t` type from `stdint.h`, which stores exactly 8 bits (1 byte). The type is called `uint8_t` since it stores an unsigned/positive/non-negative integer that requires 8 bits of space (i.e., one byte).
+首先考虑如何通读 `card.raw`。回想一下，要从文件中读取数据，你需要将该数据临时存储在“缓冲区”中。并且进一步回想一下， `card.raw` 以 512 字节的块存储数据。因此，你可能会想要创建一个 512 字节的缓冲区来存储顺序读取的数据块。一种方法是使用 `stdint.h` 中的 `uint8_t` 类型，它恰好存储 8 位（1 字节）。该类型之所以称为 `uint8_t`，是因为它存储一个需要 8 位空间（即一个字节）的无符号/正数/非负整数。
 
 ```c
 #include <stdint.h>
@@ -183,28 +183,28 @@ First consider how to read `card.raw` all the way through. Recall that, to read 
 
 int main(int argc, char *argv[])
 {
-    // Accept a single command-line argument
+    // 接受一个命令行参数
     if (argc != 2)
     {
         printf("Usage: ./recover FILE\n");
         return 1;
     }
 
-    // Open the memory card
+    // 打开存储卡
     FILE *card = fopen(argv[1], "r");
 
-    // Create a buffer for a block of data
+    // 为一个数据块创建缓冲区
     uint8_t buffer[512];
 
-    // While there's still data left to read from the memory card
+    // 当存储卡中仍有数据可读时
 
-        // Create JPEGs from the data
+        // 从数据中创建 JPEG
 }
 ```
 
-It’s probably *not* the best idea, though, to use 512 as a [“magic number”](../../../shorts/magic_numbers/) here. Odds are you could improve this design further!
+不过，在这里将 512 用作[“魔数”](../../../shorts/magic_numbers/)可能*不是*最好的主意。很有可能你可以进一步改进这个设计！
 
-Now, consider how to read data from the memory card. Per its [manual page](https://man.cs50.io/3/fread), `fread` returns the number of bytes that it has read, in which case it should either return `512` or `0`, given that `card.raw` contains some number of 512-byte blocks. In order to read every block from `card.raw`, after opening it with `fopen`, it should suffice to use a loop like this.
+现在，考虑如何从存储卡中读取数据。根据其[手册页](https://man.cs50.io/3/fread)，`fread` 返回它已读取的字节数，在这种情况下，考虑到 `card.raw` 包含若干 512 字节的块，它应该返回 `512` 或 `0`。为了从 `card.raw` 读取每一个块，在使用 `fopen` 打开它之后，使用如下循环应该就足够了。
 
 ```c
 #include <stdint.h>
@@ -213,79 +213,79 @@ Now, consider how to read data from the memory card. Per its [manual page](https
 
 int main(int argc, char *argv[])
 {
-    // Accept a single command-line argument
+    // 接受一个命令行参数
     if (argc != 2)
     {
         printf("Usage: ./recover FILE\n");
         return 1;
     }
 
-    // Open the memory card
+    // 打开存储卡
     FILE *card = fopen(argv[1], "r");
 
-    // Create a buffer for a block of data
+    // 为一个数据块创建缓冲区
     uint8_t buffer[512];
 
-    // While there's still data left to read from the memory card
+    // 当存储卡中仍有数据可读时
     while (fread(buffer, 1, 512, card) == 512)
     {
-        // Create JPEGs from the data
+        // 从数据中创建 JPEG
 
     }
 }
 ```
 
-That way, as soon as `fread` returns `0` (which is effectively `false`), your loop will end.
+这样，一旦 `fread` 返回 `0`（实际上就是 `false`），你的循环就会结束。
 
-Finally, it’s up to you to determine how to programmatically create JPEGs as you continue to read from `card.raw`. For this, you might find the below [walkthrough](#walkthrough) of use to you.
+最后，在你继续阅读 `card.raw` 的过程中，如何以编程方式创建 JPEG 取决于你。为此，你可能会发现下面的[视频演示](#walkthrough)对你很有用。
 
-Keep in mind your program should number the files it outputs by naming each `###.jpg`, where `###` is three-digit decimal number from `000` on up. Befriend [`sprintf`](https://man.cs50.io/3/sprintf) and note that `sprintf` stores a formatted string at a location in memory. Given the prescribed `###.jpg` format for a JPEG’s filename, how many bytes should you allocate for that string? (Don’t forget the NUL character!)
+请记住，你的程序应该通过将每个文件命名为 `###.jpg` 来对输出的文件进行编号，其中 `###` 是从 `000` 开始的三位十进制数。熟练使用 [`sprintf`](https://man.cs50.io/3/sprintf)，并注意 `sprintf` 将格式化的字符串存储在内存中的某个位置。考虑到 JPEG 文件名规定的 `###.jpg` 格式，你应该为该字符串分配多少字节？（不要忘记 NUL 字符！）
 
-To check whether the JPEGs your program spit out are correct, simply double-click and take a look! If each photo appears intact, your operation was likely a success!
+要检查你的程序吐出的 JPEG 是否正确，只需双击并查看即可！如果每张照片看起来都是完整的，那么你的操作可能就成功了！
 
-And of course, remember to `fclose` every file you’ve opened with `fopen`!
+当然，记得 `fclose` 每一个你用 `fopen` 打开的文件！
 
-Keep your working directory clean
+保持工作目录整洁
 
-Odds are the JPEGs that the first draft of your code spits out won’t be correct. (If you open them up and don’t see anything, they’re probably not correct!) Execute the command below to delete all JPEGs in your current working directory.
+你编写的第一版代码吐出的 JPEG 很有可能是不正确的。（如果你打开它们却看不到任何东西，它们可能就不正确！）执行下面的命令删除当前工作目录中的所有 JPEG。
 
 ```
 rm *.jpg
 ```
 
-If you’d rather not be prompted to confirm each deletion, execute the command below instead.
+如果你不希望在每次删除时都收到确认提示，请执行以下命令。
 
 ```
 rm -f *.jpg
 ```
 
-Just be careful with that `-f` switch, as it “forces” deletion without prompting you.
+只是使用 `-f` 开关时要小心，因为它会“强制”删除而不会提示你。
 
-## Walkthrough
+## 视频演示
 
-## How to Test
+## 如何测试
 
-### Running the Program
+### 运行程序
 
 ```
 ./recover card.raw
 ```
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/recover
 ```
 
-### Style
+### 风格
 
 ```
 style50 recover.c
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在你的终端中，执行以下命令来提交你的作品，并按提示进行操作。
 
 ```
 submit50 cs50/problems/2026/x/recover

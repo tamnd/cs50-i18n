@@ -1,46 +1,46 @@
 ---
-title: "Cash - CS50x 2026"
+title: "找零 - CS50x 2026"
 pset: 1
-draft: "false"
+draft: false
 ---
 
 ![US coins](coins.jpg)
 
-## Problem to Solve
+## 要解决的问题
 
-Suppose you work at a store and a customer gives you $1.00 (100 cents) for candy that costs $0.50 (50 cents). You’ll need to pay them their “change,” the amount leftover after paying for the cost of the candy. When making change, odds are you want to minimize the number of coins you’re dispensing for each customer, lest you run out (or annoy the customer!). In a file called `cash.c` in a folder called `cash`, implement a program in C that prints the minimum coins needed to make the given amount of change, in cents, as in the below:
+假设你在一家商店工作，一位顾客为了购买价格为 $0.50（50 美分）的糖果，给了你 $1.00（100 美分）。你需要找给顾客“零钱”，也就是支付糖果费用后剩下的金额。找零时，你通常会希望给出的硬币数量尽可能少，以免硬币用完（或让顾客不耐烦！）。请在名为 `cash` 的文件夹中，在一个名为 `cash.c` 的文件里，用 C 实现一个程序：给定应找的零钱金额（以美分为单位），打印所需的最少硬币数，如下所示：
 
 ```python
 Change owed: 25
 1
 ```
 
-But prompt the user for an `int` greater than 0, so that the program works for any amount of change:
+不过，你的程序应提示用户输入一个大于 0 的 `int`，使程序能处理任意金额的找零：
 
 ```python
 Change owed: 70
 4
 ```
 
-Re-prompt the user, again and again as needed, if their input is not greater than or equal to 0 (or if their input isn’t an `int` at all!).
+如果用户输入的值不大于或等于 0（或者输入根本不是 `int`），就根据需要一次又一次地重新提示用户。
 
-## Demo
+## 演示
 
-## Greedy Algorithms
+## 贪心算法
 
-Fortunately, computer science has given cashiers everywhere ways to minimize numbers of coins due: greedy algorithms.
+幸运的是，计算机科学为各地的收银员提供了减少应付硬币数量的方法：贪心算法。
 
-According to the National Institute of Standards and Technology (NIST), a greedy algorithm is one “that always takes the best immediate, or local, solution while finding an answer. Greedy algorithms find the overall, or globally, optimal solution for some optimization problems, but may find less-than-optimal solutions for some instances of other problems.”
+根据美国国家标准与技术研究院（National Institute of Standards and Technology，NIST）的说法，贪心算法是一种“在寻找答案的过程中，总是选择当前最优，也就是局部最优解”的算法。贪心算法能为某些优化问题找到整体最优解，也就是全局最优解，但在另一些问题的某些情形下，可能只能得到次优解。
 
-What’s all that mean? Well, suppose that a cashier owes a customer some change and in that cashier’s drawer are quarters (25¢), dimes (10¢), nickels (5¢), and pennies (1¢). The problem to be solved is to decide which coins and how many of each to hand to the customer. Think of a “greedy” cashier as one who wants to take the biggest bite out of this problem as possible with each coin they take out of the drawer. For instance, if some customer is owed 41¢, the biggest first (i.e., best immediate, or local) bite that can be taken is 25¢. (That bite is “best” inasmuch as it gets us closer to 0¢ faster than any other coin would.) Note that a bite of this size would whittle what was a 41¢ problem down to a 16¢ problem, since 41 - 25 = 16. That is, the remainder is a similar but smaller problem. Needless to say, another 25¢ bite would be too big (assuming the cashier prefers not to lose money), and so our greedy cashier would move on to a bite of size 10¢, leaving him or her with a 6¢ problem. At that point, greed calls for one 5¢ bite followed by one 1¢ bite, at which point the problem is solved. The customer receives one quarter, one dime, one nickel, and one penny: four coins in total.
+这到底是什么意思？假设一名收银员需要给顾客找零，而收银抽屉里有 25 美分硬币、10 美分硬币、5 美分硬币和 1 美分硬币。要解决的问题是：应该给顾客哪些硬币，以及每种硬币各给多少枚。你可以把“贪心”的收银员想象成这样一个人：每次从抽屉中拿出一枚硬币时，都想尽可能多地减少剩余问题。例如，如果某位顾客应得 41 美分，第一次能拿走的最大一口（也就是当前最优、局部最优的一步）就是 25 美分。（这一口之所以“最优”，是因为它比任何其他硬币都能更快让我们接近 0 美分。）请注意，这样一口会把原本 41 美分的问题削减为 16 美分的问题，因为 41 - 25 = 16。也就是说，剩余部分是一个相似但更小的问题。不用说，再拿一枚 25 美分硬币就太多了（假设收银员不想亏钱），于是我们的贪心收银员会转向 10 美分硬币，留下 6 美分的问题。此时，贪心策略会选择一枚 5 美分硬币，然后再选择一枚 1 美分硬币，问题就解决了。顾客会收到一枚 25 美分硬币、一枚 10 美分硬币、一枚 5 美分硬币和一枚 1 美分硬币：总共四枚硬币。
 
-It turns out that this greedy approach (i.e., algorithm) is not only locally optimal but also globally so for America’s currency (and also the European Union’s). That is, so long as a cashier has enough of each coin, this largest-to-smallest approach will yield the fewest coins possible. How few? Well, you tell us!
+事实证明，对于美国货币（以及欧盟货币）来说，这种贪心方法（也就是算法）不仅局部最优，而且全局最优。也就是说，只要收银员每种硬币都有足够数量，按从大到小选择硬币就会得到可能的最少硬币数。到底有多少？这就由你来告诉我们了！
 
-## Advice
+## 建议
 
-Write some code that you know will compile
+先写一些你知道能编译的代码
 
-Even though this program won’t do anything, it should at least compile with `make`!
+即使这个程序还不会做任何事情，它至少应该能用 `make` 编译！
 
 ```c
 #include <cs50.h>
@@ -52,21 +52,21 @@ int main(void)
 }
 ```
 
-Notice that you’ve now included `cs50.h` and `stdio.h`, two “header files” that will give you access to functions that might help you solve this problem.
+请注意，你现在已经包含了 `cs50.h` 和 `stdio.h` 这两个“头文件”，它们会让你能够使用一些可能有助于解决这个问题的函数。
 
-Write some pseudocode before writing more code
+在写更多代码之前，先写一些伪代码
 
-If unsure how to solve the problem itself, break it down into smaller problems that you can probably solve first. For instance, this problem is really only a handful of problems:
+如果你不确定如何解决问题本身，可以把它拆成一些你大概能先解决的小问题。例如，这个问题其实只有少数几个步骤：
 
-1. Prompt the user for change owed, in cents.
-2. Calculate how many *quarters* you should give customer. Subtract the value of those quarters from cents.
-3. Calculate how many *dimes* you should give customer. Subtract the value of those dimes from remaining cents.
-4. Calculate how many *nickels* you should give customer. Subtract the value of those nickels from remaining cents.
-5. Calculate how many *pennies* you should give customer. Subtract the value of those pennies from remaining cents.
-6. Sum the number of quarters, dimes, nickels, and pennies used.
-7. Print that sum.
+1. 提示用户输入应找零钱，单位为美分。
+2. 计算应该给顾客多少枚 *quarters*。从 cents 中减去这些 quarters 的价值。
+3. 计算应该给顾客多少枚 *dimes*。从剩余 cents 中减去这些 dimes 的价值。
+4. 计算应该给顾客多少枚 *nickels*。从剩余 cents 中减去这些 nickels 的价值。
+5. 计算应该给顾客多少枚 *pennies*。从剩余 cents 中减去这些 pennies 的价值。
+6. 将用到的 quarters、dimes、nickels 和 pennies 的数量相加。
+7. 打印这个总数。
 
-This is the greedy algorithm you can use to solve this problem, so let’s write some pseudcode as comments to remind you to do just that:
+这就是你可以用来解决此问题的贪心算法，所以我们把一些伪代码写成注释，提醒自己按这个思路完成：
 
 ```c
 #include <cs50.h>
@@ -93,9 +93,9 @@ int main(void)
 }
 ```
 
-Convert the pseudocode to code
+把伪代码转换为代码
 
-First, consider how you might prompt the user for the cents they are owed. Recall that a `do while` loop is helpful when you want to do something at least once, and possibly again and again, as in the below:
+首先，想想如何提示用户输入应找的美分数。回忆一下，当你希望某件事至少执行一次，并且可能反复执行时，`do while` 循环会很有用，如下所示：
 
 ```c
 #include <cs50.h>
@@ -113,9 +113,9 @@ int main(void)
 }
 ```
 
-It’s wise to stop here and `make` your program. Test to be sure your program compiles, and that it reprompts you if you enter less than 0 cents (or if you enter an input like “cat”).
+在这里停下来用 `make` 编译你的程序是明智的。测试一下，确认程序能够编译，并且当你输入小于 0 的美分数（或输入类似 “cat” 的内容）时，会重新提示你。
 
-Next, consider how to calculate how many quarters you should give the customer. Since we’re using a greedy algorithm, this question becomes “what’s the *greatest* number of quarters could you give them?”. You *could* write a solution to this problem in your `main` function. But, it might clear up your thinking to write a new function: one called `calculate_quarters`. That way you can better focus on the logic to calculate quarters. Later, you can integrate this function into your larger solution.
+接下来，考虑如何计算应该给顾客多少枚 quarters。由于我们使用的是贪心算法，这个问题就变成了：“你最多能给他们多少枚 quarters？”你*可以*直接在 `main` 函数中写出这个问题的解法。不过，写一个新函数也许能让思路更清晰：这个函数叫做 `calculate_quarters`。这样你就可以更专注于计算 quarters 的逻辑。之后，你可以再把这个函数整合进更大的解法中。
 
 ```
 int calculate_quarters(int cents)
@@ -124,9 +124,9 @@ int calculate_quarters(int cents)
 }
 ```
 
-Notice that this function is indeed named `calculate_quarters`. Per `int cents` in parentheses, it takes an `int` called `cents` as input. And, per the `int` in front of its name, it should also “return” an `int`. That is, the output of this function is an integer: the number of quarters that fit into cents.
+请注意，这个函数确实名为 `calculate_quarters`。根据括号中的 `int cents`，它接收一个名为 `cents` 的 `int` 作为输入。而根据函数名前面的 `int`，它也应该“返回”一个 `int`。也就是说，这个函数的输出是一个整数：能从 cents 中取出的 quarters 数量。
 
-Now consider this way of implementing `calculate_quarters` by adding to the number of quarters until we’ve run out of cents to convert to quarters:
+现在，考虑下面这种实现 `calculate_quarters` 的方式：不断增加 quarters 的数量，直到没有足够的 cents 可以再换成 quarters 为止：
 
 ```
 int calculate_quarters(int cents)
@@ -142,9 +142,9 @@ int calculate_quarters(int cents)
 }
 ```
 
-Granted, there is at least one simpler way to solve this `calculate_quarters` problem. But we’ll leave that up to you to figure out!
+当然，至少还有一种更简单的方法可以解决这个 `calculate_quarters` 问题。但我们把它留给你自己去发现！
 
-With `calculate_quarters` functioning as intended, you can integrate this function into your program. Take care to “declare” the function’s “signature” (i.e., `int calculate_quarters(int cents)`) above your `main` function, so you can indeed use `calculate_quarters` there while defining it later, below `main`.
+当 `calculate_quarters` 按预期工作后，你可以把这个函数整合进程序中。注意要在 `main` 函数上方“声明”这个函数的“签名”（也就是 `int calculate_quarters(int cents)`），这样你就能在 `main` 中使用 `calculate_quarters`，并在稍后、`main` 下方再定义它。
 
 ```c
 #include <cs50.h>
@@ -182,35 +182,35 @@ int calculate_quarters(int cents)
 }
 ```
 
-A few problems down, and a few more to go! Notice a pattern you could re-use here?
+已经解决了几个小问题，还剩下几个！你注意到这里有什么可以复用的模式了吗？
 
-## How to Test
+## 如何测试
 
-For this program, try testing your code manually. It’s good practice:
+对于这个程序，请尝试手动测试你的代码。这是很好的练习：
 
-- If you input `-1`, does your program prompt you again?
-- If you input `0`, does your program output `0`?
-- If you input `1`, does your program output `1` (i.e., one penny)?
-- If you input `4`, does your program output `4` (i.e., four pennies)?
-- If you input `5`, does your program output `1` (i.e., one nickel)?
-- If you input `24`, does your program output `6` (i.e., two dimes and four pennies)?
-- If you input `25`, does your program output `1` (i.e., one quarter)?
-- If you input `26`, does your program output `2` (i.e., one quarter and one penny)?
-- If you input `99`, does your program output `9` (i.e., three quarters, two dimes, and four pennies)?
+- 如果你输入 `-1`，程序会再次提示你吗？
+- 如果你输入 `0`，程序会输出 `0` 吗？
+- 如果你输入 `1`，程序会输出 `1` 吗（也就是一枚 penny）？
+- 如果你输入 `4`，程序会输出 `4` 吗（也就是四枚 pennies）？
+- 如果你输入 `5`，程序会输出 `1` 吗（也就是一枚 nickel）？
+- 如果你输入 `24`，程序会输出 `6` 吗（也就是两枚 dimes 和四枚 pennies）？
+- 如果你输入 `25`，程序会输出 `1` 吗（也就是一枚 quarter）？
+- 如果你输入 `26`，程序会输出 `2` 吗（也就是一枚 quarter 和一枚 penny）？
+- 如果你输入 `99`，程序会输出 `9` 吗（也就是三枚 quarters、两枚 dimes 和四枚 pennies）？
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/cash
 ```
 
-### Style
+### 风格
 
 ```
 style50 cash.c
 ```
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在终端中执行以下命令来提交你的作业，并回答随后出现的提示。
 
 ```
 submit50 cs50/problems/2026/x/cash

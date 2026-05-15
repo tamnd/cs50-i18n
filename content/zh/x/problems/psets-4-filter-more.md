@@ -1,235 +1,235 @@
 ---
-title: "Filter - CS50x 2026"
+title: "过滤器 - CS50x 2026"
 pset: 4
-draft: "false"
+draft: false
 ---
 
 ![Harvard Yard with edge detection](yard-edges.bmp)
 
-## Problem to Solve
+## 待解决的问题
 
-Perhaps the simplest way to represent an image is with a grid of pixels (i.e., dots), each of which can be of a different color. For black-and-white images, we thus need 1 bit per pixel, as 0 could represent black and 1 could represent white, as in the below.
+表示图像最简单的方法或许就是使用像素（即点）网格，每个像素都可以有不同的颜色。对于黑白图像，我们每个像素只需要 1 位，0 可以表示黑色，1 可以表示白色，如下图所示。
 
 ![a simple bitmap](bitmap.png)
 
-In this sense, then, is an image just a bitmap (i.e., a map of bits). For more colorful images, you simply need more bits per pixel. A file format (like [BMP](https://en.wikipedia.org/wiki/BMP_file_format), [JPEG](https://en.wikipedia.org/wiki/JPEG), or [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics)) that supports “24-bit color” uses 24 bits per pixel. (BMP actually supports 1-, 4-, 8-, 16-, 24-, and 32-bit color.)
+从这个意义上说，图像就是一个位图（即位的映射）。对于色彩更丰富的图像，你只需要为每个像素提供更多位即可。支持 “24 位彩色” 的文件格式（如 [BMP](https://en.wikipedia.org/wiki/BMP_file_format)、[JPEG](https://en.wikipedia.org/wiki/JPEG) 或 [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics)）每个像素使用 24 位。（BMP 实际上支持 1、4、8、16、24 和 32 位彩色。）
 
-A 24-bit BMP uses 8 bits to signify the amount of red in a pixel’s color, 8 bits to signify the amount of green in a pixel’s color, and 8 bits to signify the amount of blue in a pixel’s color. If you’ve ever heard of RGB color, well, there you have it: red, green, blue.
+24 位 BMP 使用 8 位来表示像素颜色中的红色含量，8 位表示绿色含量，8 位表示蓝色含量。如果你听说过 RGB 颜色，这就是它的来源：红（red）、绿（green）、蓝（blue）。
 
-If the R, G, and B values of some pixel in a BMP are, say, `0xff`, `0x00`, and `0x00` in hexadecimal, that pixel is purely red, as `0xff` (otherwise known as `255` in decimal) implies “a lot of red,” while `0x00` and `0x00` imply “no green” and “no blue,” respectively. In this problem, you’ll manipulate these R, G, and B values of individual pixels, ultimately creating your very own image filters.
+如果 BMP 中某个像素的 R、G、B 值在十六进制中分别是 `0xff`、`0x00` 和 `0x00`，那么该像素就是纯红色的，因为 `0xff`（也就是十进制中的 `255`）表示 “很多红色”，而 `0x00` 和 `0x00` 分别表示 “没有绿色” 和 “没有蓝色”。在本题中，你将通过操作单个像素的这些 R、G、B 值，最终创建属于你自己的图像过滤器。
 
-In a file called `helpers.c` in a folder called `filter-more`, write a program to apply filters to BMPs.
+在一个名为 `filter-more` 的文件夹下的 `helpers.c` 文件中，编写一个程序对 BMP 应用过滤器。
 
-## Demo
+## 演示
 
-## Distribution Code
+## 发行代码
 
-For this problem, you’ll extend the functionality of code provided to you by CS50’s staff.
+对于这个问题，你将扩展 CS50 工作人员提供给你的代码的功能。
 
-Download the distribution code
+下载发行代码
 
-Log into [cs50.dev](https://cs50.dev/), click on your terminal window, and execute `cd` by itself. You should find that your terminal window’s prompt resembles the below:
+登录 [cs50.dev](https://cs50.dev/)，点击你的终端窗口，然后单独执行 `cd`。你应该会发现终端窗口的提示符类似于：
 
 ```
 $
 ```
 
-Next execute
+接下来执行
 
 ```python
 wget https://cdn.cs50.net/2026/x/psets/4/filter-more.zip
 ```
 
-in order to download a ZIP called `filter-more.zip` into your codespace.
+以便将名为 `filter-more.zip` 的压缩包下载到你的 codespace。
 
-Then execute
+然后执行
 
 ```
 unzip filter-more.zip
 ```
 
-to create a folder called `filter-more`. You no longer need the ZIP file, so you can execute
+创建一个名为 `filter-more` 的文件夹。你不再需要该 ZIP 文件，因此可以执行
 
 ```
 rm filter-more.zip
 ```
 
-and respond with “y” followed by Enter at the prompt to remove the ZIP file you downloaded.
+并在提示符处输入 “y” 紧接着按回车键，以删除你下载的 ZIP 文件。
 
-Now type
+现在输入
 
 ```bash
 cd filter-more
 ```
 
-followed by Enter to move yourself into (i.e., open) that directory. Your prompt should now resemble the below.
+接着按回车键进入（即打开）该目录。你的提示符现在应该类似于：
 
 ```
 filter-more/ $
 ```
 
-Execute `ls` by itself, and you should see a few files: `bmp.h`, `filter.c`, `helpers.h`, `helpers.c`, and `Makefile`. You should also see a folder called `images` with four BMP files. If you run into any trouble, follow these same steps again and see if you can determine where you went wrong!
+单独执行 `ls`，你应该会看到几个文件：`bmp.h`、`filter.c`、`helpers.h`、`helpers.c` 和 `Makefile`。你还应该看到一个名为 `images` 的文件夹，里面有四个 BMP 文件。如果你遇到任何困难，请再次按照这些步骤操作，看看能否确定哪里出错了！
 
-## Background
+## 背景
 
-### A Bit(map) More Technical
+### 关于位图的更多技术细节
 
-Recall that a file is just a sequence of bits, arranged in some fashion. A 24-bit BMP file, then, is essentially just a sequence of bits, (almost) every 24 of which happen to represent some pixel’s color. But a BMP file also contains some “metadata,” information like an image’s height and width. That metadata is stored at the beginning of the file in the form of two data structures generally referred to as “headers,” not to be confused with C’s header files. (Incidentally, these headers have evolved over time. This problem uses the latest version of Microsoft’s BMP format, 4.0, which debuted with Windows 95.)
+回想一下，文件只是以某种方式排列的位序列。那么，一个 24 位 BMP 文件本质上只是一个位序列，其中（几乎）每 24 位恰好代表某个像素的颜色。但 BMP 文件还包含一些 “元数据（metadata）”，即图像的高度和宽度等信息。这些元数据以两个数据结构的形式存储在文件的开头，通常被称为 “文件头（headers）”，不要与 C 语言的头文件混淆。（顺便说一下，这些文件头随着时间的推移而演变。本题使用的是 Microsoft BMP 格式的最新版本 4.0，它随 Windows 95 首次亮相。）
 
-The first of these headers, called `BITMAPFILEHEADER`, is 14 bytes long. (Recall that 1 byte equals 8 bits.) The second of these headers, called `BITMAPINFOHEADER`, is 40 bytes long. Immediately following these headers is the actual bitmap: an array of bytes, triples of which represent a pixel’s color. However, BMP stores these triples backwards (i.e., as BGR), with 8 bits for blue, followed by 8 bits for green, followed by 8 bits for red. (Some BMPs also store the entire bitmap backwards, with an image’s top row at the end of the BMP file. But we’ve stored this problem set’s BMPs as described herein, with each bitmap’s top row first and bottom row last.) In other words, were we to convert the 1-bit smiley above to a 24-bit smiley, substituting red for black, a 24-bit BMP would store this bitmap as follows, where `0000ff` signifies red and `ffffff` signifies white; we’ve highlighted in red all instances of `0000ff`.
+第一个文件头叫作 `BITMAPFILEHEADER`，长度为 14 字节。（回想一下，1 字节等于 8 位。）第二个文件头叫作 `BITMAPINFOHEADER`，长度为 40 字节。紧随这些文件头之后的是实际的位图：一个字节数组，其中每三个字节代表一个像素的颜色。然而，BMP 反向存储这些三元组（即 BGR），先是 8 位蓝色，接着是 8 位绿色，最后是 8 位红色。（一些 BMP 还会反向存储整个位图，将图像的顶行放在 BMP 文件的末尾。但我们将本题集的 BMP 存储为上述方式，即每个位图的顶行在前，底行在后。）换句话说，如果要将上面的 1 位笑脸转换为 24 位笑脸，用红色代替黑色，24 位 BMP 将按如下方式存储此位图，其中 `0000ff` 表示红色，`ffffff` 表示白色；我们用红色突出了所有 `0000ff`。
 
 ![red smile](red_smile.png)
 
-Because we’ve presented these bits from left to right, top to bottom, in 8 columns, you can actually see the red smiley if you take a step back.
+因为我们是按照从左到右、从上到下、分 8 列呈现这些位的，所以如果你退后一步，实际上可以看到红色的笑脸。
 
-To be clear, recall that a hexadecimal digit represents 4 bits. Accordingly, `ffffff` in hexadecimal actually signifies `111111111111111111111111` in binary.
+需要明确的是，回想一下一个十六进制数字代表 4 位。因此，十六进制的 `ffffff` 实际上表示二进制中的 `111111111111111111111111`。
 
-Notice that you could represent a bitmap as a 2-dimensional array of pixels: where the image is an array of rows, each row is an array of pixels. Indeed, that’s how we’ve chosen to represent bitmap images in this problem.
+注意，你可以将位图表示为像素的二维数组：图像是一个行数组，每一行是一个像素数组。事实上，这就是我们在本题中选择表示位图图像的方式。
 
-### Image Filtering
+### 图像过滤
 
-What does it even mean to filter an image? You can think of filtering an image as taking the pixels of some original image, and modifying each pixel in such a way that a particular effect is apparent in the resulting image.
+过滤图像到底是什么意思？你可以将过滤图像看作是获取原始图像的像素，并以某种方式修改每个像素，使得结果图像中呈现出特定的效果。
 
-#### Grayscale
+#### 灰度 (Grayscale)
 
-One common filter is the “grayscale” filter, where we take an image and want to convert it to black-and-white. How does that work?
+一种常见的过滤器是 “灰度” 过滤器，我们将图像转换为黑白。这是如何工作的呢？
 
-Recall that if the red, green, and blue values are all set to `0x00` (hexadecimal for `0`), then the pixel is black. And if all values are set to `0xff` (hexadecimal for `255`), then the pixel is white. So long as the red, green, and blue values are all equal, the result will be varying shades of gray along the black-white spectrum, with higher values meaning lighter shades (closer to white) and lower values meaning darker shades (closer to black).
+回想一下，如果红色、绿色和蓝色值都设置为 `0x00`（十六进制的 `0`），则像素为黑色。如果所有值都设置为 `0xff`（十六进制的 `255`），则像素为白色。只要红、绿、蓝值都相等，结果将是黑白光谱中不同深浅的灰色，值越高意味着色调越浅（越接近白色），值越低意味着色调越深（越接近黑色）。
 
-So to convert a pixel to grayscale, we just need to make sure the red, green, and blue values are all the same value. But how do we know what value to make them? Well, it’s probably reasonable to expect that if the original red, green, and blue values were all pretty high, then the new value should also be pretty high. And if the original values were all low, then the new value should also be low.
+因此，要将像素转换为灰度，我们只需要确保红色、绿色和蓝色值都是相同的值。但是我们怎么知道将它们设为什么值呢？嗯，如果原始的红、绿、蓝值都相当高，那么新值也应该相当高，这大概是合理的预期。如果原始值都很低，那么新值也应该很低。
 
-In fact, to ensure each pixel of the new image still has the same general brightness or darkness as the old image, we can take the average of the red, green, and blue values to determine what shade of grey to make the new pixel.
+事实上，为了确保新图像的每个像素仍然具有与旧图像相同的大致亮度或暗度，我们可以取红色、绿色和蓝色值的平均值，来确定将新像素设为什么深浅的灰色。
 
-If you apply that to each pixel in the image, the result will be an image converted to grayscale.
+如果你对图像中的每个像素都应用这个处理，结果将是一张转换为灰度的图像。
 
-#### Reflection
+#### 镜像 (Reflection)
 
-Some filters might also move pixels around. Reflecting an image, for example, is a filter where the resulting image is what you would get by placing the original image in front of a mirror. So any pixels on the left side of the image should end up on the right, and vice versa.
+某些过滤器也可能会移动像素。例如，镜像图像是一种过滤器，其结果图像就像是你把原始图像放在镜子前得到的一样。因此，图像左侧的任何像素都应该最终出现在右侧，反之亦然。
 
-Note that all of the original pixels of the original image will still be present in the reflected image, it’s just that those pixels may have rearranged to be in a different place in the image.
+请注意，原始图像的所有原始像素仍将存在于镜像图像中，只是这些像素可能已重新排列到图像中的不同位置。
 
-#### Blur
+#### 模糊 (Blur)
 
-There are a number of ways to create the effect of blurring or softening an image. For this problem, we’ll use the “box blur,” which works by taking each pixel and, for each color value, giving it a new value by averaging the color values of neighboring pixels.
+有很多方法可以产生模糊或柔化图像的效果。对于本题，我们将使用 “方框模糊（box blur）”，它的工作原理是获取每个像素，并对于每个颜色值，通过取相邻像素颜色值的平均值来赋予它一个新值。
 
-Consider the following grid of pixels, where we’ve numbered each pixel.
+考虑下面的像素网格，我们为每个像素编了号。
 
 ![a grid of pixels](grid.png)
 
-The new value of each pixel would be the average of the values of all of the pixels that are within 1 row and column of the original pixel (forming a 3x3 box). For example, each of the color values for pixel 6 would be obtained by averaging the original color values of pixels 1, 2, 3, 5, 6, 7, 9, 10, and 11 (note that pixel 6 itself is included in the average). Likewise, the color values for pixel 11 would be be obtained by averaging the color values of pixels 6, 7, 8, 10, 11, 12, 14, 15 and 16.
+每个像素的新值将是该像素周围 1 行和 1 列内所有像素（形成一个 3x3 的方框）的值的平均值。例如，像素 6 的每个颜色值都将通过平均像素 1、2、3、5、6、7、9、10 和 11 的原始颜色值来获得（注意像素 6 本身也包含在平均值中）。同样，像素 11 的颜色值将通过平均像素 6、7、8、10、11、12、14、15 和 16 的颜色值来获得。
 
-For a pixel along the edge or corner, like pixel 15, we would still look for all pixels within 1 row and column: in this case, pixels 10, 11, 12, 14, 15, and 16.
+对于边缘或角落的像素，例如像素 15，我们仍然会寻找 1 行和 1 列内的所有像素：在这种情况下，是像素 10、11、12、14、15 和 16。
 
-#### Edges
+#### 边缘检测 (Edges)
 
-In artificial intelligence algorithms for image processing, it is often useful to detect edges in an image: lines in the image that create a boundary between one object and another. One way to achieve this effect is by applying the [Sobel operator](https://en.wikipedia.org/wiki/Sobel_operator) to the image.
+在用于图像处理的人工智能算法中，检测图像中的边缘（图像中创建物体之间边界的线条）通常很有用。实现这种效果的一种方法是对图像应用 [Sobel 算子](https://en.wikipedia.org/wiki/Sobel_operator)。
 
-Like image blurring, edge detection also works by taking each pixel, and modifying it based on the 3x3 grid of pixels that surrounds that pixel. But instead of just taking the average of the nine pixels, the Sobel operator computes the new value of each pixel by taking a weighted sum of the values for the surrounding pixels. And since edges between objects could take place in both a vertical and a horizontal direction, you’ll actually compute two weighted sums: one for detecting edges in the x direction, and one for detecting edges in the y direction. In particular, you’ll use the following two “kernels”:
+与图像模糊一样，边缘检测也是通过获取每个像素，并根据该像素周围的 3x3 像素网格进行修改来工作的。但 Sobel 算子不是只取九个像素的平均值，而是通过计算周围像素值的加权和来计算每个像素的新值。由于物体之间的边缘可能在垂直和水平两个方向上产生，你实际上需要计算两个加权和：一个用于检测 x 方向的边缘，一个用于检测 y 方向的边缘。具体来说，你将使用以下两个 “算子模板（kernels）”：
 
 ![Sobel kernels](sobel.png)
 
-How to interpret these kernels? In short, for each of the three color values for each pixel, we’ll compute two values `Gx` and `Gy`. To compute `Gx` for the red channel value of a pixel, for instance, we’ll take the original red values for the nine pixels that form a 3x3 box around the pixel, multiply them each by the corresponding value in the `Gx` kernel, and take the sum of the resulting values.
+如何解释这些模板？简而言之，对于每个像素的三个颜色值中的每一个，我们将计算两个值 `Gx` 和 `Gy`。例如，要计算像素红色通道值的 `Gx`，我们将取该像素周围 3x3 方框内九个像素的原始红色值，分别乘以 `Gx` 模板中对应的值，然后取结果值的总和。
 
-Why these particular values for the kernel? In the `Gx` direction, for instance, we’re multiplying the pixels to the right of the target pixel by a positive number, and multiplying the pixels to the left of the target pixel by a negative number. When we take the sum, if the pixels on the right are a similar color to the pixels on the left, the result will be close to 0 (the numbers cancel out). But if the pixels on the right are very different from the pixels on the left, then the resulting value will be very positive or very negative, indicating a change in color that likely is the result of a boundary between objects. And a similar argument holds true for calculating edges in the `y` direction.
+为什么模板使用这些特定的值？以 `Gx` 方向为例，我们将目标像素右侧的像素乘以正数，将目标像素左侧的像素乘以负数。当我们求和时，如果右侧的像素与左侧的像素颜色相近，结果将接近 0（数字抵消）。但如果右侧的像素与左侧的像素颜色差异很大，那么得到的值将是非常大的正数或负数，表明颜色发生了变化，这很可能是物体之间边界的结果。类似的论据也适用于计算 `y` 方向的边缘。
 
-Using these kernels, we can generate a `Gx` and `Gy` value for each of the red, green, and blue channels for a pixel. But each channel can only take on one value, not two: so we need some way to combine `Gx` and `Gy` into a single value. The Sobel filter algorithm combines `Gx` and `Gy` into a final value by calculating the square root of `Gx^2 + Gy^2`. And since channel values can only take on integer values from 0 to 255, be sure the resulting value is rounded to the nearest integer and capped at 255!
+使用这些模板，我们可以为像素的红色、绿色和蓝色通道中的每一个生成一个 `Gx` 和 `Gy` 值。但每个通道只能取一个值，而不是两个：所以我们需要某种方法将 `Gx` 和 `Gy` 组合成一个值。Sobel 过滤器算法通过计算 `Gx^2 + Gy^2` 的平方根将 `Gx` 和 `Gy` 组合成最终值。由于通道值只能取 0 到 255 之间的整数值，请确保将结果值四舍五入到最近的整数，并限制在 255 以内！
 
-And what about handling pixels at the edge, or in the corner of the image? There are many ways to handle pixels at the edge, but for the purposes of this problem, we’ll ask you to treat the image as if there was a 1 pixel solid black border around the edge of the image: therefore, trying to access a pixel past the edge of the image should be treated as a solid black pixel (values of 0 for each of red, green, and blue). This will effectively ignore those pixels from our calculations of `Gx` and `Gy`.
+那么如何处理图像边缘或角落的像素呢？处理边缘像素的方法有很多，但就本题而言，我们要求你将图像视为在图像边缘周围有一个 1 像素宽的纯黑色边框：因此，尝试访问图像边缘之外的像素应被视为纯黑色像素（红、绿、蓝的值均为 0）。这将有效地在我们的 `Gx` 和 `Gy` 计算中忽略这些像素。
 
-## Specification
+## 规格说明
 
-Implement the functions in `helpers.c` such that a user can apply grayscale, reflection, blur, or edge detection filters to their images.
+在 `helpers.c` 中实现相关函数，以便用户可以对图像应用灰度、镜像、模糊或边缘检测过滤器。
 
-- The function `grayscale` should take an image and turn it into a black-and-white version of the same image.
-- The `reflect` function should take an image and reflect it horizontally.
-- The `blur` function should take an image and turn it into a box-blurred version of the same image.
-- The `edges` function should take an image and highlight the edges between objects, according to the Sobel operator.
+- 函数 `grayscale` 应该获取一张图像，并将其转换为同一图像的黑白版本。
+- `reflect` 函数应该获取一张图像，并水平翻转。
+- `blur` 函数应该获取一张图像，并将其转换为同一图像的方框模糊版本。
+- `edges` 函数应该获取一张图像，并根据 Sobel 算子突出显示物体之间的边缘。
 
-You should not modify any of the function signatures, nor should you modify any other files other than `helpers.c`.
+你不应该修改任何函数签名，也不应该修改除 `helpers.c` 以外的任何其他文件。
 
-## Understanding
+## 理解代码
 
-Let’s now take a look at some of the files provided to you as distribution code to get an understanding for what’s inside of them.
+现在让我们看看作为发行代码提供给你的一些文件，以了解其中的内容。
 
 ### `bmp.h`
 
-Open up `bmp.h` (as by double-clicking on it in the file browser) and have a look.
+打开 `bmp.h`（通过在文件浏览器中双击它）看看。
 
-You’ll see definitions of the headers we’ve mentioned (`BITMAPINFOHEADER` and `BITMAPFILEHEADER`). In addition, that file defines `BYTE`, `DWORD`, `LONG`, and `WORD`, data types normally found in the world of Windows programming. Notice how they’re just aliases for primitives with which you are (hopefully) already familiar. It appears that `BITMAPFILEHEADER` and `BITMAPINFOHEADER` make use of these types.
+你会看到我们提到过的文件头的定义（`BITMAPINFOHEADER` 和 `BITMAPFILEHEADER`）。此外，该文件还定义了 `BYTE`、`DWORD`、`LONG` 和 `WORD`，这些是 Windows 编程世界中常见的数据类型。请注意它们只是你（希望）已经熟悉的原始类型的别名。看起来 `BITMAPFILEHEADER` 和 `BITMAPINFOHEADER` 使用了这些类型。
 
-Perhaps most importantly for you, this file also defines a `struct` called `RGBTRIPLE` that, quite simply, “encapsulates” three bytes: one blue, one green, and one red (the order, recall, in which we expect to find RGB triples actually on disk).
+对你来说最重要的可能是，该文件还定义了一个名为 `RGBTRIPLE` 的 `struct`（结构体），它非常简单地 “封装” 了三个字节：一个蓝色、一个绿色和一个红色（请回想一下，这是我们期望在磁盘上实际找到 RGB 三元组的顺序）。
 
-Why are these `struct`s useful? Well, recall that a file is just a sequence of bytes (or, ultimately, bits) on disk. But those bytes are generally ordered in such a way that the first few represent something, the next few represent something else, and so on. “File formats” exist because the world has standardized what bytes mean what. Now, we could just read a file from disk into RAM as one big array of bytes. And we could just remember that the byte at `array[i]` represents one thing, while the byte at `array[j]` represents another. But why not give some of those bytes names so that we can retrieve them from memory more easily? That’s precisely what the structs in `bmp.h` allow us to do. Rather than think of some file as one long sequence of bytes, we can instead think of it as a sequence of `struct`s.
+为什么这些 `struct` 有用？请回想一下，文件只是磁盘上的字节（或最终是位）序列。但这些字节通常是以某种方式排序的，前几个代表一件事，接下来的几个代表另一件事，依此类推。“文件格式” 之所以存在，是因为世界已经标准化了哪些字节代表什么。现在，我们可以直接将磁盘中的文件作为一大组字节读取到 RAM 中。我们可以记住 `array[i]` 处的字节代表一件事，而 `array[j]` 处的字节代表另一件事。但为什么不给其中一些字节命名，以便我们可以更轻松地从内存中检索它们呢？这正是 `bmp.h` 中的结构体允许我们做的事情。与其将某个文件视为一个长长的字节序列，我们可以将其视为一个 `struct` 序列。
 
 ### `filter.c`
 
-Now, let’s open up `filter.c`. This file has been written already for you, but there are a couple important points worth noting here.
+现在，让我们打开 `filter.c`。这个文件已经为你写好了，但这里有几个重要的点值得注意。
 
-First, notice the definition of `filters` on line 10. That string tells the program what the allowable command-line arguments to the program are: `b`, `e`, `g`, and `r`. Each of them specifies a different filter that we might apply to our images: blur, edge detection, grayscale, and reflection.
+首先，注意第 10 行 `filters` 的定义。该字符串告诉程序该程序允许的命令行参数是什么：`b`、`e`、`g` 和 `r`。它们每一个都指定了我们可能应用于图像的不同过滤器：模糊（blur）、边缘检测（edge detection）、灰度（grayscale）和镜像（reflection）。
 
-The next several lines open up an image file, make sure it’s indeed a BMP file, and read all of the pixel information into a 2D array called `image`.
+接下来的几行打开一个图像文件，确保它确实是一个 BMP 文件，并将所有像素信息读取到一个名为 `image` 的二维数组中。
 
-Scroll down to the `switch` statement that begins on line 101. Notice that, depending on what `filter` we’ve chosen, a different function is called: if the user chooses filter `b`, the program calls the `blur` function; if `e`, then `edges` is called; if `g`, then `grayscale` is called; and if `r`, then `reflect` is called. Notice, too, that each of these functions take as arguments the height of the image, the width of the image, and the 2D array of pixels.
+向下滚动到从第 101 行开始的 `switch` 语句。请注意，根据我们选择的 `filter`，会调用不同的函数：如果用户选择过滤器 `b`，程序调用 `blur` 函数；如果是 `e`，则调用 `edges`；如果是 `g`，则调用 `grayscale`；如果是 `r`，则调用 `reflect`。还要注意，这些函数中的每一个都将图像的高度、图像的宽度和像素的二维数组作为参数。
 
-These are the functions you’ll (soon!) implement. As you might imagine, the goal is for each of these functions to edit the 2D array of pixels in such a way that the desired filter is applied to the image.
+这些是你（很快！）要实现的函数。正如你所料，目标是让这些函数中的每一个都以某种方式编辑像素的二维数组，从而将所需的过滤器应用于图像。
 
-The remaining lines of the program take the resulting `image` and write them out to a new image file.
+程序的其余行获取结果 `image` 并将它们写出一个新的图像文件。
 
 ### `helpers.h`
 
-Next, take a look at `helpers.h`. This file is quite short, and just provides the function prototypes for the functions you saw earlier.
+接下来，看看 `helpers.h`。这个文件很短，只提供了你之前看到的函数的原型。
 
-Here, take note of the fact that each function takes a 2D array called `image` as an argument, where `image` is an array of `height` many rows, and each row is itself another array of `width` many `RGBTRIPLE`s. So if `image` represents the whole picture, then `image[0]` represents the first row, and `image[0][0]` represents the pixel in the upper-left corner of the image.
+在这里，请注意每个函数都接受一个名为 `image` 的二维数组作为参数，其中 `image` 是一个有 `height` 行的数组，每行本身又是另一个有 `width` 个 `RGBTRIPLE` 的数组。因此，如果 `image` 代表整张图片，那么 `image[0]` 代表第一行，`image[0][0]` 代表图像左上角的像素。
 
 ### `helpers.c`
 
-Now, open up `helpers.c`. Here’s where the implementation of the functions declared in `helpers.h` belong. But note that, right now, the implementations are missing! This part is up to you.
+现在，打开 `helpers.c`。这里是 `helpers.h` 中声明的函数的实现所属的地方。但请注意，目前这些实现是缺失的！这部分由你决定。
 
 ### `Makefile`
 
-Finally, let’s look at `Makefile`. This file specifies what should happen when we run a terminal command like `make filter`. Whereas programs you may have written before were confined to just one file, `filter` seems to use multiple files: `filter.c` and `helpers.c`. So we’ll need to tell `make` how to compile this file.
+最后，让我们看看 `Makefile`。这个文件指定了当我们运行类似 `make filter` 的终端命令时应该发生什么。虽然你之前编写的程序可能仅限于一个文件，但 `filter` 似乎使用了多个文件：`filter.c` 和 `helpers.c`。因此我们需要告诉 `make` 如何编译这个文件。
 
-Try compiling `filter` for yourself by going to your terminal and running
+试着自己编译 `filter`，去你的终端并运行：
 
 ```bash
 $ make filter
 ```
 
-Then, you can run the program by running:
+然后，你可以通过运行以下命令来运行该程序：
 
 ```bash
 $ ./filter -g images/yard.bmp out.bmp
 ```
 
-which takes the image at `images/yard.bmp`, and generates a new image called `out.bmp` after running the pixels through the `grayscale` function. `grayscale` doesn’t do anything just yet, though, so the output image should look the same as the original yard.
+它获取 `images/yard.bmp` 处的图像，并在通过 `grayscale` 函数运行像素后生成一个名为 `out.bmp` 的新图像。不过，`grayscale` 现在还没做任何事情，所以输出图像看起来应该和原始的 yard 图像一样。
 
-## Hints
+## 提示
 
-- The values of a pixel’s `rgbtRed`, `rgbtGreen`, and `rgbtBlue` components are all integers, so be sure to round any floating-point numbers to the nearest integer when assigning them to a pixel value!
+- 像素的 `rgbtRed`、`rgbtGreen` 和 `rgbtBlue` 组件的值都是整数，因此在将任何浮点数分配给像素值时，请务必将其四舍五入到最近的整数！
 
-## Walkthrough
+## 视频讲解
 
-**Please note that there are 5 videos in this playlist. [Open on YouTube](https://www.youtube.com/playlist?list=PLhQjrBD2T382OwvMbZuaMGtD9wZkhnhYj)**
+**请注意，此播放列表中有 5 个视频。[在 YouTube 上打开](https://www.youtube.com/playlist?list=PLhQjrBD2T382OwvMbZuaMGtD9wZkhnhYj)**
 
-## How to Test
+## 如何测试
 
-Be sure to test all of your filters on the sample bitmap files provided!
+请务必在提供的示例位图文件上测试你所有的过滤器！
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/filter/more
 ```
 
-### Style
+### 风格
 
 ```
 style50 helpers.c
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在你的终端中，执行以下命令来提交你的工作，并回答弹出的提示。
 
 ```
 submit50 cs50/problems/2026/x/filter/more

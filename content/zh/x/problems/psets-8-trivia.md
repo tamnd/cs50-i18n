@@ -1,122 +1,122 @@
 ---
-title: "Trivia - CS50x 2026"
+title: "趣闻问答 (Trivia) - CS50x 2026"
 pset: 8
-draft: "false"
+draft: false
 ---
 
-Write a webpage that lets users answer trivia questions.
+编写一个网页，让用户回答趣闻问答题。
 
 ![screenshot of trivia questions](questions.png)
 
-## Getting Started
+## 开始
 
-Open [cs50.dev](https://cs50.dev).
+打开 [cs50.dev](https://cs50.dev)。
 
-Start by clicking inside your terminal window, then execute `cd` by itself. You should find that its “prompt” resembles the below.
+首先点击终端窗口内部，然后执行 `cd` 命令。你会发现“提示符”类似于以下内容。
 
 ```
 $
 ```
 
-Click inside of that terminal window and then execute
+点击终端窗口，然后执行
 
 ```python
 wget https://cdn.cs50.net/2025/fall/psets/8/trivia.zip
 ```
 
-followed by Enter in order to download a ZIP called `trivia.zip` in your codespace. Take care not to overlook the space between `wget` and the following URL, or any other character for that matter!
+然后按回车键，以便在你的 codespace 中下载名为 `trivia.zip` 的压缩包。注意不要漏掉 `wget` 和后面 URL 之间的空格，以及其他任何字符！
 
-Now execute
+现在执行
 
 ```
 unzip trivia.zip
 ```
 
-to create a folder called `trivia`. You no longer need the ZIP file, so you can execute
+来创建一个名为 `trivia` 的文件夹。你不再需要这个 ZIP 文件了，所以可以执行
 
 ```
 rm trivia.zip
 ```
 
-and respond with “y” followed by Enter at the prompt to remove the ZIP file you downloaded.
+并在提示符处输入 “y” 后按回车，以删除你下载的 ZIP 文件。
 
-Now type
+现在输入
 
 ```bash
 cd trivia
 ```
 
-followed by Enter to move yourself into (i.e., open) that directory. Your prompt should now resemble the below.
+然后按回车进入（即打开）该目录。你的提示符现在应该类似于以下内容。
 
 ```
 trivia/ $
 ```
 
-If all was successful, you should execute
+如果一切顺利，你应该执行
 
 ```bash
 ls
 ```
 
-and you should see an `index.html` file and a `styles.css` file.
+你会看到一个 `index.html` 文件和一个 `styles.css` 文件。
 
-If you run into any trouble, follow these same steps again and see if you can determine where you went wrong!
+如果你遇到任何困难，请再次按照这些步骤操作，看看能否找出出错的地方！
 
-## Implementation Details
+## 实现细节
 
-Design a webpage using HTML, CSS, and JavaScript to let users answer trivia questions.
+使用 HTML、CSS 和 JavaScript 设计一个网页，让用户回答趣闻问答题。
 
-- In `index.html`, add beneath “Part 1” a multiple-choice trivia question of your choosing with HTML.
+- 在 `index.html` 的 “Part 1” 下方，使用 HTML 添加一个你自选的多选题。
   
-  - You should use an `h3` heading for the text of your question.
-  - You should have one `button` for each of the possible answer choices. There should be at least three answer choices, of which exactly one should be correct.
-- Using JavaScript, add logic so that the buttons change colors when a user clicks on them.
+  - 你应该使用 `h3` 标题作为题目文本。
+  - 你应该为每个可能的选项设置一个 `button`。至少应该有三个选项，其中只有一个是正确的。
+- 使用 JavaScript 添加逻辑，使按钮在用户点击时改变颜色。
   
-  - If a user clicks on a button with an incorrect answer, the button should turn red and text should appear beneath the question that says “Incorrect”.
-  - If a user clicks on a button with the correct answer, the button should turn green and text should appear beneath the question that says “Correct!”.
-- In `index.html`, add beneath “Part 2” a text-based free response question of your choosing with HTML.
+  - 如果用户点击了错误答案的按钮，按钮应变为红色，且题目下方应出现文本显示 “Incorrect”。
+  - 如果用户点击了正确答案的按钮，按钮应变为绿色，且题目下方应出现文本显示 “Correct!”。
+- 在 `index.html` 的 “Part 2” 下方，使用 HTML 添加一个你自选的文本简答题。
   
-  - You should use an `h3` heading for the text of your question.
-  - You should use an `input` field to let the user type a response.
-  - You should use a `button` to let the user confirm their answer.
-- Using JavaScript, add logic so that the text field changes color when a user confirms their answer.
+  - 你应该使用 `h3` 标题作为题目文本。
+  - 你应该使用 `input` 字段让用户输入答案。
+  - 你应该使用一个 `button` 让用户确认他们的答案。
+- 使用 JavaScript 添加逻辑，使文本框在用户确认答案时改变颜色。
   
-  - If the user types an incorrect answer and presses the confirmation button, the text field should turn red and text should appear beneath the question that says “Incorrect”.
-  - If the user types the correct answer and presses the confirmation button, the input field should turn green and text should appear beneath the question that says “Correct!”.
+  - 如果用户输入错误答案并按下确认按钮，文本框应变为红色，且题目下方应出现文本显示 “Incorrect”。
+  - 如果用户输入正确答案并按下确认按钮，输入框应变为绿色，且题目下方应出现文本显示 “Correct!”。
 
-Optionally, you may also:
+此外，你还可以（可选）：
 
-- Edit `styles.css` to change the CSS of your webpage!
-- Add additional trivia questions to your trivia quiz if you would like!
+- 编辑 `styles.css` 来更改网页的 CSS 样式！
+- 如果你愿意，可以在趣闻问答中添加更多的题目！
 
-### Walkthrough
+### 视频演示
 
-This video was recorded when the course was still using CS50 IDE for writing code. Though the interface may look different from your codespace, the behavior of the two environments should be largely similar!
+这段视频是在课程仍在使用 CS50 IDE 编写代码时录制的。虽然界面可能与你的 codespace 不同，但两个环境的行为应该大体相似！
 
-### Hints
+### 提示
 
-- Use [`document.querySelector`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) to query for a single HTML element.
-- Use [`document.querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) to query for multiple HTML elements that match a query. The function returns an array of all matching elements.
+- 使用 [`document.querySelector`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) 来查询单个 HTML 元素。
+- 使用 [`document.querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) 来查询匹配查询条件的所有 HTML 元素。该函数返回所有匹配元素的数组。
 
-Not sure how to solve?
+不确定如何解决？
 
-### Testing
+### 测试
 
-No `check50` for this one, as implementations will vary based on your questions! But be sure to test both incorrect and correct responses for each of your questions to ensure that your webpage responds appropriately.
+这个项目没有 `check50`，因为实现方案会因你选择的题目而异！但请务必测试每道题的错误和正确回答，以确保你的网页做出相应反应。
 
-Run `http-server` in your terminal while in your `trivia` directory to start a web server that serves your webpage.
+在 `trivia` 目录下，在终端运行 `http-server` 来启动一个提供网页服务的 Web 服务器。
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在终端执行以下命令提交你的工作，并按提示回答问题。
 
 ```
 submit50 cs50/problems/2026/x/trivia
 ```
 
-Want to see the staff’s solution? You can find two ways of solving the problem here!
+想看官方解法吗？你可以在这里找到两种解题方法！
 
-Creating event listeners with JavaScript
+使用 JavaScript 创建事件监听器
 
 ```c
 <!DOCTYPE html>
@@ -205,7 +205,7 @@ Creating event listeners with JavaScript
 </html>
 ```
 
-Creating event listeners with HTML
+使用 HTML 创建事件监听器
 
 ```js
 <!DOCTYPE html>

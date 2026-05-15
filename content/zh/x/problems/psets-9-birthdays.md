@@ -1,121 +1,121 @@
 ---
-title: "Birthdays - CS50x 2026"
+title: "生日记录 - CS50x 2026"
 pset: 9
-draft: "false"
+draft: false
 ---
 
-![screenshot of birthdays website](birthdays.png)
+![生日记录网站截图](birthdays.png)
 
-## Problem to Solve
+## 待解决的问题
 
-Create a web application to keep track of friends’ birthdays.
+创建一个 Web 应用程序来记录朋友们的生日。
 
-## Getting Started
+## 从这里开始
 
-Download the distribution code
+下载发行代码
 
-Open [cs50.dev](https://cs50.dev/).
+打开 [cs50.dev](https://cs50.dev/)。
 
-Start by clicking inside your terminal window, then execute `cd` by itself. You should find that its “prompt” resembles the below.
+首先点击终端窗口，然后单独执行 `cd` 命令。你会发现其“提示符”类似于下方所示。
 
 ```
 $
 ```
 
-Click inside of that terminal window and then execute
+点击终端窗口并执行
 
 ```python
 wget https://cdn.cs50.net/2026/x/psets/9/birthdays.zip
 ```
 
-followed by Enter in order to download a ZIP called `birthdays.zip` in your codespace. Take care not to overlook the space between `wget` and the following URL, or any other character for that matter!
+然后按回车键，以便在你的 codespace 中下载名为 `birthdays.zip` 的压缩文件。注意不要漏掉 `wget` 与后面 URL 之间的空格，也不要漏掉任何其他字符！
 
-Now execute
+现在执行
 
 ```
 unzip birthdays.zip
 ```
 
-to create a folder called `birthdays`. You no longer need the ZIP file, so you can execute
+以创建一个名为 `birthdays` 的文件夹。你不再需要该 ZIP 文件，因此可以执行
 
 ```
 rm birthdays.zip
 ```
 
-and respond with “y” followed by Enter at the prompt to remove the ZIP file you downloaded.
+并在提示处输入 “y” 后按回车，以删除你下载的 ZIP 文件。
 
-Now type
+现在输入
 
 ```bash
 cd birthdays
 ```
 
-followed by Enter to move yourself into (i.e., open) that directory. Your prompt should now resemble the below.
+然后按回车键将自己移动到（即打开）该目录。你的提示符现在应该类似于下方所示。
 
 ```
 birthdays/ $
 ```
 
-If all was successful, you should execute
+如果一切顺利，你应该执行
 
 ```bash
 ls
 ```
 
-and you should see the following files and folders:
+并且你应该会看到以下文件和文件夹：
 
 ```
 app.py  birthdays.db  static/  templates/
 ```
 
-If you run into any trouble, follow these same steps again and see if you can determine where you went wrong!
+如果你遇到任何麻烦，请再次执行这些相同的步骤，看看你是否能找出哪里出了问题！
 
-## Understanding
+## 理解代码
 
-In `app.py`, you’ll find the start of a Flask web application. The application has one route (`/`) that accepts both `POST` requests (after the `if`) and `GET` requests (after the `else`). Currently, when the `/` route is requested via `GET`, the `index.html` template is rendered. When the `/` route is requested via `POST`, the user is redirected back to `/` via `GET`.
+在 `app.py` 中，你会看到一个 Flask Web 应用程序的起始代码。该应用程序有一个路由（`/`），它同时接受 `POST` 请求（在 `if` 之后）和 `GET` 请求（在 `else` 之后）。目前，当通过 `GET` 请求 `/` 路由时，会渲染 `index.html` 模板。当通过 `POST` 请求 `/` 路由时，用户会通过 `GET` 重定向回 `/`。
 
-`birthdays.db` is a SQLite database with one table, `birthdays`, that has four columns: `id`, `name`, `month`, and `day`. There are a few rows already in this table, though ultimately your web application will support the ability to insert rows into this table!
+`birthdays.db` 是一个 SQLite 数据库，其中有一个表 `birthdays`，包含四列：`id`、`name`、`month` 和 `day`。该表中已经有几行数据，但最终你的 Web 应用程序将支持向该表中插入行的功能！
 
-In the `static` directory is a `styles.css` file containing the CSS code for this web application. No need to edit this file, though you’re welcome to if you’d like!
+在 `static` 目录中是一个 `styles.css` 文件，包含此 Web 应用程序的 CSS 代码。无需编辑此文件，但如果你愿意，也可以自行修改！
 
-In the `templates` directory is an `index.html` file that will be rendered when the user views your web application.
+在 `templates` 目录中是一个 `index.html` 文件，当用户查看你的 Web 应用程序时，该文件将被渲染。
 
-## Implementation Details
+## 实现细节
 
-Complete the implementation of a web application to let users store and keep track of birthdays.
+完成 Web 应用程序的实现，让用户能够存储并记录生日。
 
-- When the `/` route is requested via `GET`, your web application should display, in a table, all of the people in your database along with their birthdays.
+- 当通过 `GET` 请求 `/` 路由时，你的 Web 应用程序应该在一个表格中显示数据库中所有的人及其生日。
   
-  - First, in `app.py`, add logic in your `GET` request handling to query the `birthdays.db` database for all birthdays. Pass all of that data to your `index.html` template.
-  - Then, in `index.html`, add logic to render each birthday as a row in the table. Each row should have two columns: one column for the person’s name and another column for the person’s birthday.
-- When the `/` route is requested via `POST`, your web application should add a new birthday to your database and then re-render the index page.
+  - 首先，在 `app.py` 中，在 `GET` 请求处理逻辑中添加代码，查询 `birthdays.db` 数据库以获取所有生日。将所有这些数据传递给你的 `index.html` 模板。
+  - 然后，在 `index.html` 中，添加逻辑将每个生日渲染为表格中的一行。每行应该有两列：一列显示人的姓名，另一列显示人的生日。
+- 当通过 `POST` 请求 `/` 路由时，你的 Web 应用程序应该向数据库中添加一个新的生日，然后重新渲染索引页面。
   
-  - First, in `index.html`, add an HTML form. The form should let users type in a name, a birthday month, and a birthday day. Be sure the form submits to `/` (its “action”) with a method of `post`.
-  - Then, in `app.py`, add logic in your `POST` request handling to `INSERT` a new row into the `birthdays` table based on the data supplied by the user.
+  - 首先，在 `index.html` 中添加一个 HTML 表单。该表单应允许用户输入姓名、生日月份和生日日期。确保表单提交到 `/`（其 “action”），并且方法为 `post`。
+  - 然后，在 `app.py` 中，在 `POST` 请求处理逻辑中添加代码，根据用户提供的数据向 `birthdays` 表中 `INSERT`（插入）一个新行。
 
-Optionally, you may also:
+可选地，你还可以：
 
-- Add the ability to delete and/or edit birthday entries.
-- Add any additional features of your choosing!
+- 添加删除和/或编辑生日条目的功能。
+- 添加你选择的任何其他功能！
 
-## Hints
+## 提示
 
-Create a form via which users can submit birthdays
+创建一个表单供用户提交生日
 
-In `index.html`, notice the following TODO:
+在 `index.html` 中，注意以下 TODO：
 
 ```python
 <!-- TODO: Create a form for users to submit a name, a month, and a day -->
 ```
 
-Recall that, to create a form, you can use the `form` HTML element. You can create a `form` HTML element with the following opening and closing tags:
+回想一下，要创建一个表单，你可以使用 `form` HTML 元素。你可以使用以下开始和结束标签创建一个 `form` HTML 元素：
 
 ```
 <form>
 </form>
 ```
 
-Of course, a form still needs input fields (and a button via which the user can submit the form!). Recall that HTML `input` elements create, among other things, input boxes within a form. You can specify their `type` attribute to allow them to accept `text` or `number`s. Also give the `input` elements a `name` attribute so you can differentiate them.
+当然，表单仍然需要输入字段（以及一个供用户提交表单的按钮！）。回想一下，HTML `input` 元素可以在表单中创建输入框等内容。你可以指定它们的 `type` 属性，使其接受 `text`（文本）或 `number`（数字）。同时为 `input` 元素提供 `name` 属性，以便区分它们。
 
 ```
 <form>
@@ -125,7 +125,7 @@ Of course, a form still needs input fields (and a button via which the user can 
 </form>
 ```
 
-Your form might benefit from a button the user could click to submit their data. Add an `input` element of type `submit`, which will allow the user to do just that. If you’d like the button itself to have explanatory text, try setting the `value` attribute.
+你的表单可能会从一个供用户点击以提交数据的按钮中受益。添加一个 `type` 为 `submit` 的 `input` 元素，这将允许用户执行该操作。如果你希望按钮本身带有解释性文本，请尝试设置 `value` 属性。
 
 ```
 <form>
@@ -136,7 +136,7 @@ Your form might benefit from a button the user could click to submit their data.
 </form>
 ```
 
-Where will the user’s data be submitted? Currently, nowhere! Recall that you can specify a form’s `action` attribute to dictate which route should be requested after the form is submitted. The form data will be submitted along with the resulting request. The `method` attribute specifies which HTTP request method to use when submitting the form.
+用户的资料将提交到哪里？目前，哪里都不会提交！回想一下，你可以指定表单的 `action` 属性，以决定提交表单后应请求哪个路由。表单数据将随生成的请求一起提交。`method` 属性指定提交表单时使用的 HTTP 请求方法。
 
 ```
 <form action="/" method="post">
@@ -147,7 +147,7 @@ Where will the user’s data be submitted? Currently, nowhere! Recall that you c
 </form>
 ```
 
-With that, your form should be perfectly functional, though it could still be improved! Consider adding `placeholder` values to spruce things up a bit:
+到此为止，你的表单应该已经可以正常工作了，但仍有改进空间！考虑添加 `placeholder`（占位符）值来修饰一下：
 
 ```
 <form action="/" method="post">
@@ -158,7 +158,7 @@ With that, your form should be perfectly functional, though it could still be im
 </form>
 ```
 
-And consider adding some *client-side validation*, to ensure the user cooperates with the intent of your form. For example, an `input` field of type `number` can also have a `min` and `max` attribute specified, which determine the minimum and maximum value a user can enter.
+此外，考虑添加一些 *客户端验证*，以确保用户配合你表单的设计意图。例如，一个 `type` 为 `number` 的 `input` 字段还可以指定 `min` 和 `max` 属性，这决定了用户可以输入的最小值和最大值。
 
 ```
 <form action="/" method="post">
@@ -169,22 +169,22 @@ And consider adding some *client-side validation*, to ensure the user cooperates
 </form>
 ```
 
-Add a user's form submission to the database
+将用户的表单提交添加到数据库中
 
-In `app.py`, notice the following TODO:
+在 `app.py` 中，注意以下 TODO：
 
 ```
 # TODO: Add the user's entry into the database
 ```
 
-Recall that Flask has some handy methods to access form data submitted via `POST`! In particular:
+回想一下，Flask 有一些方便的方法来访问通过 `POST` 提交的表单数据！特别是：
 
 ```
 # Access form data
 request.form.get(NAME)
 ```
 
-where `NAME` refers to the `name` attribute of the particular `input` element with submitted data. If your `input` elements were named `name`, `month`, and `day`, you could access (and store!) their values respectively with the following:
+其中 `NAME` 指的是带有提交数据的特定 `input` 元素的 `name` 属性。如果你的 `input` 元素被命名为 `name`、`month` 和 `day`，你可以分别通过以下方式访问（并存储！）它们的值：
 
 ```
 # Access form data
@@ -193,21 +193,21 @@ month = request.form.get("month")
 day = request.form.get("day")
 ```
 
-Now the values submitted by the user in the `name`, `month`, and `day` input elements are available to you as Python variables.
+现在，用户在 `name`、`month` 和 `day` 输入元素中提交的值就可以作为 Python 变量使用了。
 
-The next step is to add these values to your database! Thanks to this particular line
+下一步是将这些值添加到你的数据库中！多亏了这一行
 
 ```
 db = SQL("sqlite:///birthdays.db")
 ```
 
-`app.py` has already established a connection to `birthdays.db` under the name `db`. You can now execute SQL queries by calling `db.execute` with a valid SQL query. If you wanted to add Carter’s birthday on January 1st, you might run the following SQL statement:
+`app.py` 已经建立了与 `birthdays.db` 的连接，名为 `db`。你现在可以通过调用 `db.execute` 并传入有效的 SQL 查询来执行 SQL 查询。如果你想添加 Carter 在 1 月 1 日的生日，你可能会运行以下 SQL 语句：
 
 ```sql
 INSERT INTO birthdays (name, month, day) VALUES('Carter', 1, 1);
 ```
 
-Configure `app.py` to run that same query, but with placeholders for the values to insert, as follows:
+配置 `app.py` 来运行相同的查询，但使用占位符来表示要插入的值，如下所示：
 
 ```sql
 # Access form data
@@ -219,9 +219,9 @@ day = request.form.get("day")
 db.execute("INSERT INTO birthdays (name, month, day) VALUES(?, ?, ?)", name, month, day)
 ```
 
-And that should do it! Try submitting the form, opening `birthdays.db`, and using a `SELECT` query to view the contents of the `birthdays` table. You should see the submitted form data available to you.
+这样就可以了！尝试提交表单，打开 `birthdays.db`，并使用 `SELECT` 查询来查看 `birthdays` 表的内容。你应该能看到你提交的表单数据。
 
-As you create more advanced applications, you’ll also want to add *server-side validation*: that is, a way to check whether the user’s data is valid *before* doing anything else! One of the first validations you might make is whether the user submitted any data at all! Should you try to retrieve form data with `request.form.get` where the user didn’t submit any, `request.form.get` will return an empty string. You can check for this value in Python as follows:
+当你创建更高级的应用程序时，你还需要添加 *服务器端验证*：也就是说，在执行任何其他操作 *之前* 检查用户的数据是否有效的方法！你可能进行的第一个验证是用户是否提交了任何数据！如果你在用户未提交任何数据的情况下尝试通过 `request.form.get` 获取表单数据，`request.form.get` 将返回一个空字符串。你可以在 Python 中按如下方式检查此值：
 
 ```sql
 # Access form data
@@ -241,9 +241,9 @@ if not day:
 db.execute("INSERT INTO birthdays (name, month, day) VALUES(?, ?, ?)", name, month, day)
 ```
 
-Now, you won’t insert a row until you’re sure the user has provided all the data you need.
+现在，除非你确定用户已经提供了你所需的所有数据，否则你不会插入行。
 
-A few more things could still go wrong! What if the user doesn’t, in fact, provide a numeric value for `month` or `day`? One way to check is to `try` to convert the value to an integer with `int` and, if the conversion fails, to redirect the user back to the homepage.
+还有一些事情可能会出错！如果用户实际上没有为 `month` 或 `day` 提供数字值怎么办？一种检查方法是 `try`（尝试）使用 `int` 将值转换为整数，如果转换失败，则将用户重定向回主页。
 
 ```sql
 # Access form data
@@ -271,7 +271,7 @@ except ValueError:
 db.execute("INSERT INTO birthdays (name, month, day) VALUES(?, ?, ?)", name, month, day)
 ```
 
-And even if the user has entered a number, best to check it’s in the right range!
+而且，即使用户输入了数字，最好也检查它是否在正确的范围内！
 
 ```sql
 # Access form data
@@ -303,32 +303,32 @@ if day < 1 or day > 31:
 db.execute("INSERT INTO birthdays (name, month, day) VALUES(?, ?, ?)", name, month, day)
 ```
 
-Render birthdays in `birthdays.db`
+渲染 `birthdays.db` 中的生日
 
-Once a user can submit birthdays and store them in `birthdays.db`, your next task is to ensure those birthdays are rendered in `index.html`.
+一旦用户可以提交生日并将其存储在 `birthdays.db` 中，你的下一个任务就是确保这些生日在 `index.html` 中被渲染出来。
 
-First, you’ll need to retrieve all birthdays from `birthdays.db`. You could so with the SQL query:
+首先，你需要从 `birthdays.db` 中检索所有生日。你可以使用以下 SQL 查询来实现：
 
 ```sql
 SELECT * FROM birthdays;
 ```
 
-See the following TODO in `app.py`:
+在 `app.py` 中看到以下 TODO：
 
 ```
 # TODO: Display the entries in the database on index.html
 ```
 
-Consider configuring `app.py` to run this SQL query each time the page is loaded with a `GET` request:
+考虑配置 `app.py`，以便在每次通过 `GET` 请求加载页面时运行此 SQL 查询：
 
 ```sql
 # Query for all birthdays
 birthdays = db.execute("SELECT * FROM birthdays")
 ```
 
-Now, all birthdays in the `birthdays` table of `birthdays.db` are available to you in a Python variable named `birthdays`. In particular, the results of the SQL query are stored as a list of dictionaries. Each dictionary represents one row returned by the query, and each key in the dictionary corresponds to a column name of the `birthdays` table (i.e., “name”, “month”, and “day”).
+现在，`birthdays.db` 的 `birthdays` 表中的所有生日都保存在名为 `birthdays` 的 Python 变量中。具体来说，SQL 查询的结果以字典列表的形式存储。每个字典代表查询返回的一行，字典中的每个键对应 `birthdays` 表的一个列名（即 “name”、“month” 和 “day”）。
 
-To render these birthdays in `index.html`, you can rely on Flask’s `render_template` function. You can specify that `index.html` should be rendered with the `birthdays` variable by specifying a keyword argument, also called `birthdays`, and setting it equal to the `birthdays` variable you just recently created.
+要在 `index.html` 中渲染这些生日，你可以依靠 Flask 的 `render_template` 函数。你可以通过指定一个也叫 `birthdays` 的关键字参数，并将其设置为你刚刚创建的 `birthdays` 变量，来指定应使用 `birthdays` 变量来渲染 `index.html`。
 
 ```sql
 # Query for all birthdays
@@ -338,9 +338,9 @@ birthdays = db.execute("SELECT * FROM birthdays")
 return render_template("index.html", birthdays=birthdays)
 ```
 
-To be clear, the name on the left-hand side of the `=`, `birthdays`, is the name under which you can access the birthdays data within `index.html` itself.
+需要说明的是，`=` 左侧的名字 `birthdays` 是你在 `index.html` 内部访问生日数据时所使用的名字。
 
-Now that `index.html` is being rendered with access to the birthdays data, you can use Jinja to render the data properly. Jinja, like Python, can loop through elements of a list. And Jinja, like Python, can access elements a dictionary by their keys. In this case, the Jinja syntax to do so is the name of the dictionary, followed by a `.`, then the name of the key to access.
+现在 `index.html` 在渲染时可以访问生日数据了，你可以使用 Jinja 来正确渲染数据。Jinja 和 Python 一样，可以循环遍历列表中的元素。而且 Jinja 和 Python 一样，可以通过键访问字典中的元素。在这种情况下，执行此操作的 Jinja 语法是字典名，后跟一个 `.`，然后是要访问的键名。
 
 ```
 {% for birthday in birthdays %}
@@ -351,23 +351,23 @@ Now that `index.html` is being rendered with access to the birthdays data, you c
 {% endfor %}
 ```
 
-And that’s it! Try reloading the page to see the birthdays rendered.
+就是这样！尝试重新加载页面以查看渲染出的生日。
 
-### Walkthrough
+### 视频演示
 
-This video was recorded when the course was still using CS50 IDE for writing code. Though the interface may look different from your codespace, the behavior of the two environments should be largely similar!
+此视频是在课程仍使用 CS50 IDE 编写代码时录制的。虽然界面可能与你的 codespace 不同，但这两个环境的行为应该是基本相似的！
 
-Not sure how to solve?
+不知道如何解决？
 
-### Testing
+### 测试
 
-No `check50` for this problem set! But be sure to test your web application by adding some birthdays and ensuring that the data appears in your table as expected.
+本题集没有 `check50`！但请务必通过添加一些生日并确保数据如预期出现在表格中来测试你的 Web 应用程序。
 
-Run `flask run` in your terminal while in your `birthdays` directory to start a web server that serves your Flask application.
+在你的 `birthdays` 目录中，在终端运行 `flask run` 来启动一个为你的 Flask 应用程序提供服务的 Web 服务器。
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在你的终端中，执行以下命令来提交你的工作，并回答出现的提示。
 
 ```
 submit50 cs50/problems/2026/x/birthdays

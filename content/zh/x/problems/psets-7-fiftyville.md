@@ -1,109 +1,109 @@
 ---
 title: "Fiftyville - CS50x 2026"
 pset: 7
-draft: "false"
+draft: false
 ---
 
-## Problem to Solve
+## 待解决的问题
 
-The CS50 Duck has been stolen! The town of Fiftyville has called upon you to solve the mystery of the stolen duck. Authorities believe that the thief stole the duck and then, shortly afterwards, took a flight out of town with the help of an accomplice. Your goal is to identify:
+CS50 Duck 被偷了！Fiftyville 镇请求你协助破解这起黄小鸭失窃案。当地警方认为窃贼偷走黄小鸭后不久，就在一名同谋的协助下乘飞机逃离了该镇。你的目标是查明：
 
-- Who the thief is,
-- What city the thief escaped to, and
-- Who the thief’s accomplice is who helped them escape
+- 窃贼是谁，
+- 窃贼逃到了哪个城市，以及
+- 协助窃贼逃跑的同谋是谁
 
-All you know is that the theft **took place on July 28, 2025** and that it **took place on Humphrey Street**.
+你唯一知道的线索是：窃案**发生在 2025 年 7 月 28 日**，地点在 **Humphrey Street**。
 
-How will you go about solving this mystery? The Fiftyville authorities have taken some of the town’s records from around the time of the theft and prepared a SQLite database for you, `fiftyville.db`, which contains tables of data from around the town. You can query that table using SQL `SELECT` queries to access the data of interest to you. Using just the information in the database, your task is to solve the mystery.
+你将如何揭开这个谜团？Fiftyville 警方调取了案发前后的镇上记录，并为你准备了一个 SQLite 数据库 `fiftyville.db`，其中包含镇上的各种数据表。你可以使用 SQL 的 `SELECT` 查询来访问你感兴趣的数据。仅使用数据库中的信息，你的任务就是破解谜底。
 
-## Demo
+## 演示
 
-## Getting Started
+## 入门
 
-For this problem, you’ll use a database provided to you by CS50’s staff.
+在本项目中，你将使用由 CS50 团队提供的数据库。
 
-Download the distribution code
+下载分发代码
 
-Log into [cs50.dev](https://cs50.dev/), click on your terminal window, and execute `cd` by itself. You should find that your terminal window’s prompt resembles the below:
+登录 [cs50.dev](https://cs50.dev/)，点击终端窗口，然后执行 `cd` 命令。你应该会看到终端提示符如下所示：
 
 ```
 $
 ```
 
-Next execute
+接着执行
 
 ```python
 wget https://cdn.cs50.net/2026/x/psets/7/fiftyville.zip
 ```
 
-in order to download a ZIP called `fiftyville.zip` into your codespace.
+以便将名为 `fiftyville.zip` 的压缩包下载到你的 codespace 中。
 
-Then execute
+然后执行
 
 ```
 unzip fiftyville.zip
 ```
 
-to create a folder called `fiftyville`. You no longer need the ZIP file, so you can execute
+来创建一个名为 `fiftyville` 的文件夹。你不再需要这个 ZIP 文件了，因此可以执行
 
 ```
 rm fiftyville.zip
 ```
 
-and respond with “y” followed by Enter at the prompt to remove the ZIP file you downloaded.
+并在提示符后输入 “y” 并回车，以删除下载的 ZIP 文件。
 
-Now type
+现在输入
 
 ```bash
 cd fiftyville
 ```
 
-followed by Enter to move yourself into (i.e., open) that directory. Your prompt should now resemble the below.
+并按回车进入（即打开）该目录。你的提示符现在应该类似于下方所示。
 
 ```
 fiftyville/ $
 ```
 
-Execute `ls` by itself, and you should see a few files:
+直接执行 `ls`，你应该能看到以下几个文件：
 
 ```
 answers.txt  fiftyville.db  log.sql
 ```
 
-If you run into any trouble, follow these same steps again and see if you can determine where you went wrong!
+如果你遇到任何问题，请重新执行上述步骤，看看能否发现哪里出错了！
 
-## Specification
+## 规范
 
-For this problem, equally as important as solving the mystery itself is the process that you use to solve the mystery. In `log.sql`, keep a log of all SQL queries that you run on the database. Above each query, label each with a comment (in SQL, comments are any lines that begin with `--`) describing why you’re running the query and/or what information you’re hoping to get out of that particular query. You can use comments in the log file to add additional notes about your thought process as you solve the mystery: ultimately, this file should serve as evidence of the process you used to identify the thief!
+对于这个问题，解决谜题的过程与揭开谜底本身同样重要。在 `log.sql` 中，记录你对数据库运行的所有 SQL 查询。在每个查询上方，使用注释（在 SQL 中，注释是以 `--` 开头的行）标记为什么要运行该查询以及你希望从中获取什么信息。你可以使用日志文件中的注释来记录解决谜题时的思路：最终，这个文件应该作为你识别窃贼过程的证据！
 
-As you write your queries, you may notice that some of them can become quite complex. To help keep your queries readable, see principles of good style at [sqlstyle.guide](https://www.sqlstyle.guide). The [indentation](https://www.sqlstyle.guide/#indentation) section may be particularly helpful!
+在编写查询时，你可能会发现其中一些变得相当复杂。为了保持查询的可读性，请参考 [sqlstyle.guide](https://www.sqlstyle.guide) 中的良好风格原则。其中 [缩进 (indentation)](https://www.sqlstyle.guide/#indentation) 部分可能会特别有帮助！
 
-Once you solve the mystery, complete each of the lines in `answers.txt` by filling in the name of the thief, the city that the thief escaped to, and the name of the thief’s accomplice who helped them escape town. (Be sure not to change any of the existing text in the file or to add any other lines to the file!)
+一旦你破解了谜题，请完成 `answers.txt` 中的每一行，填入窃贼的名字、窃贼逃往的城市以及协助其逃离的同谋的名字。（请确保不要更改文件中的任何现有文本，也不要向文件中添加任何其他行！）
 
-Ultimately, you should submit both your `log.sql` and `answers.txt` files.
+最后，你应该提交 `log.sql` 和 `answers.txt` 两个文件。
 
-## Walkthrough
+## 视频演示
 
-## Hints
+## 提示
 
-- Execute `sqlite3 fiftyville.db` to begin running queries on the database.
+- 执行 `sqlite3 fiftyville.db` 开始对数据库运行查询。
   
-  - While running `sqlite3`, executing `.tables` will list all of the tables in the database.
-  - While running `sqlite3`, executing `.schema TABLE_NAME`, where `TABLE_NAME` is the name of a table in the database, will show you the `CREATE TABLE` command used to create the table. This can be helpful for knowing which columns to query!
-- You may find it helpful to start with the `crime_scene_reports` table. Start by looking for a crime scene report that matches the date and the location of the crime.
-- See [this SQL keywords reference](https://www.w3schools.com/sql/sql_ref_keywords.asp) for some SQL syntax that may be helpful!
+  - 在运行 `sqlite3` 时，执行 `.tables` 将列出数据库中的所有表。
+  - 在运行 `sqlite3` 时，执行 `.schema TABLE_NAME`（其中 `TABLE_NAME` 是数据库中的表名）将显示创建该表所使用的 `CREATE TABLE` 命令。这对于了解要查询哪些列非常有帮助！
+- 你可能会发现从 `crime_scene_reports` 表开始很有帮助。首先寻找与案发日期和地点相匹配的犯罪现场报告。
+- 查看[此 SQL 关键字参考](https://www.w3schools.com/sql/sql_ref_keywords.asp)以了解一些可能有用的 SQL 语法！
 
-## How to Test
+## 如何测试
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/fiftyville
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在终端中执行以下命令提交你的工作，并根据弹出的提示进行操作。
 
 ```
 submit50 cs50/problems/2026/x/fiftyville

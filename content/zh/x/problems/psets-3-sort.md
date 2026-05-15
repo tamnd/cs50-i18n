@@ -1,88 +1,148 @@
 ---
-title: "Sort - CS50x 2026"
+title: "排序 - CS50x 2026"
 pset: 3
-draft: "false"
+draft: false
 ---
 
-## Problem to Solve
+## 待解决的问题
 
-Recall from lecture that we saw a few algorithms for sorting a sequence of numbers: selection sort, bubble sort, and merge sort.
+回想一下在讲座中，我们看到了几种对数字序列进行排序的算法：选择排序（selection sort）、冒泡排序（bubble sort）和归并排序（merge sort）。
 
-- Selection sort iterates through the unsorted portions of a list, selecting the smallest element each time and moving it to its correct location.
-- Bubble sort compares pairs of adjacent values one at a time and swaps them if they are in the incorrect order. This continues until the list is sorted.
-- Merge sort recursively divides the list into two repeatedly and then merges the smaller lists back into a larger one in the correct order.
+- 选择排序遍历列表的未排序部分，每次选择最小的元素并将其移动到正确的位置。
+- 冒泡排序一次比较一对相邻的值，如果它们的顺序不正确就交换它们。这一过程持续到列表排序完成。
+- 归并排序反复将列表递归地分成两半，然后将较小的列表按正确顺序合并回较大的列表。
 
-In this problem, you’ll analyze three (compiled!) sorting programs to determine which algorithms they use. In a file called `answers.txt` in a folder called `sort`, record your answers, along with an explanation for each program, by filling in the blanks marked `TODO`.
+在这个问题中，你将分析三个（已编译的！）排序程序，以确定它们使用的是哪种算法。在 `sort` 文件夹中名为 `answers.txt` 的文件中，记录你的答案，并为每个程序提供解释，填补标有 `TODO` 的空白处。
 
-## Distribution Code
+## 分发代码
 
-For this problem, you’ll need some “distribution code”—that is, code written by CS50’s staff. Provided to you are three already-compiled C programs, `sort1`, `sort2`, and `sort3`, as well as several `.txt` files for input and another file, `answers.txt`, in which to write your answers. Each of `sort1`, `sort2`, and `sort3` implements a different sorting algorithm: selection sort, bubble sort, or merge sort (though not necessarily in that order!). Your task is to determine which sorting algorithm is used by each file. Start by downloading these files.
+对于这个问题，你需要一些“分发代码”——即由 CS50 工作人员编写的代码。为你提供的是三个已经编译好的 C 程序：`sort1`、`sort2` 和 `sort3`，以及几个用于输入的 `.txt` 文件和另一个用于填写答案的文件 `answers.txt`。`sort1`、`sort2` 和 `sort3` 分别实现了一种不同的排序算法：选择排序、冒泡排序或归并排序（但不一定是这个顺序！）。你的任务是确定每个文件使用了哪种排序算法。首先下载这些文件。
 
-Download distribution files
+下载分发文件
 
-Open [cs50.dev](https://cs50.dev/).
+打开 [cs50.dev](https://cs50.dev/)。
 
-Start by clicking inside your terminal window, then execute `cd` by itself. You should find that its “prompt” resembles the below.
+首先点击终端窗口内部，然后执行 `cd` 命令。你应该会发现其“提示符”类似于下面这样。
 
 ```
 $
 ```
 
-Click inside of that terminal window and then execute
+在该终端窗口内点击，然后执行
 
 ```python
 wget https://cdn.cs50.net/2026/x/psets/3/sort.zip
 ```
 
-followed by Enter in order to download a ZIP called `sort.zip` in your codespace. Take care not to overlook the space between `wget` and the following URL, or any other character for that matter!
+然后按回车键，以便在你的 codespace 中下载一个名为 `sort.zip` 的 ZIP 文件。注意不要忽略 `wget` 和后面 URL 之间的空格，或者任何其他字符！
 
-Now execute
+现在执行
 
 ```
 unzip sort.zip
 ```
 
-to create a folder called `sort`. You no longer need the ZIP file, so you can execute
+以创建一个名为 `sort` 的文件夹。你不再需要该 ZIP 文件，因此可以执行
 
 ```
 rm sort.zip
 ```
 
-and respond with “y” followed by Enter at the prompt to remove the ZIP file you downloaded.
+并在提示符下输入 “y” 然后按回车键，以删除你下载的 ZIP 文件。
 
-## Hints
+## 提示
 
-Explore the `.txt` files
+探索 `.txt` 文件
 
-- Multiple `.txt` files are provided to you. These files contain `n` lines of values, either reversed, shuffled, or sorted.
+- 为你提供了多个 `.txt` 文件。这些文件包含 `n` 行数值，要么是逆序的、随机打乱的，或者是已排序的。
   
-  - For example, `reversed10000.txt` contains 10,000 lines of numbers that are reversed from `10000`, while `random50000.txt` contains 50,000 lines of numbers that are in random order.
-- The different types of `.txt` files may help you determine which sort is which. Consider how each algorithm performs with an already sorted list. How about a reversed list? Or shuffled list? It may help to work through a smaller list of each type and walk through each sorting process.
+  - 例如，`reversed10000.txt` 包含 10,000 行从 `10000` 开始逆序排列的数字，而 `random50000.txt` 包含 50,000 行随机顺序的数字。
+- 不同类型的 `.txt` 文件可能会帮助你确定哪种排序是哪种。考虑每种算法在处理已排序列表时的表现。逆序列表呢？或者随机打乱的列表？
+---
+title: "排序 - CS50x 2026"
+pset: 3
+draft: false
+---
 
-Time each sort with different inputs
+## 待解决的问题
 
-- To run the sorts on the text files, in the terminal, run `./[program_name] [text_file.txt]`. Make sure you have made use of `cd` to move into the `sort` directory!
+回想一下课堂上，我们看到了几种对数字序列进行排序的算法：选择排序、冒泡排序和归并排序。
+
+- 选择排序通过遍历列表中未排序的部分，每次选择最小的元素并将其移动到正确的位置。
+- 冒泡排序一次比较一对相邻的值，如果它们的顺序不正确就交换它们。这一过程持续到列表排序完成。
+- 归并排序递归地将列表反复一分为二，然后将较小的列表按正确顺序合并回较大的列表。
+
+在这个问题中，你将分析三个（已编译的！）排序程序，以确定它们使用的是哪种算法。在名为 `sort` 的文件夹中一个名为 `answers.txt` 的文件中，通过填写标有 `TODO` 的空白处，记录你的答案以及对每个程序的解释。
+
+## 分发代码
+
+对于这个问题，你需要一些“分发代码”——即由 CS50 工作人员编写的代码。为你提供的是三个已经编译好的 C 程序：`sort1`、`sort2` 和 `sort3`，以及几个用于输入的 `.txt` 文件和另一个用于编写答案的文件 `answers.txt`。`sort1`、`sort2` 和 `sort3` 中的每一个都实现了一种不同的排序算法：选择排序、冒泡排序或归并排序（但不一定是按这个顺序！）。你的任务是确定每个文件使用了哪种排序算法。首先下载这些文件。
+
+下载分发文件
+
+打开 [cs50.dev](https://cs50.dev/)。
+
+首先在终端窗口内点击，然后执行 `cd` 命令。你应该会发现其“提示符”类似于下方。
+
+```
+$
+```
+
+在终端窗口内点击，然后执行
+
+```python
+wget https://cdn.cs50.net/2026/x/psets/3/sort.zip
+```
+
+随后按下回车键，以便在你的 codespace 中下载一个名为 `sort.zip` 的 ZIP 文件。注意不要忽略 `wget` 与后续 URL 之间的空格，或其他任何字符！
+
+现在执行
+
+```
+unzip sort.zip
+```
+
+来创建一个名为 `sort` 的文件夹。你不再需要这个 ZIP 文件了，所以可以执行
+
+```
+rm sort.zip
+```
+
+并在提示符处输入 “y” 随后按回车键，以删除你下载的 ZIP 文件。
+
+## 提示
+
+探索 `.txt` 文件
+
+- 为你提供了多个 `.txt` 文件。这些文件包含 `n` 行数值，要么是逆序、随机，要么是已排序的。
   
-  - For example, to sort `reversed10000.txt` with `sort1`, run `./sort1 reversed10000.txt`.
-- You may find it helpful to time your sorts. To do so, run `time ./[sort_file] [text_file.txt]`.
+  - 例如，`reversed10000.txt` 包含从 `10000` 开始逆序排列的 10,000 行数字，而 `random50000.txt` 包含 50,000 行随机排列的数字。
+- 不同类型的 `.txt` 文件可能有助于你确定哪个排序是哪种。考虑每种算法在处理已排序列表时的表现。逆序列表呢？或者是随机排列的列表？对每种类型的一个较小列表进行操作并走一遍每个排序过程可能会有所帮助。
+
+为不同的输入对每个排序进行计时
+
+- 要在文本文件上运行排序程序，请在终端中运行 `./[program_name] [text_file.txt]`。确保你已经使用了 `cd` 进入 `sort` 目录！
   
-  - For example, you could run `time ./sort1 reversed10000.txt` to run `sort1` on 10,000 reversed numbers. At the end of your terminal’s output, you can look at the `real` time to see how much time actually elapsed while running the program.
+  - 例如，要使用 `sort1` 对 `reversed10000.txt` 进行排序，请运行 `./sort1 reversed10000.txt`。
+- 你可能会发现对排序进行计时很有帮助。为此，请运行 `time ./[sort_file] [text_file.txt]`。
+  
+  - 例如，你可以运行 `time ./sort1 reversed10000.txt` 来对 10,000 个逆序数字运行 `sort1`。在终端输出的末尾，你可以查看 `real` 时间，以了解运行程序实际花费了多少时间。
 
-## Walkthrough
+## 视频演示
 
-Not sure how to solve?
+不确定如何解决？
 
-## How to Test
+## 如何测试
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/sort
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在终端中执行以下命令来提交你的工作，并根据出现的提示进行回答。
 
 ```
 submit50 cs50/problems/2026/x/sort

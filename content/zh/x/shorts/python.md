@@ -5,4 +5,3 @@ youtube_id: "mgBpcQRDtl0"
 ---
 
 {{< youtube mgBpcQRDtl0 >}}
-

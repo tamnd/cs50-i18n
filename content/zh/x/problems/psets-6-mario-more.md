@@ -1,44 +1,44 @@
 ---
 title: "Mario - CS50x 2026"
 pset: 6
-draft: "false"
+draft: false
 ---
 
 ![screenshot of Mario jumping up pyramid](pyramids.png)
 
-## Problem to Solve
+## 待解决的问题
 
-In a file called `mario.py` in a folder called `sentimental-mario-more`, write a program that recreates a half-pyramid using hashes (`#`) for blocks, exactly as you did in [Problem Set 1](../../../1/). Your program this time should be written in Python!
+在一个名为 `sentimental-mario-more` 的文件夹中创建一个名为 `mario.py` 的文件，编写一个程序，使用井号 (`#`) 作为砖块来重新构建一个半金字塔，就像你在 [问题集 1](../../../1/) 中所做的那样。不过这一次，你的程序应该用 Python 编写！
 
-## Demo
+## 演示
 
-## Specification
+## 细节要求
 
-- To make things more interesting, first prompt the user with `get_int` for the half-pyramid’s height, a positive integer between `1` and `8`, inclusive. (The height of the half-pyramids pictured above happens to be `4`, the width of each half-pyramid `4`, with a gap of size `2` separating them).
-- If the user fails to provide a positive integer no greater than `8`, you should re-prompt for the same again.
-- Then, generate (with the help of `print` and one or more loops) the desired half-pyramids.
-- Take care to align the bottom-left corner of your pyramid with the left-hand edge of your terminal window, and ensure that there are two spaces between the two pyramids, and that there are no additional spaces after the last set of hashes on each row.
+- 为了让题目更有趣，首先使用 `get_int` 提示用户输入金字塔的高度，高度应为 `1` 到 `8` 之间（含）的正整数。（上图中展示的两个半金字塔的高度为 `4`，每个半金字塔的宽度也为 `4`，中间隔着 `2` 个空格）。
+- 如果用户未能提供一个不大于 `8` 的正整数，你应该重新提示用户输入。
+- 然后，（在 `print` 函数和一个或多个循环的帮助下）生成所需的金字塔。
+- 注意将金字塔的左下角与终端窗口的左边缘对齐，并确保两个金字塔之间有两个空格，且每行最后一组井号后没有任何多余的空格。
 
-## How to Test
+## 如何测试
 
-While `check50` is available for this problem, you’re encouraged to first test your code on your own for each of the following.
+虽然此题可以使用 `check50`，但建议你先自行针对以下情况测试代码。
 
-- Run your program as `python mario.py` and wait for a prompt for input. Type in `-1` and press enter. Your program should reject this input as invalid, as by re-prompting the user to type in another number.
-- Run your program as `python mario.py` and wait for a prompt for input. Type in `0` and press enter. Your program should reject this input as invalid, as by re-prompting the user to type in another number.
-- Run your program as `python mario.py` and wait for a prompt for input. Type in `1` and press enter. Your program should generate the below output. Be sure that the pyramid is aligned to the bottom-left corner of your terminal, and that there are no extra spaces at the end of each line.
+- 运行你的程序 `python mario.py` 并等待输入提示。输入 `-1` 并按回车。你的程序应该拒绝此输入并视为无效，重新提示用户输入另一个数字。
+- 运行你的程序 `python mario.py` 并等待输入提示。输入 `0` 并按回车。你的程序应该拒绝此输入并视为无效，重新提示用户输入另一个数字。
+- 运行你的程序 `python mario.py` 并等待输入提示。输入 `1` 并按回车。你的程序应该生成如下输出。确保金字塔与终端的左下角对齐，且每行末尾没有多余的空格。
 
 ```
 #  #
 ```
 
-- Run your program as `python mario.py` and wait for a prompt for input. Type in `2` and press enter. Your program should generate the below output. Be sure that the pyramid is aligned to the bottom-left corner of your terminal, and that there are no extra spaces at the end of each line.
+- 运行你的程序 `python mario.py` 并等待输入提示。输入 `2` 并按回车。你的程序应该生成如下输出。确保金字塔与终端的左下角对齐，且每行末尾没有多余的空格。
 
 ```
  #  #
 ##  ##
 ```
 
-- Run your program as `python mario.py` and wait for a prompt for input. Type in `8` and press enter. Your program should generate the below output. Be sure that the pyramid is aligned to the bottom-left corner of your terminal, and that there are no extra spaces at the end of each line.
+- 运行你的程序 `python mario.py` 并等待输入提示。输入 `8` 并按回车。你的程序应该生成如下输出。确保金字塔与终端的左下角对齐，且每行末尾没有多余的空格。
 
 ```
        #  #
@@ -51,31 +51,31 @@ While `check50` is available for this problem, you’re encouraged to first test
 ########  ########
 ```
 
-- Run your program as `python mario.py` and wait for a prompt for input. Type in `9` and press enter. Your program should reject this input as invalid, as by re-prompting the user to type in another number. Then, type in `2` and press enter. Your program should generate the below output. Be sure that the pyramid is aligned to the bottom-left corner of your terminal, and that there are no extra spaces at the end of each line.
+- 运行你的程序 `python mario.py` 并等待输入提示。输入 `9` 并按回车。你的程序应该拒绝此输入并视为无效，重新提示用户输入另一个数字。然后输入 `2` 并按回车。你的程序应该生成如下输出。确保金字塔与终端的左下角对齐，且每行末尾没有多余的空格。
 
 ```
  #  #
 ##  ##
 ```
 
-- Run your program as `python mario.py` and wait for a prompt for input. Type in `foo` and press enter. Your program should reject this input as invalid, as by re-prompting the user to type in another number.
-- Run your program as `python mario.py` and wait for a prompt for input. Do not type anything, and press enter. Your program should reject this input as invalid, as by re-prompting the user to type in another number.
+- 运行你的程序 `python mario.py` 并等待输入提示。输入 `foo` 并按回车。你的程序应该拒绝此输入并视为无效，重新提示用户输入另一个数字。
+- 运行你的程序 `python mario.py` 并等待输入提示。不输入任何内容直接按回车。你的程序应该拒绝此输入并视为无效，重新提示用户输入另一个数字。
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/sentimental/mario/more
 ```
 
-### Style
+### 风格
 
 ```
 style50 mario.py
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在你的终端中，执行以下命令来提交你的工作，并根据提示回答问题。
 
 ```
 submit50 cs50/problems/2026/x/sentimental/mario/more

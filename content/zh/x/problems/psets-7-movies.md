@@ -1,197 +1,197 @@
 ---
-title: "Movies - CS50x 2026"
+title: "电影 - CS50x 2026"
 pset: 7
-draft: "false"
+draft: false
 ---
 
-**Changes for 2026:** `5.sql` now requires matching movies that begin with “Harry Potter and the “ (not just “Harry Potter”). `9.sql` now requires outputting **two columns** (the ID and name of each person), not just names. If you started this problem prior to 2026, be sure to update your queries accordingly!
+**2026 年的变化：** `5.sql` 现在要求匹配以 “Harry Potter and the ” 开头的电影（而不仅仅是 “Harry Potter”）。`9.sql` 现在要求输出 **两列**（每个人的 ID 和姓名），而不仅仅是姓名。如果你在 2026 年之前就开始了这个题目，请务必更新你的查询！
 
 ![IMDb Logo](imdb.png)
 
-## Problem to Solve
+## 待解决的问题 (Problem to Solve)
 
-Provided to you is a file called `movies.db`, a SQLite database that stores data from [IMDb](https://www.imdb.com/) about movies, the people who directed and starred in them, and their ratings. Write SQL queries to answer questions about this database of movies.
+为你提供了一个名为 `movies.db` 的文件，这是一个 SQLite 数据库，存储了来自 [IMDb](https://www.imdb.com/) 的关于电影、导演、演员及其评分的数据。编写 SQL 查询来回答有关此电影数据库的问题。
 
-## Demo
+## 演示 (Demo)
 
-## Getting Started
+## 入门 (Getting Started)
 
-For this problem, you’ll use a database provided to you by CS50’s staff.
+对于这个问题，你将使用由 CS50 工作人员提供的数据库。
 
-Download the distribution code
+下载发行代码
 
-Log into [cs50.dev](https://cs50.dev/), click on your terminal window, and execute `cd` by itself. You should find that your terminal window’s prompt resembles the below:
+登录 [cs50.dev](https://cs50.dev/)，点击你的终端窗口，并单独执行 `cd` 命令。你应该会发现终端窗口的提示符类似于：
 
 ```
 $
 ```
 
-Next execute
+接着执行
 
 ```python
 wget https://cdn.cs50.net/2026/x/psets/7/movies.zip
 ```
 
-in order to download a ZIP called `movies.zip` into your codespace.
+以便将名为 `movies.zip` 的 ZIP 文件下载到你的 codespace 中。
 
-Then execute
+然后执行
 
 ```
 unzip movies.zip
 ```
 
-to create a folder called `movies`. You no longer need the ZIP file, so you can execute
+来创建一个名为 `movies` 的文件夹。你不再需要该 ZIP 文件，因此可以执行
 
 ```
 rm movies.zip
 ```
 
-and respond with “y” followed by Enter at the prompt to remove the ZIP file you downloaded.
+并在提示符下输入 “y” 紧接着按回车键，以删除你下载的 ZIP 文件。
 
-Now type
+现在输入
 
 ```bash
 cd movies
 ```
 
-followed by Enter to move yourself into (i.e., open) that directory. Your prompt should now resemble the below.
+接着按回车键进入（即打开）该目录。你的提示符现在应该类似于：
 
 ```
 movies/ $
 ```
 
-Execute `ls` by itself, and you should see 13 .sql files, as well as `movies.db`.
+单独执行 `ls`，你应该会看到 13 个 .sql 文件，以及 `movies.db`。
 
-If you run into any trouble, follow these same steps again and see if you can determine where you went wrong!
+如果你遇到任何困难，请再次按照这些步骤操作，看看能否找出出错的地方！
 
-## Specification
+## 规范 (Specification)
 
-For each of the following problems, you should write a single SQL query that outputs the results specified by each problem. Your response must take the form of a single SQL query, though you may nest other queries inside of your query. You **should not** assume anything about the `id`s of any particular movies or people: your queries should be accurate even if the `id` of any particular movie or person were different. Finally, each query should return only the data necessary to answer the question: if the problem only asks you to output the names of movies, for example, then your query should not also output each movie’s release year.
+对于以下每个问题，你应该编写一个单独的 SQL 查询，并输出每个问题指定的结果。你的回答必须采用单个 SQL 查询的形式，不过你可以在查询中嵌套其他查询。你 **不应该** 对任何特定电影或人的 `id` 做任何假设：即使任何特定电影或人的 `id` 不同，你的查询也应该是准确的。最后，每个查询应该只返回回答问题所必需的数据：例如，如果问题只要求你输出电影的名称，那么你的查询就不应该同时输出每部电影的发行年份。
 
-You’re welcome to check your queries’ results against [IMDb](https://www.imdb.com/) itself, but realize that ratings on the website might differ from those in `movies.db`, as more votes might have been cast since we downloaded the data!
+欢迎你对照 [IMDb](https://www.imdb.com/) 本身来检查查询结果，但请注意，网站上的评分可能与 `movies.db` 中的不同，因为自我们下载数据以来可能有更多人参与了投票！
 
-01. In `1.sql`, write a SQL query to list the titles of all movies released in 2008.
+01. 在 `1.sql` 中，编写一个 SQL 查询，列出 2008 年发行的所有电影的标题。
     
-    - Your query should output a table with a single column for the title of each movie.
-02. In `2.sql`, write a SQL query to determine the birth year of Emma Stone.
+    - 你的查询应输出一张表，其中只有一列，显示每部电影的标题。
+02. 在 `2.sql` 中，编写一个 SQL 查询，确定 Emma Stone 的出生年份。
     
-    - Your query should output a table with a single column and a single row (not counting the header) containing Emma Stone’s birth year.
-    - You may assume that there is only one person in the database with the name Emma Stone.
-03. In `3.sql`, write a SQL query to list the titles of all movies with a release date on or after 2018, in alphabetical order.
+    - 你的查询应输出一张表，其中包含单列单行（不包括表头），包含 Emma Stone 的出生年份。
+    - 你可以假设数据库中只有一个名叫 Emma Stone 的人。
+03. 在 `3.sql` 中，编写一个 SQL 查询，按字母顺序列出 2018 年或之后发行的所有电影的标题。
     
-    - Your query should output a table with a single column for the title of each movie.
-    - Movies released in 2018 should be included, as should movies with release dates in the future.
-04. In `4.sql`, write a SQL query to determine the number of movies with an IMDb rating of 10.0.
+    - 你的查询应输出一张表，其中只有一列，显示每部电影的标题。
+    - 2018 年发行的电影应该包括在内，将来发行的电影也应包括在内。
+04. 在 `4.sql` 中，编写一个 SQL 查询，确定 IMDb 评分为 10.0 的电影数量。
     
-    - Your query should output a table with a single column and a single row (not counting the header) containing the number of movies with a 10.0 rating.
-05. In `5.sql`, write a SQL query to list the titles and release years of all Harry Potter movies, in chronological order.
+    - 你的查询应输出一张表，其中包含单列单行（不包括表头），包含评分为 10.0 的电影数量。
+05. 在 `5.sql` 中，编写一个 SQL 查询，按时间顺序列出所有《哈利·波特》（Harry Potter）系列电影的标题和发行年份。
     
-    - Your query should output a table with two columns, one for the title of each movie and one for the release year of each movie.
-    - You may assume that the title of all Harry Potter movies will begin with the words “Harry Potter and the “, and that if a movie title begins with the words “Harry Potter and the “, it is a Harry Potter movie.
-06. In `6.sql`, write a SQL query to determine the average rating of all movies released in 2012.
+    - 你的查询应输出一张具有两列的表，一列是每部电影的标题，另一列是每部电影的发行年份。
+    - 你可以假设所有《哈利·波特》电影的标题都以 “Harry Potter and the ” 开头，并且如果一部电影的标题以 “Harry Potter and the ” 开头，它就是一部《哈利·波特》电影。
+06. 在 `6.sql` 中，编写一个 SQL 查询，确定 2012 年发行的所有电影的平均评分。
     
-    - Your query should output a table with a single column and a single row (not counting the header) containing the average rating.
-07. In `7.sql`, write a SQL query to list all movies released in 2010 and their ratings, in descending order by rating. For movies with the same rating, order them alphabetically by title.
+    - 你的查询应输出一张表，其中包含单列单行（不包括表头），包含平均评分。
+07. 在 `7.sql` 中，编写一个 SQL 查询，列出 2010 年发行的所有电影及其评分，按评分降序排列。对于评分相同的电影，按标题的字母顺序排列。
     
-    - Your query should output a table with two columns, one for the title of each movie and one for the rating of each movie.
-    - Movies that do not have ratings should not be included in the result.
-08. In `8.sql`, write a SQL query to list the names of all people who starred in Toy Story.
+    - 你的查询应输出一张具有两列的表，一列是每部电影的标题，另一列是每部电影的评分。
+    - 不具有评分的电影不应包含在结果中。
+08. 在 `8.sql` 中，编写一个 SQL 查询，列出所有参演《玩具总动员》（Toy Story）的人的姓名。
     
-    - Your query should output a table with a single column for the name of each person.
-    - You may assume that there is only one movie in the database with the title Toy Story.
-09. In `9.sql`, write a SQL query to list the ID and names of all people who starred in a movie released in 2004, ordered by birth year.
+    - 你的查询应输出一张表，其中只有一列，显示每个人的姓名。
+    - 你可以假设数据库中只有一部标题为 Toy Story 的电影。
+09. 在 `9.sql` 中，编写一个 SQL 查询，列出所有参演 2004 年发行的电影的人的 ID 和姓名，按出生年份排序。
     
-    - Your query should output a table with two columns: one for the ID and one for the name of each person.
-    - People with the same birth year may be listed in any order.
-    - No need to worry about people who have no birth year listed, so long as those who do have a birth year are listed in order.
-    - If a person appeared in more than one movie in 2004, they should only appear in your results once.
-10. In `10.sql`, write a SQL query to list the names of all people who have directed a movie that received a rating of at least 9.0.
+    - 你的查询应输出一张具有两列的表：一列是 ID，另一列是每个人的姓名。
+    - 出生年份相同的人可以按任何顺序排列。
+    - 无需担心没有列出出生年份的人，只要列出了出生年份的人按顺序排列即可。
+    - 如果一个人在 2004 年出演了多部电影，他们应该只在你的结果中出现一次。
+10. 在 `10.sql` 中，编写一个 SQL 查询，列出所有执导过评分为 9.0 或更高的电影的人的姓名。
     
-    - Your query should output a table with a single column for the name of each person.
-    - If a person directed more than one movie that received a rating of at least 9.0, they should only appear in your results once.
-11. In `11.sql`, write a SQL query to list the titles of the five highest rated movies (in order) that Chadwick Boseman starred in, starting with the highest rated.
+    - 你的查询应输出一张表，其中只有一列，显示每个人的姓名。
+    - 如果一个人执导了多部评分为 9.0 或更高的电影，他们应该只在你的结果中出现一次。
+11. 在 `11.sql` 中，编写一个 SQL 查询，列出 Chadwick Boseman 参演的评分最高的五部电影（按顺序），从评分最高的开始。
     
-    - Your query should output a table with a single column for the title of each movie.
-    - You may assume that there is only one person in the database with the name Chadwick Boseman.
-12. In `12.sql`, write a SQL query to list the titles of all movies in which both Bradley Cooper and Jennifer Lawrence starred.
+    - 你的查询应输出一张表，其中只有一列，显示每部电影的标题。
+    - 你可以假设数据库中只有一个名叫 Chadwick Boseman 的人。
+12. 在 `12.sql` 中，编写一个 SQL 查询，列出 Bradley Cooper 和 Jennifer Lawrence 两人都参演过的所有电影的标题。
     
-    - Your query should output a table with a single column for the title of each movie.
-    - You may assume that there is only one person in the database with the name Bradley Cooper.
-    - You may assume that there is only one person in the database with the name Jennifer Lawrence.
-13. In `13.sql`, write a SQL query to list the names of all people who starred in a movie in which Kevin Bacon also starred.
+    - 你的查询应输出一张表，其中只有一列，显示每部电影的标题。
+    - 你可以假设数据库中只有一个名叫 Bradley Cooper 的人。
+    - 你可以假设数据库中只有一个名叫 Jennifer Lawrence 的人。
+13. 在 `13.sql` 中，编写一个 SQL 查询，列出所有参演过凯文·贝肯（Kevin Bacon）也参演过的电影的人的姓名。
     
-    - Your query should output a table with a single column for the name of each person.
-    - There may be multiple people named Kevin Bacon in the database. Be sure to only select the Kevin Bacon born in 1958.
-    - Kevin Bacon himself should not be included in the resulting list.
+    - 你的查询应输出一张表，其中只有一列，显示每个人的姓名。
+    - 数据库中可能有多个名叫 Kevin Bacon 的人。请务必仅选择 1958 年出生的那个 Kevin Bacon。
+    - Kevin Bacon 本人应不包括在生成的列表中。
 
-## Hints
+## 提示 (Hints)
 
-Understand the schema of `movies.db`
+理解 `movies.db` 的模式 (schema)
 
-Whenever you engage with a new database, it’s best to first understand its *schema*. In a terminal window, run `sqlite3 movies.db` so that you can begin executing queries on the database.
+每当你接触一个新的数据库时，最好先了解它的 *模式 (schema)*。在终端窗口中，运行 `sqlite3 movies.db`，以便你可以开始在数据库上执行查询。
 
-First, when `sqlite3` prompts you to provide a query, type `.schema` and press enter. This will output the `CREATE TABLE` statements that were used to generate each of the tables in the database. By examining those statements, you can identify the columns present in each table.
+首先，当 `sqlite3` 提示你提供查询时，输入 `.schema` 并按回车。这将输出用于生成数据库中每个表的 `CREATE TABLE` 语句。通过检查这些语句，你可以识别每个表中存在的列。
 
-Notice that the `movies` table has an `id` column that uniquely identifies each movie, as well as columns for the `title` of a movie and the `year` in which the movie was released. The `people` table also has an `id` column, and also has columns for each person’s `name` and `birth` year.
+请注意，`movies` 表有一个 `id` 列，用于唯一标识每部电影，还有 `title` 列（电影标题）和 `year` 列（电影发行年份）。`people` 表也有一个 `id` 列，还有每个人的 `name`（姓名）和 `birth`（出生年份）列。
 
-Movie ratings, meanwhile, are stored in the `ratings` table. The first column in the table is `movie_id`: a foreign key that references the `id` of the `movies` table. The rest of the row contains data about the `rating` for each movie and the number of `votes` the movie has received on IMDb.
+同时，电影评分存储在 `ratings` 表中。该表的第一列是 `movie_id`：一个引用 `movies` 表 `id` 的外键。行的其余部分包含有关每部电影的 `rating`（评分）和该电影在 IMDb 上收到的 `votes`（投票数）的数据。
 
-Finally, the `stars` and `directors` tables match people to the movies in which they acted or directed. (Only [principal](https://www.imdb.com/interfaces/) stars and directors are included.) Each table has just two columns: `movie_id` and `person_id`, which reference a specific movie and person, respectively.
+最后，`stars` 和 `directors` 表将人与他们参演或导演的电影相匹配。（仅包括[主要](https://www.imdb.com/interfaces/)演员和导演。）每个表只有两列：`movie_id` 和 `person_id`，它们分别引用特定的电影和人。
 
-The challenge ahead of you is to write SQL queries to answer a variety of different questions by selecting data from one or more of these tables.
+摆在你面前的挑战是编写 SQL 查询，通过从一个或多个表中选择数据来回答各种不同的问题。
 
-Consistently style your queries
+保持一致的查询风格
 
-See [sqlstyle.guide](https://www.sqlstyle.guide/) for pointers on good style in SQL, especially as your queries get more complex!
+有关 SQL 中良好风格的建议，请参阅 [sqlstyle.guide](https://www.sqlstyle.guide/)，特别是当你的查询变得更加复杂时！
 
-List the titles of all movies released in 2008
+列出 2008 年发行的所有电影的标题
 
-Recall that you can select one (or more) columns from a database using `SELECT`, per the example below,
+回想一下，你可以使用 `SELECT` 从数据库中选择一列（或多列），如下例所示：
 
 ```sql
 SELECT column0, column1 FROM table;
 ```
 
-where `column0` is the title of one column, and `column1` is the title of another.
+其中 `column0` 是一列的标题，`column1` 是另一列的标题。
 
-And recall that you can filter the rows returned in a query with the `WHERE` keyword, followed by a condition. You can use `=`, `>`, `<`, and [other operators](https://www.w3schools.com/sql/sql_operators.asp) too.
+回想一下，你可以使用 `WHERE` 关键字后跟条件来过滤查询返回的行。你也可以使用 `=`、`>`、`<` 和[其他运算符](https://www.w3schools.com/sql/sql_operators.asp)。
 
 ```sql
 SELECT column FROM table
 WHERE condition;
 ```
 
-See [this SQL keywords reference](https://www.w3schools.com/sql/sql_ref_keywords.asp) for some SQL syntax that may be helpful!
+请参阅此 [SQL 关键字参考](https://www.w3schools.com/sql/sql_ref_keywords.asp) 以获取一些可能有用的 SQL 语法！
 
-Determine the birth year of Emma Stone
+确定 Emma Stone 的出生年份
 
-Recall that a `WHERE` clause can evaluate conditions not just with numbers, but with strings.
+回想一下，`WHERE` 子句不仅可以评估数字条件，还可以评估字符串条件。
 
-List the titles of all movies with a release date on or after 2018, in alphabetical order
+按字母顺序列出 2018 年或之后发行的所有电影的标题
 
-Try breaking this query into two steps. First, find the movies with a release date on or after 2018. Then, put those movies’ titles in alphabetical order.
+尝试将此查询分为两个步骤。首先，找到 2018 年或之后发行的电影。然后，按字母顺序排列这些电影的标题。
 
-To find the movies with a release date on or after 2018, recall that a condition in SQL supports the use of many common [comparison operators](https://www.w3schools.com/sql/sql_operators.asp), including `>=` for “greater than or equal to.” Check to see if your query returns the correct number of movies, per [How to Test](#how-to-test).
+要找到 2018 年或之后发行的电影，请回想一下 SQL 中的条件支持使用许多常见的[比较运算符](https://www.w3schools.com/sql/sql_operators.asp)，包括 `>=` 表示 “大于或等于”。根据[如何测试](#how-to-test)检查你的查询是否返回了正确数量的电影。
 
-Finally, sort the query’s results alphabetically by title. Recall that `ORDER BY` can sort data by a column in your results, per the example below.
+最后，按标题对查询结果进行字母排序。回想一下，`ORDER BY` 可以按结果中的一列对数据进行排序，如下例所示。
 
 ```
 ...
 ORDER BY column;
 ```
 
-Determine the number of movies with an IMDb rating of 10.0
+确定评分为 10.0 的电影数量
 
-Notice this question asks you not for *individual* movies with a rating of 10.0, but for the *number* of movies with such a rating. In other words, you should collect (“aggregate”) the results of your query into a single number (the number of rows). Recall that SQL supports an “aggregation function” called `COUNT`, which you can use on a column per the example below.
+请注意，此问题询问的不是评分为 10.0 的 *单个* 电影，而是此类电影的 *数量*。换句话说，你应该将查询结果收集（“聚合”）为一个数字（行数）。回想一下，SQL 支持一个名为 `COUNT` 的 “聚合函数”，你可以在一列上使用它，如下例所示。
 
 ```sql
 SELECT COUNT(column)
 FROM table;
 ```
 
-List the titles and release years of all Harry Potter movies, in chronological order
+按时间顺序列出所有《哈利·波特》系列电影的标题和发行年份
 
-For this query, you’ll likely want to make use of SQL’s `LIKE` keyword. Recall that `LIKE` can make use of so-called “wildcard characters”, such as `%`, that will match any character (or sequence thereof).
+对于这个查询，你可能需要利用 SQL 的 `LIKE` 关键字。回想一下，`LIKE` 可以利用所谓的 “通配符”，例如 `%`，它可以匹配任何字符（或字符序列）。
 
 ```sql
 SELECT column0, column1
@@ -199,11 +199,11 @@ FROM table
 WHERE column1 LIKE pattern;
 ```
 
-Determine the average rating of all movies released in 2012
+确定 2012 年发行的所有电影的平均评分
 
-Here’s another example of a query in which you’ll need to aggregate data. Consider SQL’s `AVG` aggregation function, to compute an average.
+这是另一个你需要聚合数据的查询示例。考虑 SQL 的 `AVG` 聚合函数来计算平均值。
 
-Consider, too, that this query makes use of data stored in two separate tables: `ratings` and `movies`. Recall that—so long as one table has a foreign key that matches a column in another table—you can combine two tables using SQL’s `JOIN` keyword. To use the `JOIN` keyword, you should specify the table you’d like to join and the column by which to do so.
+此外，还要考虑此查询使用了存储在两个独立表中的数据：`ratings` 和 `movies`。回想一下，只要一个表具有与另一个表中的列匹配的外键，你就可以使用 SQL 的 `JOIN` 关键字将两个表合并。要使用 `JOIN` 关键字，你应该指定要连接的表以及用于连接的列。
 
 ```sql
 SELECT column0
@@ -211,73 +211,73 @@ FROM table0
 JOIN table1 ON table0.column1 = table1.column2
 ```
 
-List all movies released in 2010 and their ratings, in descending order by rating
+列出 2010 年发行的所有电影及其评分，按评分降序排列
 
-Recall that `ORDER BY` need not always sort in ascending order. You can specify that your results be sorted in *descending* order by appending `DESC`.
+回想一下，`ORDER BY` 并不总是按升序排序。你可以通过追加 `DESC` 来指定结果按 *降序* 排序。
 
 ```
 ...
 ORDER BY column DESC;
 ```
 
-List the names of all people who starred in Toy Story
+列出所有参演《玩具总动员》（Toy Story）的人的姓名
 
-When you see a more complex query such as this one, it’s best to break it down into smaller pieces. Ultimately, your query should arrive at a list of names, per the below.
+当你看到像这样的复杂查询时，最好将其分解为更小的部分。最终，你的查询应该得到一个姓名列表，如下所示。
 
 ```sql
--- Select names
+-- 选择姓名
 SELECT name
 FROM people
 WHERE ...
 ```
 
-But how’s best to arrive at the names of those who starred in Toy Story? Consider that the `people` table alone doesn’t have this information (but the `stars` table might!). Indeed, the `stars` table combines two columns, `person_id` and `movie_id`: any person with a `person_id` that is associated with Toy Story’s `movie_id` starred in Toy Story.
+但是如何最好地获得参演过 Toy Story 的人的姓名呢？考虑一下，`people` 表本身没有这些信息（但 `stars` 表可能有！）。事实上，`stars` 表结合了两列，`person_id` 和 `movie_id`：任何具有与 Toy Story 的 `movie_id` 关联的 `person_id` 的人都参演了 Toy Story。
 
 ```sql
--- Select names
+-- 选择姓名
 SELECT name
 FROM people
 WHERE ...
 
--- Select person IDs
+-- 选择人员 ID
 SELECT person_id
 FROM stars
 WHERE movie_id = ...
 ```
 
-A natural next step, then, is to find Toy Story’s movie ID.
+那么，自然而然的下一步就是找到 Toy Story 的电影 ID。
 
 ```sql
--- Select names
+-- 选择姓名
 SELECT name
 FROM people
 WHERE ...
 
--- Select person IDs
+-- 选择人员 ID
 SELECT person_id
 FROM stars
 WHERE movie_id = ...
 
--- Find Toy Story's ID
+-- 查找 Toy Story 的 ID
 SELECT id
 FROM movies
 WHERE title = 'Toy Story';
 ```
 
-Of course, you’ve presently written three *separate* queries. But notice that some queries (the first two) would be complete by including results of the query directly below them. The process of making a query that depends on the results of a “subquery” is called “nesting” queries. It’s quite the hint, but here’s one way to nest the above queries!
+当然，你目前编写了三个 *独立* 的查询。但请注意，某些查询（前两个）可以通过包含其正下方查询的结果来完成。制作依赖于 “子查询” 结果的查询的过程称为 “嵌套” 查询。这是一个很大的提示，但这里有一种嵌套上述查询的方法！
 
 ```sql
--- Select names
+-- 选择姓名
 SELECT name
 FROM people
 WHERE id IN
 (
-    -- Select person IDs
+    -- 选择人员 ID
     SELECT person_id
     FROM stars
     WHERE movie_id = (
 
-        -- Select Toy Story's ID
+        -- 选择 Toy Story 的 ID
         SELECT id
         FROM movies
         WHERE title = 'Toy Story'
@@ -285,125 +285,125 @@ WHERE id IN
 );
 ```
 
-List the ID and names of all people who starred in a movie released in 2004, ordered by birth year
+列出所有参演 2004 年发行的电影的人的 ID 和姓名，按出生年份排序
 
-Notice that this query, like the previous, requires you to use data from multiple tables. Recall that you can “nest” queries in SQL, which allows you to break a larger query into smaller ones. Perhaps you could write queries to…
+请注意，此查询与前一个查询一样，需要你使用来自多个表的数据。回想一下，你可以在 SQL 中 “嵌套” 查询，这允许你将较大的查询分解为较小的查询。也许你可以编写查询来……
 
-1. Find the IDs of movies released in 2004
-2. Find the IDs of people who starred in those movies
-3. Find the IDs and names of people with those people IDs
+1. 查找 2004 年发行的电影的 ID
+2. 查找参演这些电影的人员的 ID
+3. 查找具有这些人员 ID 的人员的 ID 和姓名
 
-Then, try nesting those queries to arrive at a single query that returns all the IDs and names of people who starred in a movie released in 2004. Consider how you might then order the results of your query.
+然后，尝试嵌套这些查询，以得到一个返回所有在 2004 年发行的电影中出演的人员 ID 和姓名的单个查询。考虑之后如何对查询结果进行排序。
 
-As a closing note, keep in mind that multiple people can have the same name. Although each person should only appear in your results once, two stars having the same name does not necessarily mean they are the same person.
+最后要注意的是，请记住多个人可以有相同的名字。虽然每个人应该只在你的结果中出现一次，但两个明星名字相同并不一定意味着他们是同一个人。
 
-List the names of all people who have directed a movie that received a rating of at least 9.0
+列出所有执导过评分为 9.0 或更高的电影的人的姓名
 
-Notice that this query, like the previous, requires you to use data from multiple tables. Recall that you can “nest” queries in SQL, which allows you to break a larger query into smaller ones. Perhaps you could write queries to…
+请注意，此查询与前一个查询一样，需要你使用来自多个表的数据。回想一下，你可以在 SQL 中 “嵌套” 查询，这允许你将较大的查询分解为较小的查询。也许你可以编写查询来……
 
-1. Find the IDs of movies with at least a 9.0 rating
-2. Find the IDs of people who directed those movies
-3. Find the names of people with those people IDs
+1. 查找评分至少为 9.0 的电影的 ID
+2. 查找执导过这些电影的人员的 ID
+3. 查找具有这些人员 ID 的人员的姓名
 
-Then, try nesting those queries to arrive at a single query that returns the names of all people who have directed a movie that received a rating of at least 9.0.
+然后，尝试嵌套这些查询，以得到一个返回所有执导过评分为 9.0 或更高的电影的人员姓名的单个查询。
 
-List the titles of the five highest rated movies (in order) that Chadwick Boseman starred in, starting with the highest rated
+列出 Chadwick Boseman 参演的评分最高的五部电影（按顺序）的标题，从评分最高的开始
 
-Notice that this query, like the previous, requires you to use data from multiple tables. Recall that you can “nest” queries in SQL, which allows you to break a larger query into smaller ones. Perhaps you could write queries to…
+请注意，此查询与前一个查询一样，需要你使用来自多个表的数据。回想一下，你可以在 SQL 中 “嵌套” 查询，这允许你将较大的查询分解为较小的查询。也许你可以编写查询来……
 
-1. Find the ID of Chadwick Boseman
-2. Find the IDs of movies associated with Chadwick Boseman’s ID
-3. Find the movie titles with those movie IDs
+1. 查找 Chadwick Boseman 的 ID
+2. 查找与 Chadwick Boseman 的 ID 关联的电影 ID
+3. 查找具有这些电影 ID 的电影标题
 
-Then, try nesting those queries to arrive at a single query that returns the titles of Chadwick Boseman’s movies.
+然后，尝试嵌套这些查询，以得到一个返回 Chadwick Boseman 电影标题的单个查询。
 
-From there, you’ll need to determine the ratings of those titles and sort those titles by rating, in descending order. Consider how you could combine a relevant table (likely `ratings`!) and order the results by a relevant column.
+从那里开始，你需要确定这些标题的评分，并按评分降序排列这些标题。考虑如何结合相关表（很可能是 `ratings`！）并按相关列对结果进行排序。
 
-Finally, read up on SQL’s [`LIMIT`](https://www.sqlitetutorial.net/sqlite-limit/) keyword, which will return the top \\(n\\) rows in a query.
+最后，阅读 SQL 的 [`LIMIT`](https://www.sqlitetutorial.net/sqlite-limit/) 关键字，它将返回查询中的前 \\(n\\) 行。
 
-List the titles of all movies in which both Bradley Cooper and Jennifer Lawrence starred
+列出 Bradley Cooper 和 Jennifer Lawrence 两人都参演过的所有电影的标题
 
-Notice that this query, like the previous, requires you to use data from multiple tables. Recall that you can “nest” queries in SQL, which allows you to break a larger query into smaller ones. Perhaps you could write queries to…
+请注意，此查询与前一个查询一样，需要你使用来自多个表的数据。回想一下，你可以在 SQL 中 “嵌套” 查询，这允许你将较大的查询分解为较小的查询。也许你可以编写查询来……
 
-1. Find the ID of Bradley Cooper
-2. Find the ID of Jennifer Lawrence
-3. Find the IDs of movies associated with Bradley Cooper’s ID
-4. Find the IDs of movies associated with Jennifer Lawrence’s ID
-5. Find movie titles from the movie IDs associated with *both* Bradley Cooper and Jennifer Lawrence
+1. 查找 Bradley Cooper 的 ID
+2. 查找 Jennifer Lawrence 的 ID
+3. 查找与 Bradley Cooper 的 ID 关联的电影 ID
+4. 查找与 Jennifer Lawrence 的 ID 关联的电影 ID
+5. 从与 Bradley Cooper *和* Jennifer Lawrence 关联的电影 ID 中查找电影标题
 
-Then, try nesting those queries to arrive at a single query that returns the movies in which both Bradley Cooper and Jennifer Lawrence starred.
+然后，尝试嵌套这些查询，以得到一个返回 Bradley Cooper 和 Jennifer Lawrence 两人都参演过的电影的单个查询。
 
-Recall that you can build compound conditions in SQL using `AND` or `OR`.
+回想一下，你可以在 SQL 中使用 `AND` 或 `OR` 构建复合条件。
 
-List the names of all people who starred in a movie in which Kevin Bacon also starred
+列出所有参演过凯文·贝肯（Kevin Bacon）也参演过的电影的人的姓名
 
-Notice that this query, like the previous, requires you to use data from multiple tables. Recall that you can “nest” queries in SQL, which allows you to break a larger query into smaller ones. Perhaps you could write queries to…
+请注意，此查询与前一个查询一样，需要你使用来自多个表的数据。回想一下，你可以在 SQL 中 “嵌套” 查询，这允许你将较大的查询分解为较小的查询。也许你可以编写查询来……
 
-1. Find the ID of Kevin Bacon (the one born in 1958!)
-2. Find the IDs of movies associated with Kevin Bacon’s ID
-3. Find the IDs of people associated with those movie IDs
-4. Find the names of people with those people IDs
+1. 查找 Kevin Bacon 的 ID（1958 年出生的那个！）
+2. 查找与 Kevin Bacon 的 ID 关联的电影 ID
+3. 查找与这些电影 ID 关联的人员 ID
+4. 查找具有这些人员 ID 的人员的姓名
 
-Then, try nesting those queries to arrive at a single query that returns the names of all people who starred in a movie in which Kevin Bacon also starred. **Keep in mind that you’ll want to exclude Kevin Bacon himself from the results!**
+然后，尝试嵌套这些查询，以得到一个返回所有参演过 Kevin Bacon 也参演过的电影的人员姓名的单个查询。**请记住，你需要从结果中排除 Kevin Bacon 本人！**
 
-## Walkthrough
+## 演练 (Walkthrough)
 
-## Usage
+## 用法 (Usage)
 
-To test your queries in VS Code, you can query the database by running
+要在 VS Code 中测试你的查询，你可以通过运行以下命令来查询数据库：
 
 ```bash
 $ cat filename.sql | sqlite3 movies.db
 ```
 
-where `filename.sql` is the file containing your SQL query.
+其中 `filename.sql` 是包含你的 SQL 查询的文件。
 
-You can also run
+你也可以运行
 
 ```bash
 $ cat filename.sql | sqlite3 movies.db > output.txt
 ```
 
-to redirect the output of the query to a text file called `output.txt`. (This can be useful for checking how many rows are returned by your query!)
+将查询的输出重定向到名为 `output.txt` 的文本文件。（这对于检查查询返回了多少行很有用！）
 
-## How to Test
+## 如何测试 (How to Test)
 
-While `check50` is available for this problem, you’re encouraged to instead test your code on your own for each of the following. You can run `sqlite3 movies.db` to run additional queries on the database to ensure that your result is correct.
+虽然 `check50` 可用于此问题，但建议你针对以下每项内容自行测试你的代码。你可以运行 `sqlite3 movies.db` 对数据库运行其他查询，以确保结果正确。
 
-If you’re using the `movies.db` database provided in this problem set’s distribution, you should find that
+如果你正在使用此题分发代码中提供的 `movies.db` 数据库，你应该会发现：
 
-- Executing `1.sql` results in a table with 1 column and 10,647 rows.
-- Executing `2.sql` results in a table with 1 column and 1 row.
-- Executing `3.sql` results in a table with 1 column and 154,665 rows.
-- Executing `4.sql` results in a table with 1 column and 1 row.
-- Executing `5.sql` results in a table with 2 columns and 18 rows.
-- Executing `6.sql` results in a table with 1 column and 1 row.
-- Executing `7.sql` results in a table with 2 columns and 7,386 rows.
-- Executing `8.sql` results in a table with 1 column and 10 rows.
-- Executing `9.sql` results in a table with 2 columns and 36,219 rows.
-- Executing `10.sql` results in a table with 1 column and 4,675 rows.
-- Executing `11.sql` results in a table with 1 column and 5 rows.
-- Executing `12.sql` results in a table with 1 column and 4 rows.
-- Executing `13.sql` results in a table with 1 column and 550 rows.
+- 执行 `1.sql` 会得到一张具有 1 列和 10,647 行的表。
+- 执行 `2.sql` 会得到一张具有 1 列和 1 行的表。
+- 执行 `3.sql` 会得到一张具有 1 列和 154,665 行的表。
+- 执行 `4.sql` 会得到一张具有 1 列和 1 行的表。
+- 执行 `5.sql` 会得到一张具有 2 列和 18 行的表。
+- 执行 `6.sql` 会得到一张具有 1 列和 1 行的表。
+- 执行 `7.sql` 会得到一张具有 2 列和 7,386 行的表。
+- 执行 `8.sql` 会得到一张具有 1 列 and 10 行的表。
+- 执行 `9.sql` 会得到一张具有 2 列 and 36,219 行的表。
+- 执行 `10.sql` 会得到一张具有 1 列 and 4,675 行的表。
+- 执行 `11.sql` 会得到一张具有 1 列 and 5 行的表。
+- 执行 `12.sql` 会得到一张具有 1 列 and 4 行的表。
+- 执行 `13.sql` 会得到一张具有 1 列 and 550 行的表。
 
-Note that row counts do not include header rows that only show column names.
+请注意，行数不包括仅显示列名的表头行。
 
-If your query returns a number of rows that is slightly different from the expected output, be sure that you’re properly handling duplicates! For queries that ask for a list of names, no one person should be listed twice, but two different people who have the same name should each be listed.
+如果你的查询返回的行数与预期输出略有不同，请务必正确处理重复项！对于要求提供姓名列表的查询，不应列出任何同一个人两次，但具有相同名字的两个不同的人应该各自列出。
 
-### Correctness
+### 正确性 (Correctness)
 
 ```
 check50 cs50/problems/2026/x/movies
 ```
 
-## How to Submit
+## 如何提交 (How to Submit)
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在你的终端中，执行以下命令来提交你的工作，并回答出现的提示。
 
 ```
 submit50 cs50/problems/2026/x/movies
 ```
 
-## Acknowledgements
+## 致谢 (Acknowledgements)
 
-Information courtesy of IMDb ([imdb.com](https://www.imdb.com)). Used with permission.
+信息由 IMDb ([imdb.com](https://www.imdb.com)) 提供。经许可使用。

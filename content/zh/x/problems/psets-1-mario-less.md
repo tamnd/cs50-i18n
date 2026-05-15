@@ -1,16 +1,16 @@
 ---
 title: "Mario - CS50x 2026"
 pset: 1
-draft: "false"
+draft: false
 ---
 
-## Problem to Solve
+## 要解决的问题
 
-Toward the end of World 1-1 in Nintendo’s [Super Mario Bros.](https://en.wikipedia.org/wiki/Super_Mario_Bros.), Mario must ascend right-aligned pyramid of bricks, as in the below.
+在 Nintendo 的 [Super Mario Bros.](https://en.wikipedia.org/wiki/Super_Mario_Bros.) 中，接近 1-1 世界的结尾时，Mario 必须爬上一座右对齐的砖块金字塔，如下所示。
 
-![screenshot of Mario jumping up a right-aligned pyramid](pyramid.png)
+![Mario 跳上一座右对齐金字塔的截图](pyramid.png)
 
-In a file called `mario.c` in a folder called `mario-less`, implement a program in C that recreates that pyramid, using hashes (`#`) for bricks, as in the below:
+请在名为 `mario-less` 的文件夹中，在一个名为 `mario.c` 的文件里，用 C 实现一个程序，用井号（`#`）表示砖块，重现这座金字塔，如下所示：
 
 ```
        #
@@ -23,7 +23,7 @@ In a file called `mario.c` in a folder called `mario-less`, implement a program 
 ########
 ```
 
-But prompt the user for an `int` for the pyramid’s actual height, so that the program can also output shorter pyramids like the below:
+不过，你的程序应提示用户输入一个 `int` 作为金字塔的实际高度，这样程序也能输出更矮的金字塔，例如：
 
 ```
   #
@@ -31,20 +31,20 @@ But prompt the user for an `int` for the pyramid’s actual height, so that the 
 ###
 ```
 
-Re-prompt the user, again and again as needed, if their input is not greater than 0 or not an `int` altogether.
+如果用户输入的值不大于 0（或者输入根本不是 `int`），就根据需要一次又一次地重新提示用户。
 
-Hints
+提示
 
-- Recall that you can get an `int` from a user with `get_int`, which is declared in `cs50.h`.
-- Recall that you can print a `string` with `printf`, which is declared in `stdio.h`.
+- 回忆一下，你可以用 `get_int` 从用户那里获取一个 `int`，这个函数声明在 `cs50.h` 中。
+- 回忆一下，你可以用 `printf` 打印一个 `string`，这个函数声明在 `stdio.h` 中。
 
-## Demo
+## 演示
 
-## Advice
+## 建议
 
-Write some code that you know will compile
+先写一些你知道能编译的代码
 
-Even though this program won’t do anything, it should at least compile with `make`!
+即使这个程序还不会做任何事情，它至少应该能用 `make` 编译！
 
 ```c
 #include <cs50.h>
@@ -56,14 +56,14 @@ int main(void)
 }
 ```
 
-Write some pseudocode before writing more code
+在写更多代码之前，先写一些伪代码
 
-If unsure how to solve the problem itself, break it down into smaller problems that you can probably solve first. For instance, this problem is really two problems:
+如果你不确定如何解决问题本身，可以把它拆成一些你大概能先解决的小问题。例如，这个问题其实可以分成两个部分：
 
-1. Prompt the user for the pyramid’s height
-2. Print a pyramid of that height
+1. 提示用户输入金字塔的高度
+2. 打印一个对应高度的金字塔
 
-So write some pseudocode as comments that remind you to do just that:
+因此，可以把一些伪代码写成注释，提醒自己按这个思路完成：
 
 ```c
 #include <cs50.h>
@@ -77,9 +77,9 @@ int main(void)
 }
 ```
 
-Convert the pseudocode to code
+把伪代码转换为代码
 
-First, consider how you might prompt the user for the pyramid’s height. Recall that a `do while` loop is helpful when you want to do something at least once, and possibly again and again, as in the below:
+首先，想想如何提示用户输入金字塔的高度。回忆一下，当你希望某件事至少执行一次，并且可能反复执行时，`do while` 循环会很有用，如下所示：
 
 ```c
 #include <cs50.h>
@@ -99,7 +99,7 @@ int main(void)
 }
 ```
 
-Second, consider how you might print a pyramid of that height, from top to bottom. Notice how the first row should have one brick, the second row should have two bricks, and so on. Odds are you’ll want a loop, as in the below, even if not (yet!) sure what to put in that loop. So add some more pseudocode as a comment for now:
+接下来，考虑如何从上到下打印出这个高度的金字塔。注意，第一行应该有一块砖，第二行应该有两块砖，依此类推。即使你暂时还不确定循环里该写什么，大概率也会需要一个循环，如下所示。因此，现在先再添加一些伪代码作为注释：
 
 ```c
 #include <cs50.h>
@@ -123,7 +123,7 @@ int main(void)
 }
 ```
 
-How to print that row of bricks? Well, wouldn’t it be nice if there were a function called `print_row` that could do just that? Let’s suppose that there is:
+如何打印某一行砖块呢？如果有一个叫做 `print_row` 的函数能完成这件事，岂不是很方便？我们先假设有这样一个函数：
 
 ```c
 #include <cs50.h>
@@ -154,7 +154,7 @@ void print_row(int bricks)
 }
 ```
 
-We could then call that function from `main`, as in the below:
+然后，我们就可以在 `main` 中调用这个函数，如下所示：
 
 ```c
 #include <cs50.h>
@@ -186,9 +186,9 @@ void print_row(int bricks)
 }
 ```
 
-Why `i + 1`, though?
+不过，为什么是 `i + 1` 呢？
 
-Let’s now implement `print_row`:
+现在来实现 `print_row`：
 
 ```c
 #include <cs50.h>
@@ -224,9 +224,9 @@ void print_row(int bricks)
 }
 ```
 
-Why the `\n` at the end, though?
+不过，为什么最后要有 `\n` 呢？
 
-Unfortunately, this code prints a left-aligned pyramid, but you need a right-aligned one! Perhaps we should print some blank spaces before some of the bricks, to move them to the right? Let’s change `print_row` as follows so that it can print both:
+遗憾的是，这段代码打印的是左对齐的金字塔，而你需要的是右对齐的！也许我们应该在某些砖块前打印一些空格，把它们向右推？让我们把 `print_row` 改成下面这样，使它既能打印空格，也能打印砖块：
 
 ```c
 #include <cs50.h>
@@ -259,39 +259,39 @@ void print_row(int spaces, int bricks)
 }
 ```
 
-Some pseudocode now remains in both `main` and `print_row`, so that we leave to you!
+现在，`main` 和 `print_row` 中都还留有一些伪代码，这部分就留给你完成了！
 
-And consider whether you could factor out some of the code in `main` to a `get_height` function, too, that returns the `int` you need!
+也请思考一下，是否可以把 `main` 中的一部分代码提取到一个 `get_height` 函数中，让它返回你需要的那个 `int`！
 
-## Walkthrough
+## 讲解视频
 
-Note this walkthrough specifies your program should prompt the user for a pyramid’s height and *re*-prompt if the user inputs a value less than 1 or greater than 8. The specification only requires you to re-prompt the user if they input a value less than 1.
+请注意，这个讲解视频中说明：程序应提示用户输入金字塔高度，并在用户输入小于 1 或大于 8 的值时*重新*提示。当前规范只要求你在用户输入小于 1 的值时重新提示。
 
-## How to Test
+## 如何测试
 
-Does your code work as prescribed when you input:
+当你输入以下内容时，你的代码是否能按要求运行？
 
-- `-1` or other negative numbers?
-- `0`?
-- `1` or other positive numbers?
-- letters or words?
-- no input at all, when you only hit Enter?
+- `-1` 或其他负数？
+- `0`？
+- `1` 或其他正数？
+- 字母或单词？
+- 什么都不输入，只按 Enter？
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/mario/less
 ```
 
-### Style
+### 风格
 
 ```
 style50 mario.c
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在终端中执行以下命令来提交你的作业，并回答随后出现的提示。
 
 ```
 submit50 cs50/problems/2026/x/mario/less

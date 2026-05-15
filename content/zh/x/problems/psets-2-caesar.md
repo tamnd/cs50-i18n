@@ -1,61 +1,61 @@
 ---
 title: "Caesar - CS50x 2026"
 pset: 2
-draft: "false"
+draft: false
 ---
 
 ![Caesar Cipher](cipher.jpg)
 
-## Problem to Solve
+## 待解决的问题
 
-Supposedly, Caesar (yes, that Caesar) used to “encrypt” (i.e., conceal in a reversible way) confidential messages by shifting each letter therein by some number of places. For instance, he might write A as B, B as C, C as D, …, and, wrapping around alphabetically, Z as A. And so, to say HELLO to someone, Caesar might write IFMMP instead. Upon receiving such messages from Caesar, recipients would have to “decrypt” them by shifting letters in the opposite direction by the same number of places.
+据传，凯撒（没错，就是那个凯撒）曾通过将信件中的每个字母移动一定数量的位置来“加密”（即以可逆的方式隐藏）机密消息。例如，他可能会将 A 写成 B，B 写成 C，C 写成 D，……，并以此类推，按字母顺序循环，将 Z 写成 A。因此，为了给某人发送 HELLO，凯撒可能会写成 IFMMP。收信人在收到凯撒的这些消息后，必须通过将字母向相反方向移动相同数量的位置来“解密”它们。
 
-The secrecy of this “cryptosystem” relied on only Caesar and the recipients knowing a secret, the number of places by which Caesar had shifted his letters (e.g., 1). Not particularly secure by modern standards, but, hey, if you’re perhaps the first in the world to do it, pretty secure!
+这种“密码系统”的机密性依赖于只有凯撒和收信人知道一个秘密，即凯撒移动字母的位置数（例如 1）。按照现代标准，这并不是特别安全，但嘿，如果你可能是世界上第一个这样做的人，那已经非常安全了！
 
-Unencrypted text is generally called *plaintext*. Encrypted text is generally called *ciphertext*. And the secret used is called a *key*.
+未加密的文本通常被称为 *明文* (plaintext)。加密后的文本通常被称为 *密文* (ciphertext)。而所使用的秘密被称为 *密钥* (key)。
 
-To be clear, then, here’s how encrypting `HELLO` with a key of \\(1\\) yields `IFMMP`:
+为了明确起见，以下是使用密钥 \\(1\\) 加密 `HELLO` 得到 `IFMMP` 的过程：
 
-| plaintext    | `H`     | `E`     | `L`     | `L`     | `O`     |
+| 明文         | `H`     | `E`     | `L`     | `L`     | `O`     |
 |--------------|---------|---------|---------|---------|---------|
-| \+ key       | \\(1\\) | \\(1\\) | \\(1\\) | \\(1\\) | \\(1\\) |
-| = ciphertext | `I`     | `F`     | `M`     | `M`     | `P`     |
+| \+ 密钥      | \\(1\\) | \\(1\\) | \\(1\\) | \\(1\\) | \\(1\\) |
+| = 密文       | `I`     | `F`     | `M`     | `M`     | `P`     |
 
-More formally, Caesar’s algorithm (i.e., cipher) encrypts messages by “rotating” each letter by \\(k\\) positions. More formally, if \\(p\\) is some plaintext (i.e., an unencrypted message), \\(p\_i\\) is the \\(i^{th}\\) character in \\(p\\), and \\(k\\) is a secret key (i.e., a non-negative integer), then each letter, \\(c\_i\\), in the ciphertext, \\(c\\), is computed as
+更正式地，凯撒算法（即密码）通过将每个字母“旋转” \\(k\\) 个位置来加密消息。更正式地，如果 \\(p\\) 是某些明文（即未加密的消息），\\(p\_i\\) 是 \\(p\\) 中的第 \\(i\\) 个字符，而 \\(k\\) 是一个秘密密钥（即一个非负整数），那么密文 \\(c\\) 中的每个字母 \\(c\_i\\) 的计算公式为：
 
 \\\[c\_i = (p\_i + k)\\space\\%\\space26\\]
 
-wherein \\(\\%\\space26\\) here means “remainder when dividing by 26.” This formula perhaps makes the cipher seem more complicated than it is, but it’s really just a concise way of expressing the algorithm precisely. Indeed, for the sake of discussion, think of A (or a) as \\(0\\), B (or b) as \\(1\\), …, H (or h) as \\(7\\), I (or i) as \\(8\\), …, and Z (or z) as \\(25\\). Suppose that Caesar just wants to say `Hi` to someone confidentially using, this time, a key, \\(k\\), of 3. And so his plaintext, \\(p\\), is `Hi`, in which case his plaintext’s first character, \\(p\_0\\), is `H` (aka 7), and his plaintext’s second character, \\(p\_1\\), is `i` (aka 8). His ciphertext’s first character, \\(c\_0\\), is thus `K`, and his ciphertext’s second character, \\(c\_1\\), is thus `L`. Make sense?
+其中 \\(\\%\\space26\\) 在这里表示“除以 26 的余数”。这个公式可能让这种密码看起来比实际情况更复杂，但它实际上只是精确表达该算法的一种简明方式。事实上，为了便于讨论，可以将 A（或 a）视为 \\(0\\)，B（或 b）视为 \\(1\\)，……，H（或 h）视为 \\(7\\)，I（或 i）视为 \\(8\\)，……，以及 Z（或 z）视为 \\(25\\)。假设凯撒只想秘密地对某人说 `Hi`，这次使用的密钥 \\(k\\) 为 3。因此他的明文 \\(p\\) 是 `Hi`，在这种情况下，他明文的第一个字符 \\(p\_0\\) 是 `H`（即 7），他明文的第二个字符 \\(p\_1\\) 是 `i`（即 8）。因此他密文的第一个字符 \\(c\_0\\) 是 `K`，他密文的第二个字符 \\(c\_1\\) 是 `L`。明白了吗？
 
-In a file called `caesar.c` in a folder called `caesar`, write a program that enables you to encrypt messages using Caesar’s cipher. At the time the user executes the program, they should decide, by providing a command-line argument, what the key should be in the secret message they’ll provide at runtime. We shouldn’t necessarily assume that the user’s key is going to be a number; though you may assume that, if it is a number, it will be a positive integer.
+在名为 `caesar` 的文件夹中一个名为 `caesar.c` 的文件中，编写一个程序，使你能够使用凯撒密码加密消息。在用户执行程序时，他们应该通过提供命令行参数来决定在运行时提供的秘密消息中密钥应该是什么。我们不应该一定假设用户的密钥会是一个数字；尽管你可以假设，如果它是一个数字，它将是一个正整数。
 
-## Demo
+## 演示
 
-## Specification
+## 规范
 
-Design and implement a program, `caesar`, that encrypts messages using Caesar’s cipher.
+设计并实现一个程序 `caesar`，使用凯撒密码加密消息。
 
-- Implement your program in a file called `caesar.c` in a directory called `caesar`.
-- Your program must accept a single command-line argument, a non-negative integer. Let’s call it \\(k\\) for the sake of discussion.
-- If your program is executed without any command-line arguments or with more than one command-line argument, your program should print an error message of your choice (with `printf`) and return from `main` a value of `1` (which tends to signify an error) immediately.
-- If any of the characters of the command-line argument is not a decimal digit, your program should print the message `Usage: ./caesar key` and return from `main` a value of `1`.
-- Do not assume that \\(k\\) will be less than or equal to 26. Your program should work for all non-negative integral values of \\(k\\) less than \\(2^{31} - 26\\). In other words, you don’t need to worry if your program eventually breaks if the user chooses a value for \\(k\\) that’s too big or almost too big to fit in an `int`. (Recall that an `int` can overflow.) But, even if \\(k\\) is greater than \\(26\\), alphabetical characters in your program’s input should remain alphabetical characters in your program’s output. For instance, if \\(k\\) is \\(27\\), `A` should not become `\` even though `\` is \\(27\\) positions away from `A` in ASCII, per [asciitable.com](https://www.asciitable.com/); `A` should become `B`, since `B` is \\(27\\) positions away from `A`, provided you wrap around from `Z` to `A`.
-- Your program must output `plaintext:` (with two spaces but without a newline) and then prompt the user for a `string` of plaintext (using `get_string`).
-- Your program must output `ciphertext:` (with one space but without a newline) followed by the plaintext’s corresponding ciphertext, with each alphabetical character in the plaintext “rotated” by *k* positions; non-alphabetical characters should be outputted unchanged.
-- Your program must preserve case: capitalized letters, though rotated, must remain capitalized letters; lowercase letters, though rotated, must remain lowercase letters.
-- After outputting ciphertext, you should print a newline. Your program should then exit by returning `0` from `main`.
+- 在名为 `caesar` 的目录中名为 `caesar.c` 的文件中实现你的程序。
+- 你的程序必须接受一个命令行参数，一个非负整数。为了讨论方便，我们称之为 \\(k\\)。
+- 如果你的程序在执行时没有任何命令行参数或有超过一个命令行参数，你的程序应该打印一条你选择的错误消息（使用 `printf`）并立即从 `main` 返回值 `1`（这往往表示错误）。
+- 如果命令行参数中的任何字符不是十进制数字，你的程序应该打印消息 `Usage: ./caesar key` 并从 `main` 返回值 `1`。
+- 不要假设 \\(k\\) 将小于或等于 26。你的程序应该适用于所有小于 \\(2^{31} - 26\\) 的非负整数 \\(k\\)。换句话说，如果用户选择的 \\(k\\) 值太大或几乎大到无法放入 `int`，你不需要担心程序最终会崩溃。（回想一下 `int` 可能会溢出。）但是，即使 \\(k\\) 大于 \\(26\\)，程序输入中的字母字符在程序输出中仍应保持为字母字符。例如，如果 \\(k\\) 是 \\(27\\)，即使按照 [asciitable.com](https://www.asciitable.com/)，`\` 与 `A` 在 ASCII 中相距 \\(27\\) 个位置，`A` 也不应变成 `\`；`A` 应该变成 `B`，因为只要你从 `Z` 绕回到 `A`，`B` 距离 `A` 就是 \\(27\\) 个位置。
+- 你的程序必须输出 `plaintext:`（带有两个空格但没有换行符），然后提示用户输入一段明文 `string`（使用 `get_string`）。
+- 你的程序必须输出 `ciphertext:`（带有一个空格但没有换行符），后跟明文对应的密文，明文中的每个字母字符都“旋转”了 *k* 个位置；非字母字符应原样输出。
+- 你的程序必须保留大小写：大写字母虽然旋转了，但必须保持大写；小写字母虽然旋转了，但必须保持小写。
+- 输出密文后，你应该打印一个换行符。然后你的程序应该通过从 `main` 返回 `0` 来退出。
 
-## Advice
+## 建议
 
-How to begin? Let’s approach this problem one step at a time.
+如何开始？让我们一步一步地解决这个问题。
 
-### Pseudocode
+### 伪代码
 
-First write, try to write a `main` function in `caesar.c` that implements the program using just pseudocode, even if not (yet!) sure how to write it in actual code.
+首先，尝试在 `caesar.c` 中编写一个 `main` 函数，仅使用伪代码实现该程序，即使（还！）不确定如何用实际代码编写它。
 
-Hint
+提示
 
-There’s more than one way to do this, so here’s just one!
+有多种方法可以做到这一点，这里只是其中一种！
 
 ```c
 int main(int argc, string argv[])
@@ -74,13 +74,13 @@ int main(int argc, string argv[])
 }
 ```
 
-It’s okay to edit your own pseudocode after seeing ours here, but don’t simply copy/paste ours into your own!
+在看了我们的伪代码后修改你自己的伪代码是可以的，但不要简单地将我们的伪代码复制/粘贴到你自己的代码中！
 
-### Counting Command-Line Arguments
+### 计算命令行参数
 
-Whatever your pseudocode, let’s first write only the C code that checks whether the program was run with a single command-line argument before adding additional functionality.
+无论你的伪代码如何，让我们先只编写检查程序是否带有一个命令行参数运行的 C 代码，然后再添加其他功能。
 
-Specifically, modify `main` in `caesar.c` in such a way that, if the user provides no command-line arguments, or two or more, the function prints `"Usage: ./caesar key\n"` and then returns `1`, effectively exiting the program. If the user provides exactly one command-line argument, the program should print nothing and simply return `0`. The program should thus behave per the below.
+具体来说，修改 `caesar.c` 中的 `main` 函数，使得如果用户没有提供命令行参数，或者提供了两个或更多，该函数将打印 `"Usage: ./caesar key\n"` 然后返回 `1`，从而有效地退出程序。如果用户恰好提供了一个命令行参数，程序应该不打印任何内容并简单地返回 `0`。程序的行为应如下所示。
 
 ```bash
 $ ./caesar
@@ -96,32 +96,32 @@ Usage: ./caesar key
 $ ./caesar 1
 ```
 
-Hints
+提示
 
-- Recall that you can print with `printf`.
-- Recall that a function can return a value with `return`.
-- Recall that `argc` contains the number of command-line arguments passed to a program, plus the program’s own name.
+- 回想一下你可以使用 `printf` 进行打印。
+- 回想一下函数可以使用 `return` 返回一个值。
+- 回想一下 `argc` 包含了传递给程序的命令行参数数量，加上程序本身的名字。
 
-### Checking the Key
+### 检查密钥
 
-Now that your program is (hopefully!) accepting input as prescribed, it’s time for another step.
+现在你的程序（希望！）已经按照规定接受输入了，是时候进行下一步了。
 
-Add to `caesar.c`, below `main`, a function called, e.g., `only_digits` that takes a `string` as an argument and returns `true` if that `string` contains only digits, `0` through `9`, else it returns `false`. Be sure to add the function’s prototype above `main` as well.
+在 `caesar.c` 的 `main` 函数下方添加一个函数，例如名为 `only_digits`，它接受一个 `string` 作为参数，如果该 `string` 仅包含数字 `0` 到 `9`，则返回 `true`，否则返回 `false`。务必在 `main` 上方也添加该函数的原型。
 
-Hints
+提示
 
-- Odds are you’ll want a prototype like:
+- 你可能需要类似这样的原型：
   
   ```
   bool only_digits(string s);
   ```
   
-  And be sure to include `cs50.h` atop your file, so that the compiler recognizes `string` (and `bool`).
-- Recall that a `string` is just an array of `char`s.
-- Recall that `strlen`, declared in `string.h`, calculates the length of a `string`.
-- You might find `isdigit`, declared in `ctype.h`, to be helpful, per [manual.cs50.io](https://manual.cs50.io/). But note that it only checks one `char` at a time!
+  并确保在文件顶部包含 `cs50.h`，以便编译器识别 `string`（和 `bool`）。
+- 回想一下 `string` 只是一个 `char` 数组。
+- 回想一下在 `string.h` 中声明的 `strlen` 可以计算 `string` 的长度。
+- 你可能会发现 `ctype.h` 中声明的 `isdigit` 很有用，详情参见 [manual.cs50.io](https://manual.cs50.io/)。但请注意，它一次只能检查一个 `char`！
 
-Then modify `main` in such a way that it calls `only_digits` on `argv[1]`. If that function returns `false`, then `main` should print `"Usage: ./caesar key\n"` and return `1`. Else `main` should simply return `0`. The program should thus behave per the below:
+然后修改 `main`，使其对 `argv[1]` 调用 `only_digits`。如果该函数返回 `false`，则 `main` 应打印 `"Usage: ./caesar key\n"` 并返回 `1`。否则 `main` 应简单返回 `0`。程序的行为应如下所示：
 
 ```bash
 $ ./caesar 42
@@ -132,87 +132,87 @@ $ ./caesar banana
 Usage: ./caesar key
 ```
 
-### Using the Key
+### 使用密钥
 
-Now modify `main` in such a way that it converts `argv[1]` to an `int`. You might find `atoi`, declared in `stdlib.h`, to be helpful, per [manual.cs50.io](https://manual.cs50.io/). And then use `get_string` to prompt the user for some plaintext with `"plaintext: "`.
+现在修改 `main`，使其将 `argv[1]` 转换为 `int`。你可能会发现 `stdlib.h` 中声明的 `atoi` 很有用，详情参见 [manual.cs50.io](https://manual.cs50.io/)。然后使用 `get_string` 以 `"plaintext: "` 提示用户输入一些明文。
 
-Then, implement a function called, e.g., `rotate`, that takes a `char` as input and also an `int`, and rotates that `char` by that many positions if it’s a letter (i.e., alphabetical), wrapping around from `Z` to `A` (and from `z` to `a`) as needed. If the `char` is not a letter, the function should instead return the same `char` unchanged.
+接着，实现一个名为 `rotate` 的函数，它接受一个 `char` 和一个 `int` 作为输入，如果该 `char` 是字母（即字母表字符），则将其旋转指定的位置，并根据需要从 `Z` 绕回到 `A`（以及从 `z` 绕回到 `a`）。如果该 `char` 不是字母，则函数应返回原样字符。
 
-Hints
+提示
 
-- Odds are you’ll want a prototype like:
+- 你可能需要类似这样的原型：
   
   ```
   char rotate(char c, int n);
   ```
   
-  A function call like
+  像
   
   ```
   rotate('A', 1)
   ```
   
-  or even
+  甚至
   
   ```
   rotate('A', 27)
   ```
   
-  should thus return `'B'`. And a function call like
+  这样的函数调用应返回 `'B'`。而像
   
   ```
   rotate('!', 13)
   ```
   
-  should return `'!'`.
-- Recall that you can explicitly “cast” a `char` to an `int` with `(int)`, and an `int` to a `char` with `(char)`. Or you can do so implicitly by simply treating one as the other.
-- Odds are you’ll want to subtract the ASCII value of `'A'` from any uppercase letters, so as to treat `'A'` as `0`, `'B'` as `1`, and so forth, while performing arithmetic. And then add it back when done with the same.
-- Odds are you’ll want to subtract the ASCII value of `'a'` from any lowercase letters, so as to treat `'a'` as `0`, `'b'` as `1`, and so forth, while performing arithmetic. And then add it back when done with the same.
-- You might find some other functions declared in `ctype.h` to be helpful, per [manual.cs50.io](https://manual.cs50.io/).
-- Odds are you’ll find `%` helpful when “wrapping around” arithmetically from a value like `25` to `0`.
+  这样的函数调用应返回 `'!'`。
+- 回想一下你可以使用 `(int)` 显式地将 `char` “转换”为 `int`，并使用 `(char)` 将 `int` “转换”为 `char`。或者你可以通过直接将其中一个视为另一个来隐式地进行转换。
+- 在进行算术运算时，你可能需要从任何大写字母中减去 `'A'` 的 ASCII 值，以便将 `'A'` 视为 `0`，`'B'` 视为 `1` 等。完成后再将其加回去。
+- 在进行算术运算时，你可能需要从任何小写字母中减去 `'a'` 的 ASCII 值，以便将 `'a'` 视为 `0`，`'b'` 视为 `1` 等。完成后再将其加回去。
+- 你可能会发现 `ctype.h` 中声明的其他一些函数很有用，详情参见 [manual.cs50.io](https://manual.cs50.io/)。
+- 在从 `25` 算术性地“绕回”到 `0` 时，你可能会发现 `%` 很有用。
 
-Then modify `main` in such a way that it prints `"ciphertext: "` and then iterates over every `char` in the user’s plaintext, calling `rotate` on each, and printing the return value thereof.
+然后修改 `main`，使其打印 `"ciphertext: "`，然后遍历用户明文中的每个 `char`，对每个字符调用 `rotate`，并打印其返回值。
 
-Hints
+提示
 
-- Recall that `printf` can print a `char` using `%c`.
-- If you’re not seeing any output at all when you call `printf`, odds are it’s because you’re printing characters outside of the valid ASCII range from 0 to 127. Try printing characters temporarily as numbers (using `%i` instead of `%c`) to see what values you’re printing!
+- 回想一下 `printf` 可以使用 `%c` 打印一个 `char`。
+- 如果你在调用 `printf` 时没有看到任何输出，很可能是因为你打印的字符超出了 0 到 127 的有效 ASCII 范围。尝试临时将字符打印为数字（使用 `%i` 而不是 `%c`）来看看你打印的是什么值！
 
-## Walkthrough
+## 视频讲解
 
-## How to Test
+## 如何测试
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/caesar
 ```
 
-How to Use `debug50`
+如何使用 `debug50`
 
-Looking to run `debug50`? You can do so as follows, after compiling your code successfully with `make`,
+想运行 `debug50` 吗？在使用 `make` 成功编译代码后，你可以按如下方式运行：
 
 ```
 debug50 ./caesar KEY
 ```
 
-wherein `KEY` is the key you give as a command-line argument to your program. Note that running
+其中 `KEY` 是你作为命令行参数提供给程序的密钥。注意运行
 
 ```
 debug50 ./caesar
 ```
 
-will (ideally!) cause your program end by prompting the user for a key.
+将（理想情况下！）导致你的程序因提示用户输入密钥而结束。
 
-### Style
+### 风格
 
 ```
 style50 caesar.c
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在你的终端中，执行以下命令来提交你的工作，并根据出现的提示进行操作。
 
 ```
 submit50 cs50/problems/2026/x/caesar

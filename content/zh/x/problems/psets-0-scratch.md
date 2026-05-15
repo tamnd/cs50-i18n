@@ -1,61 +1,61 @@
 ---
-title: "Starting from Scratch - CS50x 2026"
+title: "从 Scratch 开始 - CS50x 2026"
 pset: 0
-draft: "false"
+draft: false
 ---
 
-It’s time to choose your own adventure! Your assignment, quite simply, is to implement in Scratch, at [scratch.mit.edu](https://scratch.mit.edu), any project of your choice, be it an interactive story, game, animation, or anything else, subject only to the following requirements:
+是时候选择你自己的冒险了！这个作业很简单：请在 [scratch.mit.edu](https://scratch.mit.edu) 上用 Scratch 实现一个你自选的项目。它可以是互动故事、游戏、动画，或任何其他形式，只需满足以下要求：
 
-- Your project must use at least two sprites, at least one of which must not be a cat.
-- Your project must have at least three scripts total (i.e., not necessarily three per sprite).
-- Your project must use at least one conditional, at least one loop, and at least one variable.
-- Your project must use at least one custom block that you have made yourself (via **Make a Block**), which must take at least one input.
-- Your project should be more complex than most of those demonstrated in lecture (many of which, though instructive, were quite short) but it can be less complex than [Oscartime](https://scratch.mit.edu/projects/277537196) and [Ivy’s Hardest Game](https://scratch.mit.edu/projects/326129433).
+- 你的项目必须至少使用两个角色，其中至少一个不能是猫。
+- 你的项目总共必须至少有三个脚本（也就是说，不必每个角色都有三个）。
+- 你的项目必须至少使用一个条件判断、一个循环和一个变量。
+- 你的项目必须至少使用一个你自己创建的自定义积木（通过 **Make a Block**），并且这个积木必须至少接收一个输入。
+- 你的项目应该比课堂上演示的大多数项目更复杂（其中许多项目虽然有教学意义，但都相当短），但可以比 [Oscartime](https://scratch.mit.edu/projects/277537196) 和 [Ivy’s Hardest Game](https://scratch.mit.edu/projects/326129433) 简单。
 
-To meet these requirements, your project should probably use a few dozen puzzle pieces overall. And your code should ideally be not only correct but also well-designed. If one of your scripts is getting a bit long, try to break it up into multiple scripts (each of which does something specific). And try to leverage “abstraction” where possible: if you can imagine giving a descriptive name to a sequence of blocks (e.g., **meow**), those could probably be moved to a custom block!
+为了满足这些要求，你的项目大概需要使用几十个积木。理想情况下，你的代码不仅要正确，还要设计良好。如果某个脚本变得有点长，试着把它拆成多个脚本，让每个脚本只负责一件具体的事情。也请尽量利用“抽象”：如果你能想到给一串积木起一个描述性的名字（例如 **meow**），那么它们很可能就适合被移到一个自定义积木里！
 
-If you’d like some inspiration from past students, here are just a few:
+如果你想从往届学生的作品中获得一些灵感，这里有几个例子：
 
-- [It’s Raining Men](https://scratch.mit.edu/projects/37412/), from lecture
-- [Soccer](https://scratch.mit.edu/projects/37413/), a game
-- [Cookie Love Story](https://scratch.mit.edu/projects/26329196/), an animation
-- [Gingerbread tales](https://scratch.mit.edu/projects/277536784/), an interactive story
-- [Intersection](https://scratch.mit.edu/projects/75390754/), a game
-- [Hogwarts](https://scratch.mit.edu/projects/422258685), a game
+- [It’s Raining Men](https://scratch.mit.edu/projects/37412/)，课堂示例
+- [Soccer](https://scratch.mit.edu/projects/37413/)，一个游戏
+- [Cookie Love Story](https://scratch.mit.edu/projects/26329196/)，一个动画
+- [Gingerbread tales](https://scratch.mit.edu/projects/277536784/)，一个互动故事
+- [Intersection](https://scratch.mit.edu/projects/75390754/)，一个游戏
+- [Hogwarts](https://scratch.mit.edu/projects/422258685)，一个游戏
 
-You might find these [tutorials](https://scratch.mit.edu/projects/editor/?tutorial=all) or [starter projects](https://scratch.mit.edu/starter-projects) helpful. And you’re welcome to explore [scratch.mit.edu](https://scratch.mit.edu/explore/projects/all) for inspiration. But try to think of an idea on your own, and then set out to implement it. However, don’t try to implement the entirety of your project all at once: tackle one piece at a time, just as we did in lecture. In other words, take baby steps: write a bit of code (i.e., drag and drop a few puzzle pieces), test, write a bit more, test, and so forth. And select **File &gt; Save now** every few minutes so that you don’t lose any work!
+这些 [tutorials](https://scratch.mit.edu/projects/editor/?tutorial=all) 或 [starter projects](https://scratch.mit.edu/starter-projects) 也许会有帮助。你也可以浏览 [scratch.mit.edu](https://scratch.mit.edu/explore/projects/all) 来寻找灵感。不过，请尽量先自己想出一个点子，然后着手实现它。不要试图一次性完成整个项目；像我们在课堂上做的那样，一次处理一个小部分。换句话说，循序渐进：写一点代码（也就是拖放几个积木），测试，再写一点，再测试，如此反复。并且每隔几分钟就选择 **File &gt; Save now**，以免丢失工作！
 
-If, along the way, you find it too difficult to implement some feature, try not to fret; alter your design or work around the problem. If you set out to implement an idea that you find fun, odds are you won’t find it too hard to satisfy the above requirements.
+如果在实现过程中发现某个功能太难完成，不必担心；可以调整你的设计，或者换一种方式绕过这个问题。只要你选择的是一个自己觉得有趣的想法，通常就不会太难满足上面的要求。
 
-If you decide to import any backdrops, costumes, or sounds into your project, do take care to cite their origin with a [comment](https://en.scratch-wiki.info/wiki/Comment_%28programming_feature%29)!
+如果你决定在项目中导入任何背景、造型或声音，请务必用一条 [comment](https://en.scratch-wiki.info/wiki/Comment_%28programming_feature%29) 注明它们的来源！
 
-Alright, off you go. Make us proud!
+好了，开始吧。期待你做出让我们骄傲的作品！
 
-For this problem, it is **reasonable** to submit a Scratch project that you have previously submitted to another CS50 course, so long as it meets the above requirements.
+对于这个问题集，只要你的 Scratch 项目满足上述要求，提交一个你以前已经提交给其他 CS50 课程的 Scratch 项目是**合理**的。
 
-Once finished with your project, select **File &gt; Save now** one last time. Then select **File &gt; Save to your computer** and keep that file so that you can submit it. If prompted by your computer to **Open** or **Save** the file, be sure to **Save** it.
+完成项目后，最后再选择一次 **File &gt; Save now**。然后选择 **File &gt; Save to your computer**，保留下载得到的文件，以便提交。如果你的计算机提示你 **Open** 或 **Save** 该文件，请务必选择 **Save**。
 
-## How to Submit
+## 如何提交
 
-Be sure to complete **the steps below, in exactly that order**!
+请务必**严格按照下面的顺序**完成这些步骤！
 
-### Step 1 of 2
+### 第 1 步，共 2 步
 
-Submit [this form](https://forms.cs50.io/2c8a006a-ad63-4894-a380-f999b219436c).
+提交[此表单](https://forms.cs50.io/2c8a006a-ad63-4894-a380-f999b219436c)。
 
-At some point (it may vary from a few weeks to a few months, as these get batched up manually) after you submit this form you may receive an invitation to GitHub Education, since you provide your GitHub username as part of this submission process. This is to be expected! Learn more at [github.com/education/students](https://github.com/education/students).
+提交此表单后，在某个时间点（可能从几周到几个月不等，因为这些邀请会人工分批处理），你可能会收到 GitHub Education 的邀请，因为你在提交过程中提供了自己的 GitHub 用户名。这是正常情况！可在 [github.com/education/students](https://github.com/education/students) 了解更多信息。
 
-### Step 2 of 2
+### 第 2 步，共 2 步
 
-This step assumes that you’ve downloaded your Scratch project as a file whose name ends in `.sb3`. And this step also assumes that you’ve signed up for a GitHub account, per the above form.
+这一步假设你已经把 Scratch 项目下载为一个文件，并且文件名以 `.sb3` 结尾。同时，这一步也假设你已经按照上面的表单注册了 GitHub 账号。
 
-1. Visit [this link](https://submit.cs50.io/invites/9770b67479384c4d8c37790779e466d9), log in with your GitHub account, and click **Authorize cs50**.
-2. Check the box indicating that you’d like to grant course staff access to your submissions, and click **Join course**.
-3. Go to [submit.cs50.io/upload/cs50/problems/2026/x/scratch](https://submit.cs50.io/upload/cs50/problems/2026/x/scratch).
-4. Click “Choose File” and choose your `.sb3` file. Click **Submit**.
+1. 访问[此链接](https://submit.cs50.io/invites/9770b67479384c4d8c37790779e466d9)，用你的 GitHub 账号登录，然后点击 **Authorize cs50**。
+2. 勾选表示你愿意授权课程工作人员访问你的提交内容的复选框，然后点击 **Join course**。
+3. 前往 [submit.cs50.io/upload/cs50/problems/2026/x/scratch](https://submit.cs50.io/upload/cs50/problems/2026/x/scratch)。
+4. 点击“Choose File”，选择你的 `.sb3` 文件。点击 **Submit**。
 
-If you encounter the error “No files in this directory are expected by cs50/problems/2026/x/scratch”, please make sure your scratch project file name indeed ends with `.sb3`!
+如果你遇到错误 “No files in this directory are expected by cs50/problems/2026/x/scratch”，请确认你的 Scratch 项目文件名确实以 `.sb3` 结尾！
 
-That’s it! Once your submission uploads, you should be redirected to your submission page. Click the submission link and then the **check50** link to see which requirements your project met. You are welcome to resubmit as many times as you’d like (before the deadline)! Note that if you upload a file whose size is larger than 10MB (which is quite large for a Scratch project) `check50` may struggle to process it. Best to make sure your file is smaller than that limit.
+就这样！提交上传完成后，你应该会被重定向到你的提交页面。点击提交链接，然后点击 **check50** 链接，查看你的项目满足了哪些要求。你可以在截止日期前按需多次重新提交！请注意，如果你上传的文件大于 10MB（对 Scratch 项目来说这已经相当大），`check50` 可能难以处理它。最好确保文件小于这个限制。
 
-To view your current progress in the course, visit the course gradebook at [cs50.me/cs50x](https://cs50.me/cs50x)!
+要查看你目前在课程中的进度，请访问课程成绩册 [cs50.me/cs50x](https://cs50.me/cs50x)！

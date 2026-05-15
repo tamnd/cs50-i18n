@@ -1,71 +1,71 @@
 ---
-title: "Substitution - CS50x 2026"
+title: "替换密码 - CS50x 2026"
 pset: 2
-draft: "false"
+draft: false
 ---
 
-## Problem to Solve
+## 待解决的问题
 
-In a substitution cipher, we “encrypt” (i.e., conceal in a reversible way) a message by replacing every letter with another letter. To do so, we use a *key*: in this case, a mapping of each of the letters of the alphabet to the letter it should correspond to when we encrypt it. To “decrypt” the message, the receiver of the message would need to know the key, so that they can reverse the process: translating the encrypt text (generally called *ciphertext*) back into the original message (generally called *plaintext*).
+在替换密码中，我们通过将每个字母替换为另一个字母来“加密”（即以可逆的方式隐藏）消息。为此，我们使用一个*密钥*：在这种情况下，即字母表中的每个字母与加密时对应的字母之间的映射。为了“解密”消息，接收者需要知道密钥，以便他们可以反转这个过程：将加密后的文本（通常称为*密文*）转换回原始消息（通常称为*明文*）。
 
-A key, for example, might be the string `NQXPOMAFTRHLZGECYJIUWSKDVB`. This 26-character key means that `A` (the first letter of the alphabet) should be converted into `N` (the first character of the key), `B` (the second letter of the alphabet) should be converted into `Q` (the second character of the key), and so forth.
+例如，一个密钥可能是字符串 `NQXPOMAFTRHLZGECYJIUWSKDVB`。这个包含 26 个字符的密钥意味着 `A`（字母表的第一个字母）应转换为 `N`（密钥的第一个字符），`B`（字母表的第二个字母）应转换为 `Q`（密钥的第二个字符），依此类推。
 
-A message like `HELLO`, then, would be encrypted as `FOLLE`, replacing each of the letters according to the mapping determined by the key.
+那么，像 `HELLO` 这样的消息将被加密为 `FOLLE`，即根据密钥确定的映射替换每个字母。
 
-In a file called `substitution.c` in a folder called `substitution`, create a program that enables you to encrypt messages using a substitution cipher. At the time the user executes the program, they should decide, by providing a command-line argument, on what the key should be in the secret message they’ll provide at runtime.
+在名为 `substitution` 的文件夹中创建一个名为 `substitution.c` 的文件，编写一个程序，使你能够使用替换密码加密消息。在用户执行程序时，他们应通过提供命令行参数来决定在运行时提供的秘密消息中使用的密钥。
 
-## Demo
+## 演示
 
-## Specification
+## 规范
 
-Design and implement a program, `substitution`, that encrypts messages using a substitution cipher.
+设计并实现一个程序 `substitution`，使用替换密码加密消息。
 
-- Implement your program in a file called `substitution.c` in a directory called `substitution`.
-- Your program must accept a single command-line argument, the key to use for the substitution. The key itself should be case-insensitive, so whether any character in the key is uppercase or lowercase should not affect the behavior of your program.
-- If your program is executed without any command-line arguments or with more than one command-line argument, your program should print an error message of your choice (with `printf`) and return from `main` a value of `1` (which tends to signify an error) immediately.
-- If the key is invalid (as by not containing 26 characters, containing any character that is not an alphabetic character, or not containing each letter exactly once), your program should print an error message of your choice (with `printf`) and return from `main` a value of `1` immediately.
-- Your program must output `plaintext:` (without a newline) and then prompt the user for a `string` of plaintext (using `get_string`).
-- Your program must output `ciphertext:` (without a newline) followed by the plaintext’s corresponding ciphertext, with each alphabetical character in the plaintext substituted for the corresponding character in the ciphertext; non-alphabetical characters should be outputted unchanged.
-- Your program must preserve case: capitalized letters must remain capitalized letters; lowercase letters must remain lowercase letters.
-- After outputting ciphertext, you should print a newline. Your program should then exit by returning `0` from `main`.
+- 在 `substitution` 目录下的 `substitution.c` 文件中实现你的程序。
+- 你的程序必须接受一个命令行参数，即用于替换的密钥。密钥本身应是不区分大小写的，因此密钥中任何字符的大写或小写形式都不应影响程序的行为。
+- 如果你的程序在执行时没有提供任何命令行参数，或者提供了多个命令行参数，你的程序应打印一条你选择的错误消息（使用 `printf`）并立即从 `main` 返回值 `1`（通常表示错误）。
+- 如果密钥无效（例如不包含 26 个字符，包含任何非字母字符，或者每个字母不是恰好出现一次），你的程序应打印一条你选择的错误消息（使用 `printf`）并立即从 `main` 返回值 `1`。
+- 你的程序必须输出 `plaintext:`（不带换行符），然后提示用户输入一个明文 `string`（使用 `get_string`）。
+- 你的程序必须输出 `ciphertext:`（不带换行符），后跟明文对应的密文，明文中的每个字母字符都替换为密文中的相应字符；非字母字符应原样输出。
+- 你的程序必须保留大小写：大写字母必须保持大写，小写字母必须保持小写。
+- 输出密文后，你应该打印一个换行符。然后你的程序应通过从 `main` 返回 `0` 来退出。
 
-You might find one or more functions declared in `ctype.h` to be helpful, per [manual.cs50.io](https://manual.cs50.io/).
+你可能会发现 `ctype.h` 中声明的一个或多个函数很有帮助，详见 [manual.cs50.io](https://manual.cs50.io/)。
 
-## Walkthrough
+## 导学视频
 
-## How to Test
+## 如何测试
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/substitution
 ```
 
-How to Use `debug50`
+如何使用 `debug50`
 
-Looking to run `debug50`? You can do so as follows, after compiling your code successfully with `make`,
+想要运行 `debug50` 吗？在成功使用 `make` 编译代码后，你可以按如下方式操作：
 
 ```
 debug50 ./substitution KEY
 ```
 
-wherein `KEY` is the key you give as a command-line argument to your program. Note that running
+其中 `KEY` 是你作为命令行参数提供给程序的密钥。注意，运行
 
 ```
 debug50 ./substitution
 ```
 
-will (ideally!) cause your program end by prompting the user for a key.
+将（理想情况下！）导致你的程序因提示用户输入密钥而结束。
 
-### Style
+### 代码风格
 
 ```
 style50 substitution.c
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在你的终端中，执行以下命令提交你的作品，并根据提示进行操作。
 
 ```
 submit50 cs50/problems/2026/x/substitution

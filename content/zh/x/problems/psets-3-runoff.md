@@ -1,98 +1,98 @@
 ---
 title: "Runoff - CS50x 2026"
 pset: 3
-draft: "false"
+draft: false
 ---
 
-## Problem to Solve
+## 问题待解
 
-You already know about plurality elections, which follow a very simple algorithm for determining the winner of an election: every voter gets one vote, and the candidate with the most votes wins.
+你已经了解了多数票选举（plurality elections），它遵循一个非常简单的确定选举获胜者的算法：每个投票者投一票，票数最多的候选人获胜。
 
-But the plurality vote does have some disadvantages. What happens, for instance, in an election with three candidates, and the ballots below are cast?
+但多数票选举确实有一些缺点。例如，在有三名候选人的选举中，如果投出以下选票，会发生什么？
 
 ![Five ballots, tie betweeen Alice and Bob](../fptp_ballot_1.png)
 
-A plurality vote would here declare a tie between Alice and Bob, since each has two votes. But is that the right outcome?
+在这里，多数票选举将宣布 Alice 和 Bob 之间出现平局，因为两人各有两票。但这真的是正确的结果吗？
 
-There’s another kind of voting system known as a ranked-choice voting system. In a ranked-choice system, voters can vote for more than one candidate. Instead of just voting for their top choice, they can rank the candidates in order of preference. The resulting ballots might therefore look like the below.
+还有另一种投票系统，被称为排序复选制（ranked-choice voting system）。在排序复选制中，投票者可以投票给多名候选人。他们不仅是投票给自己的首选，还可以按偏好顺序列出候选人。因此，生成的选票可能如下所示。
 
 ![Five ballots, with ranked preferences](../ranked_ballot_1.png)
 
-Here, each voter, in addition to specifying their first preference candidate, has also indicated their second and third choices. And now, what was previously a tied election could now have a winner. The race was originally tied between Alice and Bob, so Charlie was out of the running. But the voter who chose Charlie preferred Alice over Bob, so Alice could here be declared the winner.
+在这里，每位投票者除了指定他们的第一偏好候选人外，还指明了他们的第二和第三选择。现在，之前平局的选举就可以产生获胜者了。比赛最初在 Alice 和 Bob 之间打平，所以 Charlie 出局了。但选择 Charlie 的投票者更喜欢 Alice 而不是 Bob，因此这里可以宣布 Alice 为获胜者。
 
-Ranked choice voting can also solve yet another potential drawback of plurality voting. Take a look at the following ballots.
+排序复选制还可以解决多数票选举的另一个潜在缺点。看看下面的选票。
 
 ![Nine ballots, with ranked preferences](../ranked_ballot_3.png)
 
-Who should win this election? In a plurality vote where each voter chooses their first preference only, Charlie wins this election with four votes compared to only three for Bob and two for Alice. But a majority of the voters (5 out of the 9) would be happier with either Alice or Bob instead of Charlie. By considering ranked preferences, a voting system may be able to choose a winner that better reflects the preferences of the voters.
+谁应该赢得这次选举？在每位投票者仅选择其第一偏好的多数票选举中，Charlie 以四票获胜，而 Bob 只有三票，Alice 只有两票。但大多数投票者（9 人中的 5 人）会更喜欢 Alice 或 Bob，而不是 Charlie。通过考虑排序偏好，投票系统可能能够选出更符合投票者偏好的获胜者。
 
-One such ranked choice voting system is the instant runoff system. In an instant runoff election, voters can rank as many candidates as they wish. If any candidate has a majority (more than 50%) of the first preference votes, that candidate is declared the winner of the election.
+即时决选制（instant runoff system）就是这样一种排序复选制。在即时决选选举中，投票者可以根据自己的意愿对尽可能多的候选人进行排序。如果任何候选人获得了超过 50% 的第一偏好选票，该候选人即被宣布为选举获胜者。
 
-If no candidate has more than 50% of the vote, then an “instant runoff” occurrs. The candidate who received the fewest number of votes is eliminated from the election, and anyone who originally chose that candidate as their first preference now has their second preference considered. Why do it this way? Effectively, this simulates what would have happened if the least popular candidate had not been in the election to begin with.
+如果没有候选人获得超过 50% 的选票，就会发生“即时决选”。得票数最少的候选人将从选举中被淘汰，任何最初选择该候选人为第一偏好的人，现在将考虑他们的第二偏好。为什么要这样做？实际上，这模拟了如果最不受欢迎的候选人最初没有参加选举会发生的情况。
 
-The process repeats: if no candidate has a majority of the votes, the last place candidate is eliminated, and anyone who voted for them will instead vote for their next preference (who hasn’t themselves already been eliminated). Once a candidate has a majority, that candidate is declared the winner.
+该过程不断重复：如果没有候选人获得多数票，最后一名候选人将被淘汰，投票给他们的人将改为投票给他们的下一个偏好（且该偏好本身尚未被淘汰）。一旦有候选人获得多数票，该候选人即被宣布为获胜者。
 
-Sounds a bit more complicated than a plurality vote, doesn’t it? But it arguably has the benefit of being an election system where the winner of the election more accurately represents the preferences of the voters. In a file called `runoff.c` in a folder called `runoff`, create a program to simulate a runoff election.
+听起来比多数票选举复杂一点，不是吗？但可以说它的好处是，作为一种选举系统，其获胜者能更准确地代表投票者的偏好。在一个名为 `runoff` 的文件夹中，创建一个名为 `runoff.c` 的文件，编写一个程序来模拟决选选举。
 
-## Demo
+## 演示
 
-## Distribution Code
+## 分发代码
 
-Download the distribution code
+下载分发代码
 
-Log into [cs50.dev](https://cs50.dev/), click on your terminal window, and execute `cd` by itself. You should find that your terminal window’s prompt resembles the below:
+登录 [cs50.dev](https://cs50.dev/)，点击终端窗口，并单独执行 `cd` 命令。你应该会发现终端窗口的提示符类似于以下内容：
 
 ```
 $
 ```
 
-Next execute
+接着执行
 
 ```python
 wget https://cdn.cs50.net/2026/x/psets/3/runoff.zip
 ```
 
-in order to download a ZIP called `runoff.zip` into your codespace.
+以便将名为 `runoff.zip` 的 ZIP 文件下载到你的 Codespace 中。
 
-Then execute
+然后执行
 
 ```
 unzip runoff.zip
 ```
 
-to create a folder called `runoff`. You no longer need the ZIP file, so you can execute
+以创建一个名为 `runoff` 的文件夹。你不再需要该 ZIP 文件，因此可以执行
 
 ```
 rm runoff.zip
 ```
 
-and respond with “y” followed by Enter at the prompt to remove the ZIP file you downloaded.
+并在提示符处输入 “y” 后按回车键，以删除下载的 ZIP 文件。
 
-Now type
+现在输入
 
 ```bash
 cd runoff
 ```
 
-followed by Enter to move yourself into (i.e., open) that directory. Your prompt should now resemble the below.
+后按回车键进入（即打开）该目录。你的提示符现在应该类似于以下内容。
 
 ```
 runoff/ $
 ```
 
-If all was successful, you should execute
+如果一切顺利，你应该执行
 
 ```bash
 ls
 ```
 
-and see a file named `runoff.c`. Executing `code runoff.c` should open the file where you will type your code for this problem set. If not, retrace your steps and see if you can determine where you went wrong!
+并看到一个名为 `runoff.c` 的文件。执行 `code runoff.c` 应该会打开该文件，你将在其中编写此问题集的代码。如果没有，请回顾你的步骤，看看是否能确定哪里出错了！
 
-Understand the code in `runoff.c`
+理解 `runoff.c` 中的代码
 
-Whenever you’ll extend the functionality of existing code, it’s best to be sure you first understand it in its present state.
+每当你准备扩展现有代码的功能时，最好先确保你理解它当前的状态。
 
-Look at the top of `runoff.c` first. Two constants are defined: `MAX_CANDIDATES` for the maximum number of candidates in the election, and `MAX_VOTERS` for the maximum number of voters in the election.
+首先看 `runoff.c` 的顶部。定义了两个常量：`MAX_CANDIDATES` 表示选举中的最大候选人数，`MAX_VOTERS` 表示选举中的最大投票者人数。
 
 ```
 // Max voters and candidates
@@ -100,14 +100,14 @@ Look at the top of `runoff.c` first. Two constants are defined: `MAX_CANDIDATES`
 #define MAX_CANDIDATES 9
 ```
 
-Notice that `MAX_CANDIDATES` is used to size an array, `candidates`.
+注意 `MAX_CANDIDATES` 被用来确定数组 `candidates` 的大小。
 
 ```
 // Array of candidates
 candidate candidates[MAX_CANDIDATES];
 ```
 
-`candidates` is an array of `candidate`s. In `runoff.c` a `candidate` is a `struct`. Every `candidate` has a `string` field for their `name`, an `int` representing the number of `votes` they currently have, and a `bool` value called `eliminated` that indicates whether the candidate has been eliminated from the election. The array `candidates` will keep track of all of the candidates in the election.
+`candidates` 是一个 `candidate` 类型的数组。在 `runoff.c` 中，一个 `candidate` 是一个结构体（`struct`）。每个 `candidate` 都有一个 `string` 字段表示他们的名字 `name`，一个 `int` 表示他们当前拥有的票数 `votes`，以及一个名为 `eliminated` 的 `bool` 值，表示该候选人是否已从选举中被淘汰。数组 `candidates` 将跟踪选举中的所有候选人。
 
 ```
 // Candidates have name, vote count, eliminated status
@@ -120,14 +120,14 @@ typedef struct
 candidate;
 ```
 
-Now you can better understand `preferences`, the two-dimensional array. The array `preferences[i]` will represent all of the preferences for voter number `i`. The integer, `preferences[i][j]`, will store the index of the candidate, from the `candidates` array, who is the `j`th preference for voter `i`.
+现在你可以更好地理解 `preferences` 这个二维数组了。数组 `preferences[i]` 将代表第 `i` 号投票者的所有偏好。整数 `preferences[i][j]` 将存储来自 `candidates` 数组的候选人索引，该候选人是投票者 `i` 的第 `j` 个偏好。
 
 ```
 // preferences[i][j] is jth preference for voter i
 int preferences[MAX_VOTERS][MAX_CANDIDATES];
 ```
 
-The program also has two global variables: `voter_count` and `candidate_count`.
+程序还有两个全局变量：`voter_count` 和 `candidate_count`。
 
 ```
 // Numbers of voters and candidates
@@ -135,113 +135,113 @@ int voter_count;
 int candidate_count;
 ```
 
-Now onto `main`. Notice that after determining the number of candidates and the number of voters, the main voting loop begins, giving every voter a chance to vote. As the voter enters their preferences, the `vote` function is called to keep track of all of the preferences. If at any point, the ballot is deemed to be invalid, the program exits.
+现在来看 `main` 函数。注意在确定候选人数和投票者人数后，主投票循环开始，让每个投票者都有机会投票。当投票者输入他们的偏好时，会调用 `vote` 函数来记录所有偏好。如果在任何时候选票被判定为无效，程序将退出。
 
-Once all of the votes are in, another loop begins: this one’s going to keep looping through the runoff process of checking for a winner and eliminating the last place candidate until there is a winner.
+所有选票投完后，另一个循环开始：这个循环将不断进行决选过程，包括检查获胜者和淘汰最后一名候选人，直到产生获胜者。
 
-The first call here is to a function called `tabulate`, which should look at all of the voters’ preferences and compute the current vote totals, by looking at each voter’s top choice candidate who hasn’t yet been eliminated. Next, the `print_winner` function should print out the winner if there is one; if there is, the program is over. But otherwise, the program needs to determine the fewest number of votes anyone still in the election received (via a call to `find_min`). If it turns out that everyone in the election is tied with the same number of votes (as determined by the `is_tie` function), the election is declared a tie; otherwise, the last-place candidate (or candidates) is eliminated from the election via a call to the `eliminate` function.
+这里的第一个调用是名为 `tabulate` 的函数，它应该查看所有投票者的偏好并计算当前的总票数，方法是查看每个投票者的首选且尚未被淘汰的候选人。接下来，`print_winner` 函数应该打印出获胜者（如果有的话）；如果有，程序结束。否则，程序需要确定当前仍在选举中的任何人获得的最低票数（通过调用 `find_min`）。如果结果显示选举中的每个人都以相同的票数持平（由 `is_tie` 函数确定），则宣布选举为平局；否则，通过调用 `eliminate` 函数，将最后一名（或多名）候选人从选举中淘汰。
 
-If you look a bit further down in the file, you’ll see that the rest of the functions—`vote`, `tabulate`, `print_winner`, `find_min`, `is_tie`, and `eliminate`—are all left to up to you to complete! **You should only modify these functions in runoff.c, though you may `#include` additional header files atop runoff.c if you’d like.**
+如果你再往下看，你会看到剩下的函数——`vote`、`tabulate`、`print_winner`、`find_min`、`is_tie` 和 `eliminate`——都留给你去完成！**你只能修改 runoff.c 中的这些函数，不过如果你愿意，你可以在 runoff.c 顶部 `#include` 额外的头文件。**
 
-## Hints
+## 提示
 
-Click the below toggles to read some advice!
+点击下面的折叠框阅读一些建议！
 
-Complete the `vote` function
+完成 `vote` 函数
 
-Complete the `vote` function.
+完成 `vote` 函数。
 
-- The function takes three arguments: `voter`, `rank`, and `name`.
-- If `name` is a match for the name of a valid candidate, then you should update the global preferences array to indicate that the voter `voter` has that candidate as their `rank` preference. Keep in mind `0` is the first preference, `1` is the second preference, etc. You may assume that no two candidates will have the same name.
-- If the preference is successfully recorded, the function should return `true`. The function should return `false` otherwise. Consider, for instance, when `name` is not the name of one of the candidates.
+- 该函数接受三个参数：`voter`、`rank` 和 `name`。
+- 如果 `name` 与有效候选人的名字匹配，那么你应该更新全局 `preferences` 数组，以指明投票者 `voter` 将该候选人作为其 `rank` 偏好。请记住，`0` 是第一偏好，`1` 是第二偏好，依此类推。你可以假设没有两个候选人会有相同的名字。
+- 如果偏好成功记录，函数应返回 `true`。否则，函数应返回 `false`。例如，当 `name` 不是候选人之一的名字时。
 
-As you write your code, consider these hints:
+编写代码时，请参考以下提示：
 
-- Recall that `candidate_count` stores the number of candidates in the election.
-- Recall that you can use [`strcmp`](https://man.cs50.io/3/strcmp) to compare two strings.
-- Recall that `preferences[i][j]` stores the index of the candidate who is the `j`th ranked preference for the `i`th voter.
+- 回想一下，`candidate_count` 存储了选举中的候选人数。
+- 回想一下，你可以使用 [`strcmp`](https://man.cs50.io/3/strcmp) 来比较两个字符串。
+- 回想一下，`preferences[i][j]` 存储了作为第 `i` 位投票者的第 `j` 位排序偏好的候选人索引。
 
-Complete the `tabulate` function
+完成 `tabulate` 函数
 
-Complete the `tabulate` function.
+完成 `tabulate` 函数。
 
-- The function should update the number of `votes` each candidate has at this stage in the runoff.
-- Recall that at each stage in the runoff, every voter effectively votes for their top-preferred candidate who has not already been eliminated.
+- 该函数应更新决选此阶段每位候选人的票数 `votes`。
+- 回想一下，在决选的每个阶段，每个投票者实际上都是投票给他们首选的、尚未被淘汰的候选人。
 
-As you write your code, consider these hints:
+编写代码时，请参考以下提示：
 
-- Recall that `voter_count` stores the number of voters in the election and that, for each voter in our election, we want to count one ballot.
-- Recall that for a voter `i`, their top choice candidate is represented by `preferences[i][0]`, their second choice candidate by `preferences[i][1]`, etc.
-- Recall that the `candidate` `struct` has a field called `eliminated`, which will be `true` if the candidate has been eliminated from the election.
-- Recall that the `candidate` `struct` has a field called `votes`, which you’ll likely want to update for each voter’s preferred candidate.
-- Recall that once you’ve cast a vote for a voter’s first non-eliminated candidate, you’ll want to stop there, not continue down their ballot. You can break out of a loop early using `break` inside of a conditional.
+- 回想一下，`voter_count` 存储了选举中的投票者人数，对于选举中的每个投票者，我们要计一张选票。
+- 回想一下，对于投票者 `i`，他们的首选候选人由 `preferences[i][0]` 表示，第二选择由 `preferences[i][1]` 表示，依此类推。
+- 回想一下，`candidate` 结构体有一个名为 `eliminated` 的字段，如果候选人已从选举中被淘汰，该字段将为 `true`。
+- 回想一下，`candidate` 结构体有一个名为 `votes` 的字段，你可能需要为每个投票者首选的候选人更新该字段。
+- 回想一下，一旦你为投票者的第一个未被淘汰的候选人投了票，你就应该停止，而不是继续查看他们的选票。你可以使用条件语句中的 `break` 提前跳出循环。
 
-Complete the `print_winner` function
+完成 `print_winner` 函数
 
-Complete the `print_winner` function.
+完成 `print_winner` 函数。
 
-- If any candidate has more than half of the vote, their name should be printed and the function should return `true`.
-- If nobody has won the election yet, the function should return `false`.
+- 如果任何候选人的票数超过半数，应打印其姓名，函数应返回 `true`。
+- 如果还没有人赢得选举，函数应返回 `false`。
 
-As you write your code, consider this hint:
+编写代码时，请参考以下提示：
 
-- Recall that `voter_count` stores the number of voters in the election. Given that, how would you express the number of votes needed to win the election?
+- 回想一下，`voter_count` 存储了选举中的投票者人数。既然如此，你会如何表达赢得选举所需的票数？
 
-Complete the `find_min` function
+完成 `find_min` 函数
 
-Complete the `find_min` function.
+完成 `find_min` 函数。
 
-- The function should return the minimum vote total for any candidate who is still in the election.
+- 该函数应返回仍在选举中的任何候选人的最低票数总和。
 
-As you write your code, consider this hint:
+编写代码时，请参考以下提示：
 
-- You’ll likely want to loop through the candidates to find the one who is both still in the election and has the fewest number of votes. What information should you keep track of as you loop through the candidates?
+- 你可能需要遍历候选人，找到既仍在选举中又得票最少的候选人。在遍历候选人时，你应该记录哪些信息？
 
-Complete the `is_tie` function
+完成 `is_tie` 函数
 
-Complete the `is_tie` function.
+完成 `is_tie` 函数。
 
-- The function takes an argument `min`, which will be the minimum number of votes that anyone in the election currently has.
-- The function should return `true` if every candidate remaining in the election has the same number of votes, and should return `false` otherwise.
+- 该函数接受一个参数 `min`，它将是目前选举中任何人拥有的最低票数。
+- 如果选举中剩余的每个候选人票数相同，函数应返回 `true`，否则返回 `false`。
 
-As you write your code, consider this hint:
+编写代码时，请参考以下提示：
 
-- Recall that a tie happens if every candidate still in the election has the same number of votes. Note, too, that the `is_tie` function takes an argument `min`, which is the smallest number of votes any candidate currently has. How might you use `min` to determine if the election is a tie (or, conversely, not a tie)?
+- 回想一下，如果仍在选举中的每个候选人票数相同，就会发生平局。还要注意，`is_tie` 函数接受一个参数 `min`，它是目前任何候选人拥有的最小票数。你如何利用 `min` 来判断选举是否为平局（或者相反，不是平局）？
 
-Complete the `eliminate` function
+完成 `eliminate` 函数
 
-Complete the `eliminate` function.
+完成 `eliminate` 函数。
 
-- The function takes an argument `min`, which will be the minimum number of votes that anyone in the election currently has.
-- The function should eliminate the candidate (or candidates) who have `min` number of votes.
+- 该函数接受一个参数 `min`，它将是目前选举中任何人拥有的最低票数。
+- 该函数应淘汰得票数为 `min` 的一名（或多名）候选人。
 
-## Walkthrough
+## 讲解
 
-## How to Test
+## 如何测试
 
-Be sure to test your code to make sure it handles…
+务必测试你的代码以确保它能处理……
 
-- An election with any number of candidate (up to the `MAX` of `9`)
-- Voting for a candidate by name
-- Invalid votes for candidates who are not on the ballot
-- Printing the winner of the election if there is only one
-- Not eliminating anyone in the case of a tie between all remaining candidates
+- 包含任意数量候选人的选举（最多为 `MAX` 值 `9`）
+- 通过名字为候选人投票
+- 投给不在选票上的候选人的无效选票
+- 如果只有一名获胜者，则打印选举获胜者
+- 在所有剩余候选人平局的情况下不淘汰任何人
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/runoff
 ```
 
-### Style
+### 风格
 
 ```
 style50 runoff.c
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在终端中，执行以下命令以提交你的作品，并回答出现的提示。
 
 ```
 submit50 cs50/problems/2026/x/runoff

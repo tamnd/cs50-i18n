@@ -1,204 +1,198 @@
 ---
 title: "Tideman - CS50x 2026"
 pset: 3
-draft: "false"
+draft: false
 ---
 
-## Problem to Solve
+## 待解决的问题
 
-You already know about plurality elections, which follow a very simple algorithm for determining the winner of an election: every voter gets one vote, and the candidate with the most votes wins.
+你已经了解了简单多数制选举（plurality elections），它遵循一种非常简单的算法来确定选举的获胜者：每个投票人投一票，得票最多的候选人获胜。
 
-But the plurality vote does have some disadvantages. What happens, for instance, in an election with three candidates, and the ballots below are cast?
+但简单多数制确实存在一些缺点。例如，在有三个候选人的选举中，投出了如下选票，会发生什么？
 
-![Five ballots, tie betweeen Alice and Bob](../fptp_ballot_1.png)
+![五张选票，Alice 和 Bob 打平](../fptp_ballot_1.png)
 
-A plurality vote would here declare a tie between Alice and Bob, since each has two votes. But is that the right outcome?
+在简单多数制下，这里会宣布 Alice 和 Bob 打成平手，因为他们每人都有两票。但这真的是正确的结果吗？
 
-There’s another kind of voting system known as a ranked-choice voting system. In a ranked-choice system, voters can vote for more than one candidate. Instead of just voting for their top choice, they can rank the candidates in order of preference. The resulting ballots might therefore look like the below.
+还有另一种投票系统，称为排序选择投票制（ranked-choice voting system）。在排序选择投票制中，选民可以投票给多位候选人。他们可以按照偏好顺序对候选人进行排名，而不仅仅是投票给他们的首选。因此，产生的选票可能如下所示。
 
-![Five ballots, with ranked preferences](../ranked_ballot_1.png)
+![五张选票，带有排名偏好](../ranked_ballot_1.png)
 
-Here, each voter, in addition to specifying their first preference candidate, has also indicated their second and third choices. And now, what was previously a tied election could now have a winner. The race was originally tied between Alice and Bob. But the voter who chose Charlie preferred Alice over Bob, so Alice could here be declared the winner.
+在这里，每个选民除了指定他们的第一偏好候选人外，还指明了他们的第二和第三选择。现在，之前平手的选举可以产生一个获胜者了。原本 Alice 和 Bob 战平，但选择 Charlie 的选民更倾向于 Alice 而非 Bob，因此 Alice 在这里可以被宣布为获胜者。
 
-Ranked choice voting can also solve yet another potential drawback of plurality voting. Take a look at the following ballots.
+排序选择投票还可以解决简单多数制的另一个潜在缺陷。看看下面的选票。
 
-![Nine ballots, with ranked preferences](../condorcet_1.png)
+![九张选票，带有排名偏好](../condorcet_1.png)
 
-Who should win this election? In a plurality vote where each voter chooses their first preference only, Charlie wins this election with four votes compared to only three for Bob and two for Alice. (Note that, if you’re familiar with the instant runoff voting system, Charlie wins here under that system as well). Alice, however, might reasonably make the argument that she should be the winner of the election instead of Charlie: after all, of the nine voters, a majority (five of them) preferred Alice over Charlie, so most people would be happier with Alice as the winner instead of Charlie.
+谁应该赢得这次选举？在每个选民仅选择第一偏好的简单多数制中，Charlie 以四票获胜，而 Bob 只有三票，Alice 只有两票。（请注意，如果你熟悉即时决选投票制，Charlie 在该系统下也会获胜）。然而，Alice 可能会有理有据地辩称她才应该是选举的获胜者，而不是 Charlie：毕竟，在九名选民中，大多数人（其中五人）更喜欢 Alice 而不是 Charlie，所以大多数人会对 Alice 作为获胜者感到更满意。
 
-Alice is, in this election, the so-called “Condorcet winner” of the election: the person who would have won any head-to-head matchup against another candidate. If the election had been just Alice and Bob, or just Alice and Charlie, Alice would have won.
+在这次选举中，Alice 是所谓的“孔多塞胜者”（Condorcet winner）：即在任何两两对决中都能战胜其他候选人的人。如果选举只有 Alice 和 Bob，或者只有 Alice 和 Charlie，Alice 都会获胜。
 
-The Tideman voting method (also known as “ranked pairs”) is a ranked-choice voting method that’s guaranteed to produce the Condorcet winner of the election if one exists. In a file called `tideman.c` in a folder called `tideman`, create a program to simulate an election by the Tideman voting method.
+Tideman 投票法（也称为“排序对法”，ranked pairs）是一种排序选择投票法，它保证如果存在孔多塞胜者，则产生该胜者。在 `tideman` 文件夹中一个名为 `tideman.c` 的文件中，创建一个程序来模拟 Tideman 投票法的选举。
 
-## Demo
+## 演示
 
-## Distribution Code
+## 分发代码
 
-Download the distribution code
+下载分发代码
 
-Log into [cs50.dev](https://cs50.dev/), click on your terminal window, and execute `cd` by itself. You should find that your terminal window’s prompt resembles the below:
+登录 [cs50.dev](https://cs50.dev/)，点击终端窗口，并执行 `cd` 命令。你应该会发现终端窗口的提示符如下所示：
 
 ```
 $
 ```
 
-Next execute
+接着执行
 
 ```python
 wget https://cdn.cs50.net/2026/x/psets/3/tideman.zip
 ```
 
-in order to download a ZIP called `tideman.zip` into your codespace.
+以便将名为 `tideman.zip` 的压缩包下载到你的 codespace 中。
 
-Then execute
+然后执行
 
 ```
 unzip tideman.zip
 ```
 
-to create a folder called `tideman`. You no longer need the ZIP file, so you can execute
+来创建一个名为 `tideman` 的文件夹。你不再需要该 ZIP 文件，因此可以执行
 
 ```
 rm tideman.zip
 ```
 
-and respond with “y” followed by Enter at the prompt to remove the ZIP file you downloaded.
+并在提示符处输入 “y” 后按回车，以删除你下载的 ZIP 文件。
 
-Now type
+现在输入
 
 ```bash
 cd tideman
 ```
 
-followed by Enter to move yourself into (i.e., open) that directory. Your prompt should now resemble the below.
+然后按回车进入（即打开）该目录。你的提示符现在应该如下所示。
 
 ```
 tideman/ $
 ```
 
-If all was successful, you should execute
+如果一切顺利，你应该执行
 
 ```bash
 ls
 ```
 
-and see a file named `tideman.c`. Executing `code tideman.c` should open the file where you will type your code for this problem set. If not, retrace your steps and see if you can determine where you went wrong!
+并看到一个名为 `tideman.c` 的文件。执行 `code tideman.c` 应该会打开该文件，你将在其中编写本题目的代码。如果没有，请回顾你的步骤，看看能否确定哪里出了问题！
 
-## Background
+## 背景知识
 
-Generally speaking, the Tideman method works by constructing a “graph” of candidates, where an arrow (i.e. edge) from candidate A to candidate B indicates that candidate A wins against candidate B in a head-to-head matchup. The graph for the above election, then, would look like the below.
+总的来说，Tideman 方法的工作原理是构建候选人的“图”（graph），其中从候选人 A 指向候选人 B 的箭头（即边，edge）表示候选人 A 在两两对决中战胜了候选人 B。那么，上述选举的图如下所示。
 
-![Nine ballots, with ranked preferences](../condorcet_graph_1.png)
+![九张选票，带有排名偏好](../condorcet_graph_1.png)
 
-The arrow from Alice to Bob means that more voters prefer Alice to Bob (5 prefer Alice, 4 prefer Bob). Likewise, the other arrows mean that more voters prefer Alice to Charlie, and more voters prefer Charlie to Bob.
+从 Alice 指向 Bob 的箭头意味着更多的选民偏好 Alice 而非 Bob（5 人偏好 Alice，4 人偏好 Bob）。同样，其他箭头意味着更多的选民偏好 Alice 而非 Charlie，以及更多的选民偏好 Charlie 而非 Bob。
 
-Looking at this graph, the Tideman method says the winner of the election should be the “source” of the graph (i.e. the candidate that has no arrow pointing at them). In this case, the source is Alice — Alice is the only one who has no arrow pointing at her, which means nobody is preferred head-to-head over Alice. Alice is thus declared the winner of the election.
+看这张图，Tideman 方法认为选举的获胜者应该是图的“源头”（source）（即没有任何箭头指向他们的候选人）。在这种情况下，源头是 Alice —— Alice 是唯一一个没有箭头指向她的人，这意味着没有人能在两两对决中战胜 Alice。因此，Alice 被宣布为选举的获胜者。
 
-It’s possible, however, that when the arrows are drawn, there is no Condorcet winner. Consider the below ballots.
+然而，在画出箭头时，有可能不存在孔多塞胜者。考虑下面的选票。
 
-![Nine ballots, with ranked preferences](../no_condorcet_1.png)
+![九张选票，带有排名偏好](../no_condorcet_1.png)
 
-Between Alice and Bob, Alice is preferred over Bob by a 7-2 margin. Between Bob and Charlie, Bob is preferred over Charlie by a 5-4 margin. But between Charlie and Alice, Charlie is preferred over Alice by a 6-3 margin. If we draw out the graph, there is no source! We have a cycle of candidates, where Alice beats Bob who beats Charlie who beats Alice (much like a game of rock-paper-scissors). In this case, it looks like there’s no way to pick a winner.
+在 Alice 和 Bob 之间，选民以 7-2 的优势偏好 Alice 超过 Bob。在 Bob 和 Charlie 之间，选民以 5-4 的优势偏好 Bob 超过 Charlie。但在 Charlie 和 Alice 之间，选民以 6-3 的优势偏好 Charlie 超过 Alice。如果我们画出图，就没有源头了！我们得到了一个候选人的环（cycle），其中 Alice 胜过 Bob，Bob 胜过 Charlie，Charlie 胜过 Alice（非常像剪刀石头布游戏）。在这种情况下，看起来无法选出获胜者。
 
-To handle this, the Tideman algorithm must be careful to avoid creating cycles in the candidate graph. How does it do this? The algorithm locks in the strongest edges first, since those are arguably the most significant. In particular, the Tideman algorithm specifies that matchup edges should be “locked in” to the graph one at a time, based on the “strength” of the victory (the more people who prefer a candidate over their opponent, the stronger the victory). So long as the edge can be locked into the graph without creating a cycle, the edge is added; otherwise, the edge is ignored.
+为了处理这种情况，Tideman 算法必须小心避免在候选人图中创建环。它是如何做到的呢？该算法首先锁定最强的边，因为这些边可以说最具代表性。具体来说，Tideman 算法规定应根据“胜出强度”（strength of victory）（偏好某一候选人而非其对手的人数越多，胜出强度越强），一次一个地将对决边“锁定”到图中。只要该边被锁定到图中后不会创建环，就添加该边；否则，忽略该边。
 
-How would this work in the case of the votes above? Well, the biggest margin of victory for a pair is Alice beating Bob, since 7 voters prefer Alice over Bob (no other head-to-head matchup has a winner preferred by more than 7 voters). So the Alice-Bob arrow is locked into the graph first. The next biggest margin of victory is Charlie’s 6-3 victory over Alice, so that arrow is locked in next.
+在上述投票案例中，这将如何工作？好吧，一对候选中最大的胜出优势是 Alice 战胜 Bob，因为有 7 位选民偏好 Alice 而非 Bob（没有其他两两对决的获胜者能获得超过 7 人的偏好）。所以 Alice-Bob 的箭头首先被锁定到图中。下一个最大的胜出优势是 Charlie 以 6-3 战胜 Alice，所以那个箭头接着被锁定。
 
-Next up is Bob’s 5-4 victory over Charlie. But notice: if we were to add an arrow from Bob to Charlie now, we would create a cycle! Since the graph can’t allow cycles, we should skip this edge, and not add it to the graph at all. If there were more arrows to consider, we would look to those next, but that was the last arrow, so the graph is complete.
+接下来是 Bob 以 5-4 战胜 Charlie。但请注意：如果我们现在添加从 Bob 指向 Charlie 的箭头，我们就会创建一个环！由于图不允许出现环，我们应该跳过这条边，根本不把它添加到图中。如果还有更多的箭头需要考虑，我们会接着看那些，但那是最后一个箭头了，所以图已完成。
 
-This step-by-step process is shown below, with the final graph at right.
+这个分步过程如下所示，最终图在右侧。
 
-![Nine ballots, with ranked preferences](../lockin.png)
+![九张选票，带有排名偏好](../lockin.png)
 
-Based on the resulting graph, Charlie is the source (there’s no arrow pointing towards Charlie), so Charlie is declared the winner of this election.
+根据生成的图，Charlie 是源头（没有箭头指向 Charlie），因此 Charlie 被宣布为本次选举的获胜者。
 
-Put more formally, the Tideman voting method consists of three parts:
+更正式地说，Tideman 投票法由三个部分组成：
 
-- **Tally**: Once all of the voters have indicated all of their preferences, determine, for each pair of candidates, who the preferred candidate is and by what margin they are preferred.
-- **Sort**: Sort the pairs of candidates in decreasing order of strength of victory, where strength of victory is defined to be the number of voters who prefer the preferred candidate.
-- **Lock**: Starting with the strongest pair, go through the pairs of candidates in order and “lock in” each pair to the candidate graph, so long as locking in that pair does not create a cycle in the graph.
+-   **统计 (Tally)**：一旦所有选民都表明了他们的所有偏好，针对每一对候选人，确定谁是更受偏好的候选人，以及偏好的优势是多少。
+-   **排序 (Sort)**：按照胜出强度的降序对候选人对进行排序，其中胜出强度定义为偏好该胜出候选人的选民人数。
+-   **锁定 (Lock)**：从最强的一对开始，按顺序遍历候选人对，并将每一对“锁定”到候选人图中，只要锁定该对不会在图中创建环。
 
-Once the graph is complete, the source of the graph (the one with no edges pointing towards it) is the winner!
+一旦图构建完成，图的源头（没有任何边指向它的候选人）就是获胜者！
 
-## Understanding
+## 理解代码
 
-Let’s take a look at `tideman.c`.
+让我们来看看 `tideman.c`。
 
-First, notice the two-dimensional array `preferences`. The integer `preferences[i][j]` will represent the number of voters who prefer candidate `i` over candidate `j`.
+首先，注意二维数组 `preferences`。整数 `preferences[i][j]` 将代表偏好候选人 `i` 超过候选人 `j` 的选民人数。
 
-The file also defines another two-dimensional array, called `locked`, which will represent the candidate graph. `locked` is a boolean array, so `locked[i][j]` being `true` represents the existence of an edge pointing from candidate `i` to candidate `j`; `false` means there is no edge. (If curious, this representation of a graph is known as an “adjacency matrix”).
+该文件还定义了另一个二维数组，名为 `locked`，它将代表候选人图。`locked` 是一个布尔数组，因此 `locked[i][j]` 为 `true` 表示存在一条从候选人 `i` 指向候选人 `j` 的边；`false` 表示没有边。（好奇的话，这种图的表示方法被称为“邻接矩阵”，adjacency matrix）。
 
-Next up is a `struct` called `pair`, used to represent a pair of candidates: each pair includes the `winner`’s candidate index and the `loser`’s candidate index.
+接下来是一个名为 `pair` 的结构体（`struct`），用于表示一对候选人：每一对包括胜者 `winner` 的候选人索引和败者 `loser` 的候选人索引。
 
-The candidates themselves are stored in the array `candidates`, which is an array of `string`s representing the names of each of the candidates. There’s also an array of `pairs`, which will represent all of the pairs of candidates (for which one is preferred over the other) in the election.
+候选人本身存储在数组 `candidates` 中，这是一个代表每个候选人姓名的字符串（`string`）数组。还有一个 `pairs` 数组，代表选举中所有的候选人对（其中一个比另一个更受偏好）。
 
-The program also has two global variables: `pair_count` and `candidate_count`, representing the number of pairs and number of candidates in the arrays `pairs` and `candidates`, respectively.
+程序还有两个全局变量：`pair_count` 和 `candidate_count`，分别代表数组 `pairs` 和 `candidates` 中候选人对的数量和候选人的数量。
 
-Now onto `main`. Notice that after determining the number of candidates, the program loops through the `locked` graph and initially sets all of the values to `false`, which means our initial graph will have no edges in it.
+现在看 `main` 函数。注意在确定候选人数量后，程序会遍历 `locked` 图并初始将所有值设置为 `false`，这意味着我们的初始图中没有任何边。
 
-Next, the program loops over all of the voters and collects their preferences in an array called `ranks` (via a call to `vote`), where `ranks[i]` is the index of the candidate who is the `i`th preference for the voter. These ranks are passed into the `record_preference` function, whose job it is to take those ranks and update the global `preferences` variable.
+接着，程序遍历所有选民，并在名为 `ranks` 的数组中收集他们的偏好（通过调用 `vote`），其中 `ranks[i]` 是该选民第 `i` 偏好的候选人的索引。这些排名被传递给 `record_preference` 函数，该函数的作用是获取这些排名并更新全局变量 `preferences`。
 
-Once all of the votes are in, the pairs of candidates are added to the `pairs` array via a called to `add_pairs`, sorted via a call to `sort_pairs`, and locked into the graph via a call to `lock_pairs`. Finally, `print_winner` is called to print out the name of the election’s winner!
+一旦所有选票都收集完毕，候选人对就会通过调用 `add_pairs` 添加到 `pairs` 数组中，通过调用 `sort_pairs` 进行排序，并通过调用 `lock_pairs` 锁定到图中。最后，调用 `print_winner` 打印出选举获胜者的名字！
 
-Further down in the file, you’ll see that the functions `vote`, `record_preference`, `add_pairs`,`sort_pairs`, `lock_pairs`, and `print_winner` are left blank. That’s up to you!
+在文件的更下方，你会看到函数 `vote`、`record_preference`、`add_pairs`、`sort_pairs`、`lock_pairs` 和 `print_winner` 都是留空的。这取决于你来完成！
 
-## Specification
+## 规范
 
-Complete the implementation of `tideman.c` in such a way that it simulates a Tideman election.
+完成 `tideman.c` 的实现，使其能够模拟 Tideman 选举。
 
-- Complete the `vote` function.
-  
-  - The function takes arguments `rank`, `name`, and `ranks`. If `name` is a match for the name of a valid candidate, then you should update the `ranks` array to indicate that the voter has the candidate as their `rank` preference (where `0` is the first preference, `1` is the second preference, etc.)
-  - Recall that `ranks[i]` here represents the user’s `i`th preference.
-  - The function should return `true` if the rank was successfully recorded, and `false` otherwise (if, for instance, `name` is not the name of one of the candidates).
-  - You may assume that no two candidates will have the same name.
-- Complete the `record_preferences` function.
-  
-  - The function is called once for each voter, and takes as argument the `ranks` array, (recall that `ranks[i]` is the voter’s `i`th preference, where `ranks[0]` is the first preference).
-  - The function should update the global `preferences` array to add the current voter’s preferences. Recall that `preferences[i][j]` should represent the number of voters who prefer candidate `i` over candidate `j`.
-  - You may assume that every voter will rank each of the candidates.
-- Complete the `add_pairs` function.
-  
-  - The function should add all pairs of candidates where one candidate is preferred to the `pairs` array. A pair of candidates who are tied (one is not preferred over the other) should not be added to the array.
-  - The function should update the global variable `pair_count` to be the number of pairs of candidates. (The pairs should thus all be stored between `pairs[0]` and `pairs[pair_count - 1]`, inclusive).
-- Complete the `sort_pairs` function.
-  
-  - The function should sort the `pairs` array in decreasing order of strength of victory, where strength of victory is defined to be the number of voters who prefer the preferred candidate. If multiple pairs have the same strength of victory, you may assume that the order does not matter.
-- Complete the `lock_pairs` function.
-  
-  - The function should create the `locked` graph, adding all edges in decreasing order of victory strength so long as the edge would not create a cycle.
-- Complete the `print_winner` function.
-  
-  - The function should print out the name of the candidate who is the source of the graph. You may assume there will not be more than one source.
+-   完成 `vote` 函数。
+    -   该函数接受参数 `rank`、`name` 和 `ranks`。如果 `name` 是有效候选人的名字，则应更新 `ranks` 数组，以指明选民将该候选人作为其第 `rank` 个偏好（其中 `0` 是第一偏好，`1` 是第二偏好，依此类推）。
+    -   回想一下，这里的 `ranks[i]` 代表用户的第 `i` 个偏好。
+    -   如果排名成功记录，函数应返回 `true`；否则返回 `false`（例如，如果 `name` 不是候选人之一的名字）。
+    -   你可以假设没有两个候选人会有相同的名字。
+-   完成 `record_preferences` 函数。
+    -   该函数为每个选民调用一次，并接受 `ranks` 数组作为参数（回想一下，`ranks[i]` 是选民的第 `i` 个偏好，其中 `ranks[0]` 是第一偏好）。
+    -   该函数应更新全局数组 `preferences` 以添加当前选民的偏好。回想一下，`preferences[i][j]` 应代表偏好候选人 `i` 超过候选人 `j` 的选民人数。
+    -   你可以假设每个选民都会对每位候选人进行排名。
+-   完成 `add_pairs` 函数。
+    -   该函数应将所有存在其中一个候选人更受偏好的候选人对添加到 `pairs` 数组中。平手的候选人对（即没有人比另一个更受偏好）不应被添加到数组中。
+    -   该函数应更新全局变量 `pair_count` 为候选人对的数量。（因此，所有对都应存储在 `pairs[0]` 和 `pairs[pair_count - 1]` 之间，包括两端）。
+-   完成 `sort_pairs` 函数。
+    -   该函数应按照胜出强度的降序对 `pairs` 数组进行排序，其中胜出强度定义为偏好胜出候选人的选民人数。如果多对具有相同的胜出强度，你可以假设它们的顺序并不重要。
+-   完成 `lock_pairs` 函数。
+    -   该函数应构建 `locked` 图，按照胜出强度递减的顺序添加所有边，只要该边不会创建环。
+-   完成 `print_winner` 函数。
+    -   该函数应打印出作为图源头的候选人的名字。你可以假设源头不会超过一个。
 
-You should not modify anything else in `tideman.c` other than the implementations of the `vote`, `record_preferences`, `add_pairs`, `sort_pairs`, `lock_pairs`, and `print_winner` functions (and the inclusion of additional header files, if you’d like). You are permitted to add additional functions to `tideman.c`, so long as you do not change the declarations of any of the existing functions.
+除了 `vote`、`record_preferences`、`add_pairs`、`sort_pairs`、`lock_pairs` 和 `print_winner` 函数的实现（以及根据需要包含额外的头文件）之外，你不应修改 `tideman.c` 中的任何其他内容。允许在 `tideman.c` 中添加额外的函数，只要你不更改任何现有函数的声明。
 
-## Walkthrough
+## 演练
 
-## How to Test
+## 如何测试
 
-Be sure to test your code to make sure it handles…
+请务必测试你的代码，确保它能处理……
 
-- An election with any number of candidate (up to the `MAX` of `9`)
-- Voting for a candidate by name
-- Invalid votes for candidates who are not on the ballot
-- Printing the winner of the election
+-   包含任意数量候选人的选举（最多为 `MAX` 值 `9`）
+-   通过名字为候选人投票
+-   对不在选票上的候选人投出的无效选票
+-   打印选举的获胜者
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/tideman
 ```
 
-### Style
+### 代码风格
 
 ```
 style50 tideman.c
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在终端中执行以下命令提交你的工作，并按提示回答问题。
 
 ```
 submit50 cs50/problems/2026/x/tideman

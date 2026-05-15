@@ -1,56 +1,56 @@
 ---
-title: "Credit - CS50x 2026"
+title: "信用卡 - CS50x 2026"
 pset: 1
 draft: "false"
 ---
 
-![Person holding credit cards](credit_cards.jpeg)
+![手持信用卡的人](credit_cards.jpeg)
 
-## Problem to Solve
+## 要解决的问题
 
-A credit (or debit) card, of course, is a plastic card with which you can pay for goods and services. Printed on that card is a number that’s also stored in a database somewhere, so that when your card is used to buy something, the creditor knows whom to bill. There are a lot of people with credit cards in this world, so those numbers are pretty long: American Express uses 15-digit numbers, MasterCard uses 16-digit numbers, and Visa uses 13- and 16-digit numbers. And those are decimal numbers (0 through 9), not binary, which means, for instance, that American Express could print as many as 10^15 = 1,000,000,000,000,000 unique cards! (That’s, um, a quadrillion.)
+信用卡（或借记卡）当然是一张塑料卡，你可以用它来支付商品和服务费用。卡上印着一串数字，这串数字也存储在某个数据库中，这样当你用卡购物时，发卡方就知道该向谁收款。世界上有很多人拥有信用卡，所以这些号码相当长：American Express 使用 15 位号码，MasterCard 使用 16 位号码，Visa 使用 13 位和 16 位号码。而且这些都是十进制数字（0 到 9），不是二进制数字，这意味着，例如，American Express 最多可以印出 10^15 = 1,000,000,000,000,000 张唯一的卡！（也就是，嗯，一千万亿。）
 
-Actually, that’s a bit of an exaggeration, because credit card numbers actually have some structure to them. All American Express numbers start with 34 or 37; most MasterCard numbers start with 51, 52, 53, 54, or 55 (they also have some other potential starting numbers which we won’t concern ourselves with for this problem); and all Visa numbers start with 4. But credit card numbers also have a “checksum” built into them, a mathematical relationship between at least one number and others. That checksum enables computers (or humans who like math) to detect typos (e.g., transpositions), if not fraudulent numbers, without having to query a database, which can be slow. Of course, a dishonest mathematician could certainly craft a fake number that nonetheless respects the mathematical constraint, so a database lookup is still necessary for more rigorous checks.
+实际上，这有点夸张，因为信用卡号码本身是有一定结构的。所有 American Express 号码都以 34 或 37 开头；大多数 MasterCard 号码以 51、52、53、54 或 55 开头（它们还有其他可能的开头数字，但在本题中我们不需要考虑）；所有 Visa 号码都以 4 开头。不过，信用卡号码还内置了一个“校验和”，也就是至少一个数字与其他数字之间的数学关系。这个校验和使计算机（或者喜欢数学的人）无需查询数据库就能检测出输入错误（例如数字对调），即使不能识别欺诈号码；而查询数据库可能会很慢。当然，一个不诚实的数学家完全可以构造一个仍然满足数学约束的假号码，所以更严格的检查仍然需要查询数据库。
 
-In a file called `credit.c` in a folder called `credit`, implement a program in C that checks the validity of a given credit card number.
+在名为 `credit` 的文件夹中，在名为 `credit.c` 的文件里，用 C 实现一个程序，用来检查给定信用卡号码的有效性。
 
-## Luhn’s Algorithm
+## Luhn 算法
 
-So what’s the secret formula? Well, most cards use an algorithm invented by Hans Peter Luhn of IBM. According to Luhn’s algorithm, you can determine if a credit card number is (syntactically) valid as follows:
+那么秘密公式是什么呢？大多数卡使用的是 IBM 的 Hans Peter Luhn 发明的一种算法。根据 Luhn 算法，你可以按如下方式判断一个信用卡号码在格式上是否有效：
 
-1. Multiply every other digit by 2, starting with the number’s second-to-last digit, and then add those products’ digits together.
-2. Add the sum to the sum of the digits that weren’t multiplied by 2.
-3. If the total’s last digit is 0 (or, put more formally, if the total modulo 10 is congruent to 0), the number is valid!
+1. 从号码的倒数第二位开始，每隔一位数字乘以 2，然后把这些乘积的各位数字相加。
+2. 将这个和加上那些没有乘以 2 的数字之和。
+3. 如果总和的最后一位是 0（更正式地说，如果总和对 10 取模同余于 0），这个号码就是有效的！
 
-That’s kind of confusing, so let’s try an example with David’s Visa: 4003600000000014.
+这有点令人困惑，所以我们用 David 的 Visa 卡号 4003600000000014 来试一个例子。
 
-1. For the sake of discussion, let’s first underline every other digit, starting with the number’s second-to-last digit:
+1. 为了便于说明，我们先从号码的倒数第二位开始，每隔一位数字画上下划线：
    
    4003600000000014
    
-   Okay, let’s multiply each of the underlined digits by 2:
+   好，接下来把每个带下划线的数字乘以 2：
    
    1•2 + 0•2 + 0•2 + 0•2 + 0•2 + 6•2 + 0•2 + 4•2
    
-   That gives us:
+   得到：
    
    2 + 0 + 0 + 0 + 0 + 12 + 0 + 8
    
-   Now let’s add those products’ digits (i.e., not the products themselves) together:
+   现在把这些乘积的各位数字相加（也就是说，不是把乘积本身相加）：
    
    2 + 0 + 0 + 0 + 0 + 1 + 2 + 0 + 8 = 13
-2. Now let’s add that sum (13) to the sum of the digits that weren’t multiplied by 2 (starting from the end):
+2. 现在把这个和（13）加上那些没有乘以 2 的数字之和（从末尾开始）：
    
    13 + 4 + 0 + 0 + 0 + 0 + 0 + 3 + 0 = 20
-3. Yup, the last digit in that sum (20) is a 0, so David’s card is legit!
+3. 没错，这个总和（20）的最后一位是 0，所以 David 的卡是有效的！
 
-So, validating credit card numbers isn’t hard, but it does get a bit tedious by hand. Let’s write a program.
+所以，验证信用卡号码并不难，但手工操作确实有点繁琐。让我们写一个程序吧。
 
-## Implementation Details
+## 实现细节
 
-In the file called `credit.c` in the `credit` directory, write a program that prompts the user for a credit card number and then reports (via `printf`) whether it is a valid American Express, MasterCard, or Visa card number, per the definitions of each’s format herein. So that we can automate some tests of your code, we ask that your program’s last line of output be `AMEX\n` or `MASTERCARD\n` or `VISA\n` or `INVALID\n`, nothing more, nothing less. For simplicity, you may assume that the user’s input will be entirely numeric (i.e., devoid of hyphens, as might be printed on an actual card) and that it won’t have leading zeroes. But do not assume that the user’s input will fit in an `int`! Best to use `get_long` from CS50’s library to get users’ input. (Why?)
+在 `credit` 目录中名为 `credit.c` 的文件里，编写一个程序，提示用户输入一个信用卡号码，然后根据本文中对各类格式的定义，通过 `printf` 报告它是否是有效的 American Express、MasterCard 或 Visa 卡号。为了让我们能够自动测试你的代码，请确保程序输出的最后一行是 `AMEX\n`、`MASTERCARD\n`、`VISA\n` 或 `INVALID\n`，不能多也不能少。为简单起见，你可以假设用户输入完全由数字组成（也就是说，没有实际卡片上可能印着的连字符），并且不会有前导零。但不要假设用户输入能放进 `int`！最好使用 CS50 库中的 `get_long` 来获取用户输入。（为什么？）
 
-Consider the below representative of how your own program should behave when passed a valid credit card number (sans hyphens).
+下面展示了当你的程序收到一个有效信用卡号码（不含连字符）时应该如何运行。
 
 ```bash
 $ ./credit
@@ -58,7 +58,7 @@ Number: 4003600000000014
 VISA
 ```
 
-Now, `get_long` itself will reject hyphens (and more) anyway:
+现在，`get_long` 本身无论如何都会拒绝连字符（以及其他内容）：
 
 ```bash
 $ ./credit
@@ -68,7 +68,7 @@ Number: 4003600000000014
 VISA
 ```
 
-But it’s up to you to catch inputs that are not credit card numbers (e.g., a phone number), even if numeric:
+但即使输入是数字，你也需要自己识别出那些并不是信用卡号码的输入（例如电话号码）：
 
 ```bash
 $ ./credit
@@ -76,29 +76,29 @@ Number: 6176292929
 INVALID
 ```
 
-Test out your program with a whole bunch of inputs, both valid and invalid. (We certainly will!) Here are a [few card numbers](https://developer.paypal.com/api/nvp-soap/payflow/integration-guide/test-transactions/#standard-test-cards) that PayPal recommends for testing.
+请使用大量输入来测试你的程序，包括有效和无效的输入。（我们当然也会这么做！）这里有一些 PayPal 推荐用于测试的[卡号](https://developer.paypal.com/api/nvp-soap/payflow/integration-guide/test-transactions/#standard-test-cards)。
 
-If your program behaves incorrectly on some inputs (or doesn’t compile at all), time to debug!
+如果你的程序在某些输入下表现不正确（或者根本无法编译），那就该调试了！
 
-### Walkthrough
+### 演练
 
-### How to Test Your Code
+### 如何测试你的代码
 
-You can also execute the below to evaluate the correctness of your code using `check50`. But be sure to compile and test it yourself as well!
+你也可以执行下面的命令，使用 `check50` 评估代码的正确性。但也一定要自己编译并测试！
 
 ```
 check50 cs50/problems/2026/x/credit
 ```
 
-Execute the below to evaluate the style of your code using `style50`.
+执行下面的命令，使用 `style50` 评估代码风格。
 
 ```
 style50 credit.c
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work.
+在终端中执行下面的命令来提交你的作业。
 
 ```
 submit50 cs50/problems/2026/x/credit

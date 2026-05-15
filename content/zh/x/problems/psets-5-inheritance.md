@@ -1,86 +1,86 @@
 ---
-title: "Inheritance - CS50x 2026"
+title: "继承 - CS50x 2026"
 pset: 5
-draft: "false"
+draft: false
 ---
 
-## Problem to Solve
+## 待解决的问题
 
-A person’s blood type is determined by two alleles (i.e., different forms of a gene). The three possible alleles are A, B, and O, of which each person has two (possibly the same, possibly different). Each of a child’s parents randomly passes one of their two blood type alleles to their child. The possible blood type combinations, then, are: OO, OA, OB, AO, AA, AB, BO, BA, and BB.
+一个人的血型由两个等位基因（即基因的不同形式）决定。三种可能的等位基因是 A、B 和 O，每个人都有两个（可能相同，也可能不同）。每个孩子的父母会随机将其两个血型等位基因中的一个传给孩子。因此，可能的血型组合包括：OO、OA、OB、AO、AA、AB、BO、BA 和 BB。
 
-For example, if one parent has blood type AO and the other parent has blood type BB, then the child’s possible blood types would be AB and OB, depending on which allele is received from each parent. Similarly, if one parent has blood type AO and the other OB, then the child’s possible blood types would be AO, OB, AB, and OO.
+例如，如果父母一方的血型为 AO，另一方的血型为 BB，那么根据从每位家长那里获得的等位基因，孩子的可能血型将是 AB 和 OB。同样，如果父母一方的血型为 AO，另一方为 OB，那么孩子的可能血型将是 AO、OB、AB 和 OO。
 
-In a file called `inheritance.c` in a folder called `inheritance`, simulate the inheritance of blood types for each member of a family.
+在名为 `inheritance` 的文件夹中一个名为 `inheritance.c` 的文件中，模拟家庭中每个成员的血型继承。
 
-## Demo
+## 演示
 
-## Distribution Code
+## 分发代码
 
-For this problem, you’ll extend the functionality of code provided to you by CS50’s staff.
+对于这个问题，你将扩展 CS50 工作人员提供给你的代码的功能。
 
-Download the distribution code
+下载分发代码
 
-Log into [cs50.dev](https://cs50.dev/), click on your terminal window, and execute `cd` by itself. You should find that your terminal window’s prompt resembles the below:
+登录 [cs50.dev](https://cs50.dev/)，点击终端窗口，并单独执行 `cd`。你应该会发现终端窗口的提示符如下所示：
 
 ```
 $
 ```
 
-Next execute
+接下来执行
 
 ```python
 wget https://cdn.cs50.net/2026/x/psets/5/inheritance.zip
 ```
 
-in order to download a ZIP called `inheritance.zip` into your codespace.
+以便将名为 `inheritance.zip` 的 ZIP 文件下载到你的 codespace 中。
 
-Then execute
+然后执行
 
 ```
 unzip inheritance.zip
 ```
 
-to create a folder called `inheritance`. You no longer need the ZIP file, so you can execute
+创建一个名为 `inheritance` 的文件夹。你不再需要该 ZIP 文件，因此可以执行
 
 ```
 rm inheritance.zip
 ```
 
-and respond with “y” followed by Enter at the prompt to remove the ZIP file you downloaded.
+并在提示符处输入 “y” 后按 Enter 键，以删除下载的 ZIP 文件。
 
-Now type
+现在输入
 
 ```bash
 cd inheritance
 ```
 
-followed by Enter to move yourself into (i.e., open) that directory. Your prompt should now resemble the below.
+后按 Enter 键进入（即打开）该目录。你的提示符现在应该如下所示。
 
 ```
 inheritance/ $
 ```
 
-Execute `ls` by itself, and you should see and see a file named `inheritance.c`.
+单独执行 `ls`，你应该会看到一个名为 `inheritance.c` 的文件。
 
-If you run into any trouble, follow these same steps again and see if you can determine where you went wrong!
+如果你遇到任何问题，请再次按照这些步骤操作，看看能否确定哪里出错了！
 
-## Implementation Details
+## 实现细节
 
-Complete the implementation of `inheritance.c`, such that it creates a family of a specified generation size and assigns blood type alleles to each family member. The oldest generation will have alleles assigned randomly to them.
+完成 `inheritance.c` 的实现，使其创建一个指定代数大小的家庭，并为每个家庭成员分配血型等位基因。最老的一代将随机分配等位基因。
 
-- The `create_family` function takes an integer (`generations`) as input and should allocate (as via `malloc`) one `person` for each member of the family of that number of generations, returning a pointer to the `person` in the youngest generation.
+- `create_family` 函数接收一个整数（`generations`）作为输入，并应为该代数家庭的每个成员分配（通过 `malloc`）一个 `person` 结构体，返回指向最年轻一代 `person` 的指针。
   
-  - For example, `create_family(3)` should return a pointer to a person with two parents, where each parent also has two parents.
-  - Each `person` should have `alleles` assigned to them. The oldest generation should have alleles randomly chosen (as by calling the `random_allele` function), and younger generations should inherit one allele (chosen at random) from each parent.
-  - Each `person` should have `parents` assigned to them. The oldest generation should have both `parents` set to `NULL`, and younger generations should have `parents` be an array of two pointers, each pointing to a different parent.
+  - 例如，`create_family(3)` 应返回指向一个拥有父母的人的指针，而其父母也各自拥有父母。
+  - 每个 `person` 都应分配有 `alleles`（等位基因）。最老的一代应随机选择等位基因（通过调用 `random_allele` 函数），而较年轻的一代应从每位父母那里（随机选择）继承一个等位基因。
+  - 每个 `person` 都应分配有 `parents`。最老的一代其 `parents` 应都设为 `NULL`，而较年轻的一代其 `parents` 应是一个包含两个指针的数组，每个指针指向不同的父母。
 
-## Hints
+## 提示
 
-Understand the code in `inheritance.c`
+理解 `inheritance.c` 中的代码
 
-Take a look at the distribution code in `inheritance.c`.
+查看 `inheritance.c` 中的分发代码。
 
-Notice the definition of a type called `person`. Each person has an array of two `parents`, each of which is a pointer to another `person` struct. Each person also has an array of two `alleles`, each of which is a `char` (either `'A'`, `'B'`, or `'O'`).
+注意名为 `person` 的类型的定义。每个人都有一个包含两个 `parents` 的数组，每个 `parents` 都是指向另一个 `person` 结构体的指针。每个人还有一个包含两个 `alleles` 的数组，每个 `alleles` 都是一个 `char`（要么是 `'A'`，要么是 `'B'`，或者是 `'O'`）。
 
 ```
 // Each person has two parents and two alleles
@@ -92,60 +92,60 @@ typedef struct person
 person;
 ```
 
-Now, take a look at the `main` function. The function begins by “seeding” (i.e., providing some initial input to) a random number generator, which we’ll use later to generate random alleles.
+现在，看看 `main` 函数。该函数首先为随机数生成器“播种”（即提供一些初始输入），我们稍后将使用它来生成随机等位基因。
 
 ```
 // Seed random number generator
 srandom(time(0));
 ```
 
-The `main` function then calls the `create_family` function to simulate the creation of `person` structs for a family of 3 generations (i.e. a person, their parents, and their grandparents).
+然后，`main` 函数调用 `create_family` 函数，模拟为一个 3 代家庭（即一个人、他们的父母和他们的祖父母）创建 `person` 结构体。
 
 ```sql
 // Create a new family with three generations
 person *p = create_family(GENERATIONS);
 ```
 
-We then call `print_family` to print out each of those family members and their blood types.
+接着，我们调用 `print_family` 来打印出每个家庭成员及其血型。
 
 ```
 // Print family tree of blood types
 print_family(p, 0);
 ```
 
-Finally, the function calls `free_family` to `free` any memory that was previously allocated with `malloc`.
+最后，函数调用 `free_family` 来 `free`（释放）之前用 `malloc` 分配的任何内存。
 
 ```
 // Free memory
 free_family(p);
 ```
 
-The `create_family` and `free_family` functions are left to you to write!
+`create_family` 和 `free_family` 函数留给你来编写！
 
-Complete the `create_family` function
+完成 `create_family` 函数
 
-The `create_family` function should return a pointer to a `person` who has inherited their blood type from the number of `generations` given as input.
+`create_family` 函数应返回指向一个 `person` 的指针，该人已从输入的 `generations` 代数中继承了血型。
 
-- Notice first that this problem poses a good opportunity for recursion.
+- 首先注意，这个问题提供了使用递归的好机会。
   
-  - To determine the present person’s blood type, you need to first determine their parents’ blood types.
-  - To determine those parents’ blood types, you must first determine *their* parents’ blood types. And so on until you reach the last generation you wish to simulate.
+  - 要确定当前人的血型，你需要先确定其父母的血型。
+  - 要确定父母的血型，你必须先确定 *他们* 父母的血型。以此类推，直到达到你想要模拟的最后一代。
 
-To solve this problem, you’ll find several TODOs in the distribution code.
+为了解决这个问题，你会在分发代码中找到几个 TODO。
 
-First, you should allocate memory for a new person. Recall that you can use `malloc` to allocate memory, and `sizeof(person)` to get the number of bytes to allocate.
+首先，你应该为新成员分配内存。回想一下，你可以使用 `malloc` 分配内存，并使用 `sizeof(person)` 获取要分配的字节数。
 
 ```c
 // Allocate memory for new person
 person *new_person = malloc(sizeof(person));
 ```
 
-Next, you should check if there are still generations left to create: that is, whether `generations > 1`.
+接下来，你应该检查是否还有代数需要创建：即 `generations > 1` 是否成立。
 
-If `generations > 1`, then there are more generations that still need to be allocated. We’ve already created two new parents, `parent0` and `parent1`, by recursively calling `create_family`. Your `create_family` function should then set the parent pointers of the new person you created. Finally, assign both `alleles` for the new person by randomly choosing one allele from each parent.
+如果 `generations > 1`，则还有更多代数需要分配。我们已经通过递归调用 `create_family` 创建了两个新父母 `parent0` 和 `parent1`。然后，你的 `create_family` 函数应设置你创建的新人的父母指针。最后，通过从每位父母中随机选择一个等位基因，为新人分配两个 `alleles`。
 
-- Remember, to access a variable via a pointer, you can use arrow notation. For example, if `p` is a pointer to a person, then a pointer to this person’s first parent can be accessed by `p->parents[0]`.
-- You might find the `random()` function useful for randomly assigning alleles. This function returns an integer between `0` and `RAND_MAX`, or `32767`. In particular, to generate a pseudorandom number that is either `0` or `1`, you can use the expression `random() % 2`.
+- 请记住，要通过指针访问变量，可以使用箭头符号。例如，如果 `p` 是指向一个人的指针，那么可以通过 `p->parents[0]` 访问指向此人第一位父母的指针。
+- 你可能会发现 `random()` 函数对于随机分配等位基因很有用。此函数返回一个介于 `0` 和 `RAND_MAX`（即 `32767`）之间的整数。特别是，要生成一个为 `0` 或 `1` 的伪随机数，你可以使用表达式 `random() % 2`。
 
 ```sql
 // Create two new parents for current person by recursively calling create_family
@@ -161,7 +161,7 @@ new_person->alleles[0] = parent0->alleles[random() % 2];
 new_person->alleles[1] = parent1->alleles[random() % 2];
 ```
 
-Let’s say there are no more generations left to simulate. That is, `generations == 1`. If so, there will be no parent data for this person. Both parents of your new person should be set to `NULL`, and each `allele` should be generated randomly.
+假设没有更多代数需要模拟了。也就是说，`generations == 1`。如果是这样，此人将没有父母数据。你的新人的两位父母都应设置为 `NULL`，并且每个 `allele` 都应随机生成。
 
 ```c
 // Set parent pointers to NULL
@@ -173,21 +173,21 @@ new_person->alleles[0] = random_allele();
 new_person->alleles[1] = random_allele();
 ```
 
-Finally, your function should return a pointer for the `person` that was allocated.
+最后，你的函数应返回指向所分配的 `person` 的指针。
 
 ```
 // Return newly created person
 return new_person;
 ```
 
-Complete the `free_family` function
+完成 `free_family` 函数
 
-The `free_family` function should accept as input a pointer to a `person`, free memory for that person, and then recursively free memory for all of their ancestors.
+`free_family` 函数应接收指向 `person` 的指针作为输入，释放该人的内存，然后递归释放其所有祖先的内存。
 
-- Since this is a recursive function, you should first handle the base case. If the input to the function is `NULL`, then there’s nothing to free, so your function can return immediately.
-- Otherwise, you should recursively `free` both of the person’s parents before `free`ing the child.
+- 既然这是一个递归函数，你首先应该处理基本情况（base case）。如果函数的输入是 `NULL`，那么就没有什么可释放的，因此你的函数可以立即返回。
+- 否则，你应该在释放孩子之前，递归地 `free` 父母双方。
 
-The below is quite the hint, but here’s how to do just that!
+以下是一个相当大的提示，这里是具体的操作方法！
 
 ```c
 // Free `p` and all ancestors of `p`.
@@ -208,15 +208,15 @@ void free_family(person *p)
 }
 ```
 
-### Walkthrough
+### 演练
 
-Not sure how to solve?
+不确定如何解决？
 
-## How to Test
+## 如何测试
 
-Upon running `./inheritance`, your program should adhere to the rules described in the background. The child should have two alleles, one from each parent. The parents should each have two alleles, one from each of their parents.
+运行 `./inheritance` 后，你的程序应遵守背景中描述的规则。孩子应该有两个等位基因，父母各传一个。父母也应该各有两个等位基因，分别来自他们的父母。
 
-For example, in the example below, the child in Generation 0 received an O allele from both Generation 1 parents. The first parent received an A from the first grandparent and a O from the second grandparent. Similarly, the second parent received an O and a B from their grandparents.
+例如，在下面的示例中，第 0 代的孩子从第 1 代的两位父母那里都获得了一个 O 等位基因。第一位父母从第一位祖父母那里获得了一个 A，从第二位祖父母那里获得了一个 O。类似地，第二位父母从他们的祖父母那里获得了一个 O 和一个 B。
 
 ```bash
 $ ./inheritance
@@ -229,21 +229,21 @@ Child (Generation 0): blood type OO
         Grandparent (Generation 2): blood type BO
 ```
 
-### Correctness
+### 正确性
 
 ```
 check50 cs50/problems/2026/x/inheritance
 ```
 
-### Style
+### 风格
 
 ```
 style50 inheritance.c
 ```
 
-## How to Submit
+## 如何提交
 
-In your terminal, execute the below to submit your work, answering the prompts that come up as well.
+在你的终端中，执行以下命令提交你的作品，并根据提示回答问题。
 
 ```
 submit50 cs50/problems/2026/x/inheritance
