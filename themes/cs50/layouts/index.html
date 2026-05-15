@@ -6,7 +6,11 @@
 
 <h2>Courses</h2>
 <ul>
-  <li><a href="{{ .Site.BaseURL }}{{ .Language.Lang }}/x/">CS50x: Introduction to Computer Science</a></li>
+  {{- range .Site.Sections }}
+  {{- if .Params.course }}
+  <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+  {{- end }}
+  {{- end }}
 </ul>
 
 <h2>Languages</h2>

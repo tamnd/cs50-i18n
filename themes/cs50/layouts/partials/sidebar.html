@@ -1,8 +1,20 @@
+{{ $lang := .Language.Lang }}
+{{ $base := .Site.BaseURL }}
+
+{{/* Use .FirstSection to get the top-level course section page */}}
+{{ $firstSection := .FirstSection }}
+{{ $courseTitle := "CS50's Introduction to Computer Science" }}
+{{ $courseLink  := $base }}
+{{ if $firstSection }}
+  {{ $courseTitle = $firstSection.Title }}
+  {{ $courseLink  = $firstSection.Permalink }}
+{{ end }}
+
 <aside class="col-lg">
 
   <header>
-    <h1><a href="{{ .Site.BaseURL }}{{ .Language.Lang }}/x/">This is CS50</a></h1>
-    <h2 class="text-white">{{ with .Site.Params.courseName }}{{ . }}{{ else }}CS50's Introduction to Computer Science{{ end }}</h2>
+    <h1><a href="{{ $courseLink }}">This is CS50</a></h1>
+    <h2 class="text-white">{{ $courseTitle }}</h2>
     <p>OpenCourseWare</p>
     <p>
       <a href="mailto:malan@harvard.edu" class="small me-2">
@@ -52,7 +64,7 @@
     <hr>
 
     <ul>
-      <li><a href="{{ .Site.BaseURL }}{{ .Language.Lang }}/x/license/" class="small">
+      <li><a href="{{ $base }}{{ $lang }}/x/license/" class="small">
         <i class="fa-brands fa-creative-commons me-1"></i>{{ i18n "license_label" | default "License" }}
       </a></li>
     </ul>
