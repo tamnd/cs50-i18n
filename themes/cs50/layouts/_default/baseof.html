@@ -3,7 +3,7 @@
 <head>
   {{ partial "head.html" . }}
 </head>
-<body class="invisible">
+<body>
 
   {{ partial "alert.html" . }}
 
@@ -12,7 +12,7 @@
 
       {{ partial "sidebar.html" . }}
 
-      <main class="col-lg py-4 px-4">
+      <main class="col-lg">
         {{ block "main" . }}{{ end }}
       </main>
 

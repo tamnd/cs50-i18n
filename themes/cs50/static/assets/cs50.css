@@ -1,53 +1,25 @@
 /*
  * cs50.css — custom styles matching https://cs50.harvard.edu/x/
- *
- * License: CC BY-NC-SA 4.0 (same as original CS50 content)
- * Source:  https://github.com/tamnd/cs50-i18n
- *
- * This stylesheet replicates the visual design of the CS50 Harvard
- * course website using Bootstrap 5 as the base framework.
+ * Source: https://github.com/tamnd/cs50-i18n
+ * License: CC BY-NC-SA 4.0
  */
 
-/* ── Root variables ─────────────────────────────────────────────────────── */
+html {
+  font-size: 16px;
+}
 
 :root {
   --bs-font-sans-serif: "PT Sans", system-ui, -apple-system, sans-serif;
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-/* ── Body layout ────────────────────────────────────────────────────────── */
+/* ── Layout ─────────────────────────────────────────────────────────────── */
 
-html, body {
-  height: 100%;
+body > div.container-fluid > div.row {
+  align-items: flex-start;
 }
 
-body {
-  display: flex;
-  flex-grow: 0;
-  padding: 0;
-  overflow-y: visible;
-  /* Invisible until JS reveals it (prevents FOUC with fonts) */
-  transition: opacity 0.15s ease-in-out;
-}
-
-body.invisible {
-  opacity: 0;
-}
-
-body.visible {
-  opacity: 1;
-}
-
-.container-fluid {
-  padding: 0;
-}
-
-.container-fluid > .row {
-  min-height: 100vh;
-  flex-wrap: nowrap;
-}
-
-/* ── Sidebar (aside) ────────────────────────────────────────────────────── */
+/* ── Aside (sidebar) ────────────────────────────────────────────────────── */
 
 aside {
   background-color: #000;
@@ -56,136 +28,138 @@ aside {
   box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
-aside.col-lg {
-  flex: 0 1 20rem;
-  padding: 1rem 2rem 2rem 2rem;
-  overflow-y: auto;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  z-index: 1019;
-}
-
-aside h1,
-aside h2,
-aside .h1,
-aside .h2 {
+aside h1, aside h2, aside .h1, aside .h2 {
   border-bottom: 0;
 }
 
-aside h1 {
-  font-size: 1.5rem;
-  margin-top: 1rem;
+aside li:first-child, aside li + li {
+  margin-top: 0;
 }
 
-aside h2 {
-  font-size: 1.125rem;
-  font-weight: 400;
+aside a, aside .btn-link {
+  text-decoration: none;
+}
+
+aside.col-lg {
+  padding: 2rem 2rem;
+}
+
+@media screen and (min-width: 992px) {
+  aside.col-lg {
+    flex: 0 1 20rem;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 1019;
+  }
+}
+
+aside a,
+aside a:hover,
+aside .btn[data-bs-toggle="collapse"],
+aside .btn[data-bs-toggle="collapse"]:hover {
+  background-color: inherit;
+  border-color: #fff;
+  color: #fff;
+}
+
+aside .btn[data-bs-toggle="collapse"]:not(.collapsed) {
+  background-color: #fff;
+  color: #000;
+}
+
+aside hr {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  opacity: 1;
 }
 
 aside p.small {
   line-height: 1.25;
 }
 
-aside li:first-child,
-aside li + li {
-  margin-top: 0;
-}
-
-/* Links inside sidebar */
-aside a,
-aside .btn-link {
-  text-decoration: none;
-}
-
-aside a,
-aside a:hover,
-aside a:visited {
-  color: #fff;
-  background-color: inherit;
-  border-color: #fff;
-}
-
-/* Dividers */
-aside hr {
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  opacity: 1;
-}
-
-/* Nav list */
-aside nav ul {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 0;
-}
-
-aside nav > ul > li {
-  padding: 0.1rem 0;
-}
-
-aside nav ul li strong {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-aside nav ul li a {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.75);
-}
-
-aside nav ul li a:hover,
-aside nav ul li a.fw-bold {
-  color: #fff;
-}
-
-/* Active page link */
-aside nav ul li a.fw-bold {
-  font-weight: 700;
-}
-
-/* Mobile toggle button */
-aside .btn {
-  border-color: #fff;
-  color: #fff;
-  background-color: transparent;
+aside .btn[data-bs-toggle="collapse"] {
   margin-top: 1.25rem;
 }
 
-aside .btn:hover {
-  background-color: #fff;
-  color: #000;
+/* ── Header (inside sidebar) ────────────────────────────────────────────── */
+
+header h1, header .h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0;
 }
 
-aside .btn.collapsed {
-  background-color: transparent;
-  color: #fff;
+header h2, header .h2 {
+  font-size: 1.25rem;
+  font-weight: normal;
+  padding-top: 0;
 }
 
-/* data-marker bullet styles */
-li[data-marker="*"] { list-style-type: disc; }
-li[data-marker="-"] { list-style-type: none; }
-li[data-marker="+"] { list-style-type: circle; }
+/* ── Nav (inside sidebar) ───────────────────────────────────────────────── */
+
+nav > *:first-child {
+  margin-top: 1rem;
+}
+
+nav ol li,
+nav ul li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+nav ol {
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+nav ol li {
+  padding-left: 0;
+}
+
+nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+nav ul ul {
+  list-style: inside;
+}
+
+/* ── Footer (inside sidebar) ────────────────────────────────────────────── */
+
+footer {
+  margin-top: 1rem;
+}
+
+footer:empty {
+  margin-top: 0;
+}
 
 /* ── Main content ───────────────────────────────────────────────────────── */
 
 main.col-lg {
-  background-color: #fff;
-  color: #212529;
-  min-width: 0;
+  max-width: 80rem;
+  overflow: auto;
+  padding: 4rem 2rem;
 }
 
-main h1:first-child {
-  margin-top: 0;
+/* ── data-marker list styles (CS50 convention) ──────────────────────────── */
+
+li[data-marker="*"] { list-style-type: disc; }
+li[data-marker="-"] { list-style-type: none; }
+li[data-marker="+"] { list-style-type: circle; }
+
+/* ── Alert banner ───────────────────────────────────────────────────────── */
+
+body:has(.alert.fixed-top:not(.d-none)) main,
+body:has(.alert.fixed-top:not(.d-none)) aside {
+  margin-top: 3rem;
 }
 
-/* Responsive video embeds */
-main .ratio {
-  margin: 1rem 0;
-}
+/* ── Code blocks ────────────────────────────────────────────────────────── */
 
-/* Code blocks */
 main pre {
   background-color: #f8f9fa;
   border: 1px solid #dee2e6;
@@ -200,58 +174,6 @@ main code {
 
 main pre code {
   color: inherit;
-}
-
-/* ── Alert banner (fixed top) ───────────────────────────────────────────── */
-
-.alert.fixed-top {
-  padding: 0.5rem 1rem;
-  font-size: 0.9375rem;
-}
-
-/* Push content down when alert is visible */
-body:has(.alert.fixed-top:not(.d-none)) main,
-body:has(.alert.fixed-top:not(.d-none)) aside {
-  margin-top: 3rem;
-}
-
-/* ── Details/summary (expandable sections) ──────────────────────────────── */
-
-details summary {
-  cursor: pointer;
-  color: #0d6efd;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-
-details summary:hover {
-  color: #0a58ca;
-}
-
-/* ── Responsive ─────────────────────────────────────────────────────────── */
-
-/* On mobile, sidebar becomes full-width and stacks above main */
-@media (max-width: 991.98px) {
-  .container-fluid > .row {
-    flex-wrap: wrap;
-  }
-
-  aside.col-lg {
-    flex: 0 0 100%;
-    max-width: 100%;
-    height: auto;
-    position: relative;
-    overflow-y: visible;
-  }
-
-  aside nav.collapse:not(.show) {
-    display: none;
-  }
-
-  main.col-lg {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
 }
 
 /* ── Tables ─────────────────────────────────────────────────────────────── */
@@ -273,20 +195,39 @@ main table thead th {
   font-weight: 700;
 }
 
-/* ── Social icon links in header ────────────────────────────────────────── */
+/* ── Responsive ─────────────────────────────────────────────────────────── */
 
-aside header a {
-  opacity: 0.65;
-  transition: opacity 0.15s;
+@media (max-width: 991.98px) {
+  small,
+  h1 em, h2 em, h3 em, h4 em, h5 em, h6 em,
+  .h1 em, .h2 em, .h3 em, .h4 em, .h5 em, .h6 em,
+  .small {
+    font-size: 90%;
+  }
+
+  aside.col-lg {
+    padding-top: 1rem;
+  }
+
+  main.col-lg {
+    padding: 2rem 2rem;
+  }
 }
 
-aside header a:hover {
-  opacity: 1;
-}
+/* ── Print ──────────────────────────────────────────────────────────────── */
 
-/* ── Language switcher ──────────────────────────────────────────────────── */
+@media print {
+  aside.col-lg {
+    flex: unset;
+    height: auto !important;
+  }
 
-aside .lang-switcher li {
-  display: inline-block;
-  margin-right: 0.5rem;
+  aside .btn[data-bs-toggle="collapse"] {
+    display: none;
+  }
+
+  nav.collapse:not(.show),
+  footer {
+    display: none !important;
+  }
 }
