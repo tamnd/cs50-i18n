@@ -1,0 +1,48 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+
+{{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
+{{ with .Site.Params.githubRepo }}<link rel="canonical" href="{{ $.Permalink }}">{{ end }}
+
+<!-- PT Sans via Google Fonts WebFont loader -->
+<script>
+WebFontConfig = {
+  google: { families: ["PT+Sans:400,400i,700,700i"] }
+};
+(function(d) {
+  var wf = d.createElement("script"), s = d.scripts[0];
+  wf.src = "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js";
+  wf.async = true;
+  s.parentNode.insertBefore(wf, s);
+})(document);
+</script>
+
+<!-- Font Awesome 6 Free -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+
+<!-- Bootstrap 5.3.8 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous">
+
+<!-- CS50 custom styles -->
+<link rel="stylesheet" href="{{ "/assets/cs50.css" | absURL }}">
+
+<!-- MathJax -->
+<script>
+MathJax = {
+  tex: { inlineMath: [["$","$"], ["\\(","\\)"]], displayMath: [["$$","$$"], ["\\[","\\]"]] },
+  options: { skipHtmlTags: ["script","noscript","style","textarea","pre"] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+<!-- Mermaid -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+
+<!-- Luxon (date/time) -->
+<script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js" defer></script>
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ .Permalink }}">

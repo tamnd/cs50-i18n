@@ -1,0 +1,6 @@
+{{- with .Site.Params.alert }}
+<div class="alert alert-success fixed-top mb-0 rounded-0" id="alert" role="alert">
+  <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+  <p class="mb-0">{{ . | safeHTML }}</p>
+</div>
+{{- end }}

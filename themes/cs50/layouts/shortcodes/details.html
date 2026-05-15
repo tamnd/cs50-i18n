@@ -1,0 +1,9 @@
+{{/*
+  Usage: {{< details summary="Watch an introduction" >}}...content...{{< /details >}}
+*/}}
+<details>
+  <summary>{{ .Get "summary" | default "Details" }}</summary>
+  <div class="mt-2">
+    {{ .Inner | markdownify }}
+  </div>
+</details>

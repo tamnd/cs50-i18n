@@ -1,0 +1,63 @@
+baseURL = "https://tamnd.github.io/cs50-i18n/"
+title = "CS50 i18n"
+theme = "cs50"
+
+enableGitInfo = true
+enableRobotsTXT = true
+enableEmoji = true
+
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    contentDir = "content/en"
+    weight = 1
+    [languages.en.params]
+      courseName = "CS50's Introduction to Computer Science"
+      instructorName = "David J. Malan"
+      instructorEmail = "malan@harvard.edu"
+
+  [languages.vi]
+    languageName = "Tiếng Việt"
+    contentDir = "content/vi"
+    weight = 2
+    [languages.vi.params]
+      courseName = "Nhập môn Khoa học Máy tính của CS50"
+      instructorName = "David J. Malan"
+      instructorEmail = "malan@harvard.edu"
+
+  [languages.zh]
+    languageName = "中文"
+    contentDir = "content/zh"
+    weight = 3
+    [languages.zh.params]
+      courseName = "CS50计算机科学导论"
+      instructorName = "David J. Malan"
+      instructorEmail = "malan@harvard.edu"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.goldmark.extensions.passthrough]
+    enable = true
+    [markup.goldmark.extensions.passthrough.delimiters]
+      block  = [["$$", "$$"], ["\\[", "\\]"]]
+      inline = [["$", "$"],   ["\\(", "\\)"]]
+  [markup.highlight]
+    noClasses = false
+    style = "github"
+
+[params]
+  githubRepo = "https://github.com/tamnd/cs50-i18n"
+  originalSite = "https://cs50.harvard.edu/x/"
+  license = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+
+[taxonomies]
+  course = "courses"
+
+[outputs]
+  home = ["html"]
+  page = ["html"]
+  section = ["html"]

@@ -1,0 +1,10 @@
+name = "cs50"
+license = "CC BY-NC-SA 4.0"
+licenselink = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+description = "Hugo theme matching the CS50 Harvard course website design"
+homepage = "https://github.com/tamnd/cs50-i18n"
+min_version = "0.120.0"
+
+[author]
+  name = "Tam Nguyen"
+  homepage = "https://github.com/tamnd"

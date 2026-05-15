@@ -1,0 +1,22 @@
+{{/*
+  Usage: {{< video id="zkPUmtxeji8" title="Week 0 Lecture" >}}
+  Or:    {{< video url="https://youtu.be/zkPUmtxeji8" >}}
+*/}}
+{{ $id := .Get "id" }}
+{{ $url := .Get "url" }}
+{{ $title := .Get "title" | default "CS50 Lecture" }}
+
+{{ if $url }}
+  {{ $id = $url | replaceRE `.*[?&]v=([^&]+).*` "$1" | replaceRE `.*youtu\.be/([^?]+).*` "$1" }}
+{{ end }}
+
+{{ if $id }}
+<div class="ratio ratio-16x9 border my-3">
+  <iframe
+    src="https://www.youtube.com/embed/{{ $id }}"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    loading="lazy"
+    title="{{ $title }}"></iframe>
+</div>
+{{ end }}

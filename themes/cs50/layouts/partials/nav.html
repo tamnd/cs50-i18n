@@ -1,0 +1,48 @@
+{{/*
+  Renders course navigation links inside <ul> for the sidebar.
+  Expects .Lang to be set (e.g. "en", "vi", "zh").
+  Reads weeks and psets from site pages under /{lang}/x/.
+*/}}
+
+{{ $lang := .Language.Lang }}
+{{ $base := .Site.BaseURL }}
+
+{{- $weeks := where (where .Site.Pages "Section" "x") "Type" "weeks" }}
+{{- $psets := where (where .Site.Pages "Section" "x") "Type" "psets" }}
+
+{{- /* Fall back to all pages under /x/ */}}
+{{- if not $weeks }}
+  {{- $weeks = where .Site.Pages "Section" "weeks" }}
+{{- end }}
+
+<hr class="small">
+
+<li><strong>{{ i18n "weeks_label" | default "Weeks" }}</strong></li>
+{{- range sort (where .Site.RegularPages "Params.week" "ne" nil) "Params.week" }}
+{{- if in .RelPermalink "/weeks/" }}
+<li data-marker="*"><a href="{{ .Permalink }}"{{ if eq $.Page.Permalink .Permalink }} class="fw-bold"{{ end }}>
+  Week {{ .Params.week }}{{ with .Params.topic }}: {{ . }}{{ end }}
+</a></li>
+{{- end }}
+{{- end }}
+
+<hr class="small">
+
+<li><strong>{{ i18n "psets_label" | default "Problem Sets" }}</strong></li>
+{{- range sort (where .Site.RegularPages "Params.pset" "ne" nil) "Params.pset" }}
+{{- if in .RelPermalink "/psets/" }}
+<li data-marker="*"><a href="{{ .Permalink }}"{{ if eq $.Page.Permalink .Permalink }} class="fw-bold"{{ end }}>
+  Problem Set {{ .Params.pset }}
+</a></li>
+{{- end }}
+{{- end }}
+
+<hr class="small">
+
+<li data-marker="*"><a href="{{ $base }}{{ $lang }}/x/project/">{{ i18n "project_label" | default "Final Project" }}</a></li>
+
+<hr>
+
+<li data-marker="-"><a href="{{ $base }}{{ $lang }}/x/certificate/" class="small">{{ i18n "certificate_label" | default "Certificate" }}</a></li>
+<li data-marker="-"><a href="{{ $base }}{{ $lang }}/x/honesty/" class="small">{{ i18n "honesty_label" | default "Academic Honesty" }}</a></li>
+<li data-marker="-"><a href="{{ $base }}{{ $lang }}/x/faqs/" class="small">{{ i18n "faq_label" | default "FAQs" }}</a></li>

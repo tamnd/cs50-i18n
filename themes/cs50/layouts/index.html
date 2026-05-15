@@ -1,0 +1,21 @@
+{{ define "main" }}
+
+<h1 id="welcome">{{ i18n "welcome" | default "Welcome" }}</h1>
+
+<p>{{ i18n "site_description" | default "This is an open multilingual version of CS50 Harvard course materials." }}</p>
+
+<h2>Courses</h2>
+<ul>
+  <li><a href="{{ .Site.BaseURL }}{{ .Language.Lang }}/x/">CS50x: Introduction to Computer Science</a></li>
+</ul>
+
+<h2>Languages</h2>
+<ul>
+  {{ range .Site.Languages }}
+  <li><a href="{{ $.Site.BaseURL }}{{ .Lang }}/">{{ .LanguageName }}</a></li>
+  {{ end }}
+</ul>
+
+{{ .Content }}
+
+{{ end }}

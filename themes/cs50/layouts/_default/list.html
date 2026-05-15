@@ -1,0 +1,33 @@
+{{ define "main" }}
+
+<h1 id="{{ .Title | urlize }}">{{ .Title }}</h1>
+
+{{ .Content }}
+
+{{- $pages := .RegularPages }}
+
+{{- if eq .Section "weeks" }}
+  {{- $pages = sort $pages "Params.week" }}
+  <ul>
+    {{- range $pages }}
+    <li><a href="{{ .Permalink }}">Week {{ .Params.week }}{{ with .Params.topic }}: {{ . }}{{ end }}</a></li>
+    {{- end }}
+  </ul>
+
+{{- else if eq .Section "psets" }}
+  {{- $pages = sort $pages "Params.pset" }}
+  <ul>
+    {{- range $pages }}
+    <li><a href="{{ .Permalink }}">Problem Set {{ .Params.pset }}{{ with .Title }}: {{ . }}{{ end }}</a></li>
+    {{- end }}
+  </ul>
+
+{{- else }}
+  <ul>
+    {{- range $pages }}
+    <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+    {{- end }}
+  </ul>
+{{- end }}
+
+{{ end }}

@@ -1,0 +1,40 @@
+{{ define "main" }}
+
+<article>
+
+  <h1 id="{{ .Title | urlize }}">
+    {{- with .Params.week -}}
+      Week {{ . }}
+      {{- with $.Params.topic }} <em>{{ . }}</em>{{ end }}
+    {{- else -}}
+      {{ .Title }}
+    {{- end -}}
+  </h1>
+
+  {{- with .Params.video }}
+  <details>
+    <summary>Watch the lecture</summary>
+    <div class="ratio ratio-16x9 border my-3">
+      <iframe
+        src="https://www.youtube.com/embed/{{ . | replaceRE `.*[?&]v=([^&]+).*` "$1" | replaceRE `.*youtu\.be/([^?]+).*` "$1" }}"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+        title="{{ $.Title }}"></iframe>
+    </div>
+  </details>
+  {{- end }}
+
+  {{ .Content }}
+
+  {{- if or .Params.translatedBy .Params.translateNote }}
+  <hr>
+  <div class="alert alert-info small mt-4" role="note">
+    {{- with .Params.translateNote }}<p>{{ . }}</p>{{ end }}
+    {{- with .Params.translatedBy }}<p>Translated by {{ . }}</p>{{ end }}
+  </div>
+  {{- end }}
+
+</article>
+
+{{ end }}

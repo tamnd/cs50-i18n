@@ -1,0 +1,66 @@
+<aside class="col-lg">
+
+  <header>
+    {{- $course := .Site.GetPage (printf "/%s" (.Scratch.Get "courseSlug" | default "x")) }}
+    <h1><a href="{{ .Site.BaseURL }}{{ .Language.Lang }}/x/">This is CS50</a></h1>
+    <h2 class="text-white">{{ .Site.Params.courseName | default (.Lang | printf "%s" ) | default "CS50's Introduction to Computer Science" }}</h2>
+    <p>OpenCourseWare</p>
+    <p>
+      <a href="mailto:malan@harvard.edu" class="small me-2">
+        <i class="fa-solid fa-envelope me-1"></i>malan@harvard.edu
+      </a>
+    </p>
+    <p class="small">
+      <a href="https://www.facebook.com/cs50" class="me-1" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://github.com/cs50" class="me-1" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://instagram.com/cs50" class="me-1" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://linkedin.com/school/cs50/" class="me-1" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://www.reddit.com/r/cs50" class="me-1" aria-label="Reddit"><i class="fa-brands fa-reddit-alien"></i></a>
+      <a href="https://twitter.com/cs50" class="me-1" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.youtube.com/cs50" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    </p>
+  </header>
+
+  <!-- Mobile toggle -->
+  <button
+    class="btn btn-sm collapsed d-lg-none"
+    data-bs-toggle="collapse"
+    data-bs-target="aside > nav"
+    aria-controls="nav"
+    aria-expanded="false">Menu</button>
+
+  <nav class="collapse d-lg-block" id="nav">
+    <ul>
+      {{ partial "nav.html" . }}
+    </ul>
+
+    <hr>
+
+    <!-- Language switcher -->
+    <ul>
+      <li><strong>{{ i18n "language_label" | default "Language" }}</strong></li>
+      {{ range .Site.Languages }}
+      <li>
+        {{- $langURL := printf "/%s/" .Lang }}
+        {{- if eq .Lang $.Language.Lang }}
+        <strong>{{ .LanguageName }}</strong>
+        {{- else }}
+        <a href="{{ $.Site.BaseURL }}{{ .Lang }}/">{{ .LanguageName }}</a>
+        {{- end }}
+      </li>
+      {{ end }}
+    </ul>
+
+    <hr>
+
+    <ul>
+      <li><a href="{{ .Site.BaseURL }}{{ .Language.Lang }}/x/license/" class="small">
+        <i class="fa-brands fa-creative-commons me-1"></i>{{ i18n "license_label" | default "License" }}
+      </a></li>
+    </ul>
+
+  </nav>
+
+  <footer></footer>
+
+</aside>
